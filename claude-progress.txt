@@ -18,3 +18,6 @@
 2026-04-25T03:22:00Z · F002 · BUILD · lib/schemas/__tests__/exemplar-validation.test.ts written; gray-matter for MD frontmatter
 2026-04-25T03:22:00Z · F002 · REVIEW · bun test → 4 pass / 0 fail; all four exemplars parse
 2026-04-25T03:22:00Z · F002 · COMPLETE · accepted
+2026-04-25T03:25:00Z · F008 · BUILD · lib/scaffold-selector.ts (pure pickScaffold) + 11-case test
+2026-04-25T03:25:00Z · F008 · REVIEW · 11 pass / 0 fail; covers all 5 tiers, all 4 boundaries (≥), and floor/ceiling
+2026-04-25T03:25:00Z · F008 · COMPLETE · accepted
