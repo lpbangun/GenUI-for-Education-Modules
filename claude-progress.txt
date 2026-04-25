@@ -36,3 +36,5 @@
 2026-04-25T03:50:00Z · F010-prep · REVIEW · 4 tool-name tests pass; /api/health responds 200 without key; /api/chat returns 503 JSON without key
 2026-04-25T03:50:00Z · F010-prep · BLOCKED · live LLM verification (the part that earns "complete") needs GEMINI_API_KEY
 2026-04-25T03:50:00Z · HARNESS · STOP · 7/11 features complete + F010-prep done; remaining 4 features (F003/F004/F006/F010) all need GEMINI_API_KEY; Vercel deploy needs VERCEL_TOKEN. User's morning: add the keys to .env, re-run harness; resume protocol in HARNESS.md §0 picks up from F003.
+2026-04-25T13:58:00Z · F010 · E2E · live Gemini call returned tool name "ScaffoldedMCQ" matching canonical TOOL_NAMES; streaming+toolcall path verified
+2026-04-25T13:58:00Z · F010 · COMPLETE · accepted (8/11 features now done)
