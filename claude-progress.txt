@@ -12,3 +12,9 @@
 2026-04-25T03:18:00Z · F000 · REVIEW · acceptance pass (both files exist non-empty)
 2026-04-25T03:18:00Z · F000 · E2E · n/a (reference files only, no integration surface)
 2026-04-25T03:18:00Z · F000 · COMPLETE · accepted (workaround logged in decisions/001)
+2026-04-25T03:21:00Z · F001 · BUILD · scripts/validate_taxonomy.ts written (DAG check + schema + category consistency)
+2026-04-25T03:21:00Z · F001 · REVIEW · bun run scripts/validate_taxonomy.ts → exit 0, 25 concepts, DAG clean
+2026-04-25T03:21:00Z · F001 · COMPLETE · accepted
+2026-04-25T03:22:00Z · F002 · BUILD · lib/schemas/__tests__/exemplar-validation.test.ts written; gray-matter for MD frontmatter
+2026-04-25T03:22:00Z · F002 · REVIEW · bun test → 4 pass / 0 fail; all four exemplars parse
+2026-04-25T03:22:00Z · F002 · COMPLETE · accepted
