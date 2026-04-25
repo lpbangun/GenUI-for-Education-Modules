@@ -32,3 +32,7 @@
 2026-04-25T03:43:00Z · F009 · BUILD · DictionaryView with Fuse.js search + stub entries (5 terms) + Contributed-by-staff placeholder
 2026-04-25T03:43:00Z · F009 · REVIEW · ships in same build as F007; renders search/sidebar/detail; mock data documented as F004-pending
 2026-04-25T03:43:00Z · F009 · COMPLETE · accepted_with_workaround (stub data; flip to real once F004 generates dictionary MD; see decisions/002)
+2026-04-25T03:50:00Z · F010-prep · BUILD · backend/{index.ts,tools.ts,__tests__/tools.test.ts} + api/index.ts + vercel.json
+2026-04-25T03:50:00Z · F010-prep · REVIEW · 4 tool-name tests pass; /api/health responds 200 without key; /api/chat returns 503 JSON without key
+2026-04-25T03:50:00Z · F010-prep · BLOCKED · live LLM verification (the part that earns "complete") needs GEMINI_API_KEY
+2026-04-25T03:50:00Z · HARNESS · STOP · 7/11 features complete + F010-prep done; remaining 4 features (F003/F004/F006/F010) all need GEMINI_API_KEY; Vercel deploy needs VERCEL_TOKEN. User's morning: add the keys to .env, re-run harness; resume protocol in HARNESS.md §0 picks up from F003.
