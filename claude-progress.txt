@@ -8,3 +8,7 @@
 
 2026-04-25T03:15:00Z · HARNESS · BOOTSTRAP · git init done; HARNESS.md, AGENTS.md, decisions/000, warnings/credential-blocks.md created
 2026-04-25T03:15:00Z · HARNESS · TASKLIST · 13 features queued; F003/F004/F006/F010/deploy pre-flagged on credential walls
+2026-04-25T03:18:00Z · F000 · BUILD · fetched ai-sdk-llms.txt (145676 lines); SKILL.md kept as inline fallback (Vercel GH paths 404)
+2026-04-25T03:18:00Z · F000 · REVIEW · acceptance pass (both files exist non-empty)
+2026-04-25T03:18:00Z · F000 · E2E · n/a (reference files only, no integration surface)
+2026-04-25T03:18:00Z · F000 · COMPLETE · accepted (workaround logged in decisions/001)
