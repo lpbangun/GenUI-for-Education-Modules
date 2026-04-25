@@ -52,3 +52,6 @@
 2026-04-25T14:38:00Z · DEPLOY · E2E · live LLM tool call green: ScaffoldedMCQ returned full structured payload from prod backend
 2026-04-25T14:38:00Z · DEPLOY · COMPLETE · accepted; LIVE at https://data-fluency-module.vercel.app (frontend + /_/backend/api/* live)
 2026-04-25T14:38:00Z · HARNESS · STOP · 11/11 features + deploy COMPLETE; live demo URL ready for capstone defense
+2026-04-25T15:05:00Z · F011 · BUILD · frontend/src/lib/api.ts (streamScaffold) + Scaffolds.vue (5-tier renderer) + ModuleView/AutoplayView wired to live backend
+2026-04-25T15:05:00Z · F011 · REVIEW · clean build (129KB JS, 9KB CSS); live MCQ tool call verified through deployed backend
+2026-04-25T15:05:00Z · F011 · COMPLETE · accepted; autoplay now renders real scaffolds from live LLM
