@@ -1,0 +1,65 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Summer School, you are comparing the distribution of course enrollment numbers across two different departments. Both the 'Creative Arts' department and the 'Social Sciences' department have an average class size of exactly 25 students. You are deciding how many teaching assistants to allocate to each department.",
+    "artifact_type": "summary_stats",
+    "prompt": "You look at the spread of the data and see that Creative Arts has a range of 20-30 students per class, while Social Sciences has a range of 5-45 students per class. Based on this, which conclusion is the most defensible?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Both departments have the same average, so they both require the exact same number of teaching assistants.",
+        "correct": false,
+        "feedback": "This ignores the spread. A department with high variability may have many small classes and a few massive lectures, requiring different support structures than a department with consistent class sizes."
+      },
+      {
+        "id": "B",
+        "text": "Creative Arts requires more teaching assistants because their enrollment is more stable and predictable.",
+        "correct": false,
+        "feedback": "Predictability is useful, but it doesn't automatically mean higher staffing needs. We need to consider how the variability impacts the actual workload."
+      },
+      {
+        "id": "C",
+        "text": "Social Sciences may have more volatile staffing needs because their class sizes fluctuate significantly compared to the average.",
+        "correct": true,
+        "feedback": "Correct. High variability indicates that while the average is 25, many classes are significantly smaller or larger, which requires more nuanced planning than a department where almost every class is near 25."
+      },
+      {
+        "id": "D",
+        "text": "The data is invalid because the average class size should be identical across all departments at the university.",
+        "correct": false,
+        "feedback": "Departments have different pedagogical goals, enrollment caps, and structures; different averages and different variabilities are expected and valid."
+      }
+    ],
+    "rubric_primary": "Learner identifies that variability informs operational needs regardless of the mean being identical.",
+    "visible_thinking_prompts": {
+      "notice": "What do you see when you compare the ranges of these two departments?",
+      "think": "What does having the same average, but different ranges, imply about the classroom experience in these two areas?",
+      "wonder": "Why might a single average be insufficient to decide how many teaching assistants are needed?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1187,
+    "inputTokenDetails": {
+      "noCacheTokens": 1187,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 591,
+    "outputTokenDetails": {
+      "textTokens": 591,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1778,
+    "raw": {
+      "promptTokenCount": 1187,
+      "candidatesTokenCount": 591,
+      "totalTokenCount": 1778,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1187
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

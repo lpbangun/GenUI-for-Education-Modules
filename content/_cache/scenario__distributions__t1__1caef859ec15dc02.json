@@ -1,0 +1,65 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Summer School, you are reviewing survey data regarding the number of course-related projects undergraduate students completed during their term. You want to describe the overall experience to the faculty committee before recommending changes to the workload guidelines.",
+    "artifact_type": "chart_description",
+    "prompt": "Looking at the visual distribution of project counts, how should you characterize the data before calculating any averages?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The data is perfectly symmetric, so the average perfectly represents the student experience.",
+        "correct": false,
+        "feedback": "The data shows a distinct peak on the left with a long tail to the right. It is not symmetric, and assuming it is will lead to an inaccurate description."
+      },
+      {
+        "id": "B",
+        "text": "The data is skewed right, meaning most students complete fewer projects, while a small group completes a very high number.",
+        "correct": true,
+        "feedback": "Correct. This shape indicates a concentration of low values with a long tail of high-value outliers, which is a classic right-skewed distribution."
+      },
+      {
+        "id": "C",
+        "text": "The data is bimodal, indicating that students fall into two distinct and equal groups of work habits.",
+        "correct": false,
+        "feedback": "A bimodal distribution would show two distinct peaks. Here, the data shows one major peak, making a description of skew more appropriate."
+      },
+      {
+        "id": "D",
+        "text": "The shape does not matter; I should only report the mean to the faculty committee.",
+        "correct": false,
+        "feedback": "The shape of the distribution is critical because it tells us if the mean is being pulled by extreme values. Reporting the mean without understanding the shape can hide important insights about student workloads."
+      }
+    ],
+    "rubric_primary": "The learner correctly identifies the distribution as skewed right and explains why reporting a single average might be misleading for this dataset.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about the clustering of students toward the left side of the chart versus the long tail to the right?",
+      "think": "What might the presence of that long tail imply about the workload variation among students?",
+      "wonder": "Why would reporting just a single average number be potentially unhelpful for the committee?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1186,
+    "inputTokenDetails": {
+      "noCacheTokens": 1186,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 560,
+    "outputTokenDetails": {
+      "textTokens": 560,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1746,
+    "raw": {
+      "promptTokenCount": 1186,
+      "candidatesTokenCount": 560,
+      "totalTokenCount": 1746,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1186
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "You are leading a data orientation workshop for new academic advisors at the college. You want them to understand that the data they see in the student advising portal only represents specific subsets of students, and that assuming these summaries represent the entire undergraduate population is a common error. You decide to write a section of the 'Advisor Handbook' on data stewardship.",
+    "artifact_type": "report_excerpt",
+    "prompt": "Draft a short handbook entry (approx. 150 words) for your colleagues. Your entry must explain the necessity of asking 'who is in this sample' before summarizing data, and provide an example of why generalizing a specific subset to the whole population might be misleading.",
+    "hint_content": "Consider the difference between a student who responds to an optional mid-semester survey versus one who does not. If your sample consists only of voluntary respondents, what risks do you face when you apply that data to all students?",
+    "rubric_primary": "The response must explicitly connect the identity of the survey participants to the potential for bias, define the distinction between sample and population, and provide a concrete example of why aggregate data is not universal.",
+    "visible_thinking_prompts": {
+      "wonder": "Why might our data systems currently favor the voices of some student groups over others?",
+      "connect": "How does your own experience with student outreach inform the groups of students most likely to participate in surveys?",
+      "extend": "What new questions should we ask the Institutional Research office before we act on a summary report?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1197,
+    "inputTokenDetails": {
+      "noCacheTokens": 1197,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 338,
+    "outputTokenDetails": {
+      "textTokens": 338,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1535,
+    "raw": {
+      "promptTokenCount": 1197,
+      "candidatesTokenCount": 338,
+      "totalTokenCount": 1535,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1197
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

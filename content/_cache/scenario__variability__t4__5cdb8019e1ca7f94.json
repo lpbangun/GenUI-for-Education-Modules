@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As a staff member in the Office of Undergraduate Advising, you are reviewing student feedback on two different first-year seminar formats, both designed to support transition to college life. Both groups report the same mean satisfaction score of 3.5 out of 5.0. You are tasked with determining which format is more effective for all students.",
+    "artifact_type": "summary_stats",
+    "prompt": "You are presented with two datasets: Group A (Satisfaction scores: 3, 4, 3, 4, 3, 4) and Group B (Satisfaction scores: 1, 5, 2, 5, 1, 5). Given that both groups share the same mean of 3.5, provide a brief analysis of why relying only on the mean is misleading in this context. How would you describe the difference in 'student experience' between these two groups to your department head, and what does the spread tell you about the reliability of the format?",
+    "rubric_primary": "The learner must demonstrate an understanding that the mean obscures the underlying distribution. They should specifically note that Group A shows consistency (low variability) while Group B shows polarization (high variability). A high-scoring response identifies that the 'typical' score of 3.5 is representative of actual student experience in Group A but not in Group B, where students either loved or hated the experience.",
+    "rubric_secondary": "The learner correctly identifies that variability acts as a measure of risk or predictability in program outcomes.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about the range and distribution of scores in Group A compared to Group B?",
+      "think": "What do you think the 3.5 mean represents in the context of the individual student experience for each group?",
+      "wonder": "What do you wonder about the specific seminar design of Group B that might cause such polarized reactions?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1190,
+    "inputTokenDetails": {
+      "noCacheTokens": 1190,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 427,
+    "outputTokenDetails": {
+      "textTokens": 427,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1617,
+    "raw": {
+      "promptTokenCount": 1190,
+      "candidatesTokenCount": 427,
+      "totalTokenCount": 1617,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1190
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

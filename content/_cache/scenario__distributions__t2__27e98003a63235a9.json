@@ -1,0 +1,66 @@
+{
+  "object": {
+    "setup_prose": "You are assisting a Harvard residential life coordinator who is evaluating the response times of a new automated work-order system. They have visualized the data to see how long it takes for a request to be marked as 'in progress' after a student submits it. They are trying to decide if the average response time is a good metric to present to the Dean.",
+    "artifact_type": "chart_description",
+    "prompt": "Looking at the visual distribution of request times (where the x-axis is time in hours and the y-axis is the count of requests), you notice a 'long tail' stretching toward the right, meaning many requests are processed quickly, but a few take a very long time. Which description best captures the situation?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The distribution is perfectly symmetric, so the mean and median are the same.",
+        "correct": false,
+        "feedback": "This ignores the 'long tail' mentioned. A distribution with a long tail is not symmetric."
+      },
+      {
+        "id": "B",
+        "text": "The distribution is right-skewed, meaning the mean will be pulled higher than the median by the long-duration requests.",
+        "correct": true,
+        "feedback": "Correct. A right-skewed distribution pulls the mean toward the tail, making the median a more reliable measure of the 'typical' experience."
+      },
+      {
+        "id": "C",
+        "text": "The distribution is bimodal, meaning there are two distinct types of work orders being tracked.",
+        "correct": false,
+        "feedback": "The description specifies a 'long tail,' not two separate peaks. Bimodal distributions indicate two clusters, not one cluster with outliers."
+      },
+      {
+        "id": "D",
+        "text": "The shape doesn't matter; the mean is always the best way to report the center of any dataset.",
+        "correct": false,
+        "feedback": "The shape is critical; the mean is highly sensitive to extreme values, and using it for skewed data often misrepresents the experience of the majority."
+      }
+    ],
+    "hint_content": "Consider that a symmetric distribution has a balanced peak, while a skewed distribution has a cluster on one side with a trail on the other. If you report an average (mean), does it accurately reflect the cluster, or is it pulled away by the tail?",
+    "rubric_primary": "The learner identifies that the distribution is skewed and acknowledges that the shape dictates the choice of summary statistic.",
+    "visible_thinking_prompts": {
+      "notice": "What is the shape of the data on the graph?",
+      "think": "Why does the 'long tail' exist in a work-order system?",
+      "wonder": "What might happen to our reporting if we only use the mean to describe this distribution?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1192,
+    "inputTokenDetails": {
+      "noCacheTokens": 1192,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 652,
+    "outputTokenDetails": {
+      "textTokens": 652,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1844,
+    "raw": {
+      "promptTokenCount": 1192,
+      "candidatesTokenCount": 652,
+      "totalTokenCount": 1844,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1192
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

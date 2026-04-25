@@ -1,0 +1,17 @@
+{
+  "id": "population-vs-sample-tier-5-001",
+  "concept_id": "population-vs-sample",
+  "tier": 5,
+  "question_type": "wiki_draft",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are a senior data coordinator at the Office of Admissions. A new staff member has drafted a slide for a presentation to the Provost regarding student satisfaction, but their draft states 'Harvard students feel X' based on a survey that only received a 15% response rate from a specific subset of the incoming class. You need to invite this colleague to rewrite the draft to better reflect the limitations of our survey data.",
+  "prompt": "Write a short, professional draft for the staff handbook that explains to new colleagues the nuance between the survey respondents (the sample) and the entire student body (the population), focusing on how to adjust our language to be more precise.",
+  "rubric": {
+    "primary_criterion": "The learner accurately identifies the distinction between sample and population, utilizes non-definitive language (e.g., 'respondents reported' vs 'students feel'), and provides a clear heuristic for colleagues to avoid over-generalization."
+  },
+  "visible_thinking_prompts": {
+    "wonder": "What might we wonder about the students who did not respond to the survey, and how should that affect our confidence in the results?",
+    "connect": "How does the size and nature of our survey respondents connect to the claims we can make about the broader student experience?",
+    "extend": "How can we extend our standard reporting practices to ensure our colleagues are not over-claiming results?"
+  }
+}

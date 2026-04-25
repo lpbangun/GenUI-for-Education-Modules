@@ -1,0 +1,66 @@
+{
+  "object": {
+    "setup_prose": "As an academic coordinator for the Harvard Extension School, you are evaluating trends in student course engagement. You have a dataset titled 'Spring 2024 Course Activity,' which tracks the daily login frequency of every student enrolled in the term. You want to determine if students are engaging more heavily as the semester progresses toward finals.",
+    "artifact_type": "summary_stats",
+    "prompt": "Based on the 'Spring 2024 Course Activity' dataset description, which of the following is the most appropriate way to interpret what this data can and cannot tell you?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The data shows exactly how much the average student's engagement habits improved from the start of the semester to the end.",
+        "correct": false,
+        "feedback": "This assumes the data tracks individuals over time. Because this is a cross-sectional snapshot, you see aggregate trends, not the trajectory of specific students."
+      },
+      {
+        "id": "B",
+        "text": "The data captures a snapshot of current engagement levels across the population for that term, but cannot confirm if individual students are changing their personal habits.",
+        "correct": true,
+        "feedback": "Correct. A cross-sectional view shows the state of the population at that moment, but it lacks the temporal links required to measure individual change."
+      },
+      {
+        "id": "C",
+        "text": "The data serves as a representative baseline for all future students because it tracks a stable cohort across their entire academic career.",
+        "correct": false,
+        "feedback": "This confuses a cross-section with a longitudinal cohort study. This data is limited to one term and cannot predict future behavior or track students beyond this timeframe."
+      },
+      {
+        "id": "D",
+        "text": "Since we have engagement data for all students, we can definitively determine the primary causes of increased activity toward the end of the term.",
+        "correct": false,
+        "feedback": "This confuses correlation with causation. Engagement data shows you 'what' is happening, but cannot tell you 'why' students are behaving a certain way."
+      }
+    ],
+    "hint_content": "Consider whether the dataset follows the same group of individuals across multiple years or captures a single slice of time. A cross-section acts like a photograph, while a cohort study acts like a movie.",
+    "rubric_primary": "Learner correctly identifies that a single-semester snapshot (cross-section) shows status at a point in time rather than tracking individual growth or behavior change over time (cohort).",
+    "visible_thinking_prompts": {
+      "notice": "What is the specific timeframe covered by this dataset?",
+      "think": "What does 'Spring 2024' imply about the students included in this view?",
+      "wonder": "Why might it be misleading to claim 'students are becoming more engaged' based solely on this data?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1200,
+    "inputTokenDetails": {
+      "noCacheTokens": 1200,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 666,
+    "outputTokenDetails": {
+      "textTokens": 666,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1866,
+    "raw": {
+      "promptTokenCount": 1200,
+      "candidatesTokenCount": 666,
+      "totalTokenCount": 1866,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1200
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

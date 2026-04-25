@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As a data analyst in the Registrar's office, you are reviewing two different datasets regarding student course engagement. Dataset A tracks the survey responses of the Class of 2024 at three points: freshman year, junior year, and senior year. Dataset B provides a single survey of all currently enrolled students across every year of study, collected during the current spring semester.",
+    "artifact_type": "report_excerpt",
+    "prompt": "Identify which dataset is a cohort study and which is a cross-sectional study. Explain why Dataset B cannot be used to determine how an individual student's engagement changes over the course of their Harvard career.",
+    "hint_content": "Consider whether the dataset follows the exact same people as they age or change status, or if it provides a 'photo' of different people standing at different stages of their journey at the exact same moment.",
+    "rubric_primary": "The learner must correctly categorize the datasets and provide a reasoning based on the difference between longitudinal tracking (following the same individuals) versus a point-in-time snapshot (capturing different individuals at different stages).",
+    "visible_thinking_prompts": {
+      "notice": "What differences do you see in the timeframes and student groups included in each dataset?",
+      "think": "What kind of conclusions can you draw about a student's experience from Dataset A versus Dataset B?",
+      "wonder": "What might you be missing about a student's journey if you only look at Dataset B?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1202,
+    "inputTokenDetails": {
+      "noCacheTokens": 1202,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 333,
+    "outputTokenDetails": {
+      "textTokens": 333,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1535,
+    "raw": {
+      "promptTokenCount": 1202,
+      "candidatesTokenCount": 333,
+      "totalTokenCount": 1535,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1202
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "population-vs-sample-tier-2-001",
+  "concept_id": "population-vs-sample",
+  "tier": 2,
+  "question_type": "multiple_choice_with_hint",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are a staff member in the Office of Undergraduate Admissions reviewing a summary of a survey sent to current first-year students regarding their study habits. The survey had a 40% response rate (N=600 out of 1,500 students). Your manager asks you to prepare a one-sentence summary for the Dean about how 'all Harvard first-years' are managing their time.",
+  "prompt": "Based on the 40% response rate, how should you phrase the conclusion to be statistically responsible?",
+  "rubric": {
+    "primary_criterion": "The learner identifies that claims about the population must be caveated due to the potential for self-selection bias in a non-representative sample."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What is the distinction between the 600 students who answered and the 1,500 total students?",
+    "think": "Why might the students who chose to answer be different from those who ignored the survey?",
+    "wonder": "How would the conclusion change if we had responses from all 1,500 students?"
+  },
+  "artifact": {
+    "type": "summary_stats",
+    "content": "Study Habits Survey Summary (N=600 responses from a population of 1,500 first-years):\n- 75% of respondents reported spending 20+ hours per week on independent study.\n- Response rate: 40% of the invited cohort."
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "All first-year students spend at least 20 hours per week on independent study.",
+      "correct": false,
+      "feedback": "This ignores the distinction between the survey respondents and the entire student body, assuming the sample is a perfect reflection of the population."
+    },
+    {
+      "id": "B",
+      "text": "The survey respondents suggest that a majority of first-years spend 20+ hours on study, though we cannot be sure if this applies to those who didn't respond.",
+      "correct": true,
+      "feedback": "This correctly bounds the claim to the respondents while acknowledging the uncertainty regarding the broader population."
+    },
+    {
+      "id": "C",
+      "text": "Since 600 students is a large group, we can safely assume the results reflect the entire 1,500-person cohort's behavior.",
+      "correct": false,
+      "feedback": "This confuses sample size with representativeness; even a large sample can be biased if the participants are not randomly selected."
+    },
+    {
+      "id": "D",
+      "text": "The data is invalid because less than half of the students responded, so we should discard the findings entirely.",
+      "correct": false,
+      "feedback": "This represents an 'all or nothing' fallacy. While the data has limitations, it can still provide valuable insights if communicated with appropriate caution."
+    }
+  ],
+  "hint": {
+    "type": "always_visible",
+    "content": "Consider who chose to participate in the survey. If only a portion of the population responds, is it possible that the respondents have different habits than those who did not reply? How does this limit the scope of your conclusion?"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "object": {
+    "setup_prose": "As an academic affairs officer, you are reviewing two different datasets regarding undergraduate satisfaction levels. Dataset A surveys the incoming class of 2024 about their expectations in September, then surveys that exact same group again in May. Dataset B surveys a random sample of current students across all four years during the final week of the spring semester.",
+    "artifact_type": "report_excerpt",
+    "prompt": "Based on the study designs described, which of the following is the most accurate characterization of these datasets?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Dataset A provides a snapshot of the entire undergraduate experience, while Dataset B tracks the individual development of the class of 2024.",
+        "correct": false,
+        "feedback": "Actually, you have reversed the labels. Dataset A is the longitudinal one because it follows a specific group over time, while Dataset B provides a single-moment snapshot."
+      },
+      {
+        "id": "B",
+        "text": "Dataset A tracks changes within a specific group over time, while Dataset B provides a cross-sectional snapshot of the student body at one point in time.",
+        "correct": true,
+        "feedback": "Correct. Dataset A allows you to observe change within a cohort, while Dataset B allows you to observe differences across the current student body at a specific moment."
+      },
+      {
+        "id": "C",
+        "text": "Both datasets are essentially the same because they provide an average satisfaction score for the university.",
+        "correct": false,
+        "feedback": "While both provide averages, they measure different things. Dataset A measures how individual sentiments evolve, whereas Dataset B provides a point-in-time view of current campus climate."
+      },
+      {
+        "id": "D",
+        "text": "Dataset B is more reliable because it tracks the entire student population simultaneously, eliminating the need for cohort tracking.",
+        "correct": false,
+        "feedback": "Reliability depends on the goal. Dataset B is efficient for a current snapshot, but it cannot explain why individual students changed their perspectives over time the way a cohort study can."
+      }
+    ],
+    "rubric_primary": "The learner correctly differentiates between a longitudinal cohort study and a cross-sectional snapshot, understanding the causal implications of tracking the same subjects over time.",
+    "visible_thinking_prompts": {
+      "notice": "What differences do you see in how these groups were selected and when they were surveyed?",
+      "think": "What kind of changes or trends can be captured in Dataset A versus Dataset B?",
+      "wonder": "Why would an administrator choose one method over the other for a university policy report?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1194,
+    "inputTokenDetails": {
+      "noCacheTokens": 1194,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 606,
+    "outputTokenDetails": {
+      "textTokens": 606,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1800,
+    "raw": {
+      "promptTokenCount": 1194,
+      "candidatesTokenCount": 606,
+      "totalTokenCount": 1800,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1194
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

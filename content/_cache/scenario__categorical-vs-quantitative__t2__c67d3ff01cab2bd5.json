@@ -1,0 +1,66 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard University residential life office, you are reviewing a spreadsheet of room occupancy and building codes. You notice that someone has accidentally created a 'building average' for the 'Building ID' column, which lists IDs like 101, 102, and 105. The spreadsheet shows an average Building ID of 102.6.",
+    "artifact_type": "summary_stats",
+    "prompt": "Why is it logically incorrect to calculate the average of the Building ID column?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The average is wrong because the IDs should have been sorted from lowest to highest before calculating.",
+        "correct": false,
+        "feedback": "Sorting does not change the fact that these numbers are just names. Calculating an average of labels is invalid regardless of their order."
+      },
+      {
+        "id": "B",
+        "text": "Building IDs are categorical labels; performing math on them creates a value that does not correspond to any real-world physical property.",
+        "correct": true,
+        "feedback": "Correct. Since these numbers are identifiers, they don't have quantitative meaning. Averaging them results in a number that doesn't represent any real building or characteristic."
+      },
+      {
+        "id": "C",
+        "text": "The mean is inappropriate because the dataset is too small; we should use the median for ID numbers to be more accurate.",
+        "correct": false,
+        "feedback": "The issue isn't the choice between mean and median; the issue is treating the ID as a measurable quantity at all. Neither statistic is useful for labels."
+      },
+      {
+        "id": "D",
+        "text": "We should only report the range of the Building IDs rather than the average so we know the total number of buildings.",
+        "correct": false,
+        "feedback": "Reporting the range of IDs doesn't tell you how many buildings exist, as IDs might have gaps (e.g., there might not be a building 103). The ID is simply not a unit of measurement."
+      }
+    ],
+    "hint_content": "Consider whether the ID number tells you about the 'size' or 'amount' of a building, or if it just functions as a name or label to distinguish one place from another.",
+    "rubric_primary": "The learner identifies that categorical numbers (IDs) do not represent magnitudes, making arithmetic operations like averages meaningless.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about the column name versus the resulting 'average' value?",
+      "think": "What does an ID represent in this context compared to a measurement like square footage?",
+      "wonder": "What would happen if we used this calculated average to plan maintenance or assign students?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1194,
+    "inputTokenDetails": {
+      "noCacheTokens": 1194,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 646,
+    "outputTokenDetails": {
+      "textTokens": 646,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1840,
+    "raw": {
+      "promptTokenCount": 1194,
+      "candidatesTokenCount": 646,
+      "totalTokenCount": 1840,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1194
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "sampling-tier-1-001",
+  "concept_id": "sampling",
+  "tier": 1,
+  "question_type": "multiple_choice",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As an administrator for the Harvard Summer School, you are tasked with identifying students who might benefit from extra housing support. You receive a survey report summarizing the needs of students currently living in the dorms who responded to an optional email sent during the first week of classes.",
+  "prompt": "Before acting on the survey findings, what is the most important question to ask regarding the data's composition?",
+  "rubric": {
+    "primary_criterion": "The learner identifies the potential for selection bias where the sample only represents students who are actively monitoring their email and have the time to complete an optional survey."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What is the source of this data, and who had the opportunity to be included?",
+    "think": "How might the circumstances of those who responded differ from those who did not?",
+    "wonder": "What groups might be entirely missing from this feedback and why?"
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "The survey results should be treated as the definitive record of the needs of the entire Summer School student body.",
+      "correct": false,
+      "feedback": "This assumes the sample is perfectly representative, ignoring that the survey was voluntary and likely skewed toward students with more free time."
+    },
+    {
+      "id": "B",
+      "text": "The survey shows that housing support is clearly working, as respondents seem satisfied.",
+      "correct": false,
+      "feedback": "This confuses the sample with the population; those experiencing the most difficulty may be the least likely to have time to complete a survey."
+    },
+    {
+      "id": "C",
+      "text": "We should consider who might have been unable or unlikely to complete the survey and how that impacts our view of the population.",
+      "correct": true,
+      "feedback": "Correct. Recognizing the limitations of a sample—specifically who is excluded—is the first step in honest data fluency."
+    },
+    {
+      "id": "D",
+      "text": "The data is valid because it reflects the opinions of the students who cared enough to provide feedback.",
+      "correct": false,
+      "feedback": "This is a misconception known as 'voluntary response bias.' Prioritizing those who 'care enough' excludes those who may be struggling too much to provide feedback."
+    }
+  ]
+}

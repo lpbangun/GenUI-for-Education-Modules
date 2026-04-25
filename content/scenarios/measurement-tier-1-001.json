@@ -1,0 +1,43 @@
+{
+  "id": "measurement-tier-1-001",
+  "concept_id": "measurement",
+  "tier": 1,
+  "question_type": "multiple_choice",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As an administrator for the Harvard Summer School, you are tasked with evaluating the success of a new student-advising pilot program. The survey results show that 95% of students reported feeling 'highly satisfied' with their advisor's responsiveness to emails. You are asked to present this finding as proof that the pilot program significantly improved the quality of student academic outcomes.",
+  "prompt": "Which of these statements accurately reflects the relationship between the survey findings and the program's success?",
+  "rubric": {
+    "primary_criterion": "Learner must identify that the survey measures satisfaction with communication efficiency, not academic growth or learning outcomes."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What specific behavior did the survey actually record?",
+    "think": "What is the leap between 'satisfaction with email speed' and 'program success'?",
+    "wonder": "What other metrics would be needed to actually define success for an advising program?"
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "The data shows that 95% of students are receiving higher grades because of the advising program.",
+      "correct": false,
+      "feedback": "This assumes a causal link between email satisfaction and academic grades that the survey data does not demonstrate."
+    },
+    {
+      "id": "B",
+      "text": "The data confirms that the advising program is effective at meeting student communication needs, but does not measure academic outcome improvements.",
+      "correct": true,
+      "feedback": "Correct. The survey measures responsiveness (the construct), not academic achievement (the goal)."
+    },
+    {
+      "id": "C",
+      "text": "The data shows the program is 95% successful at fulfilling its primary mission of increasing student retention.",
+      "correct": false,
+      "feedback": "This confuses the metric (satisfaction with email) with a completely different institutional goal (retention)."
+    },
+    {
+      "id": "D",
+      "text": "The data implies that advisors are now doing their jobs correctly because satisfaction is high.",
+      "correct": false,
+      "feedback": "Satisfaction is subjective and tells us about the students' perception of email speed, not the professional competency of the advisors."
+    }
+  ]
+}

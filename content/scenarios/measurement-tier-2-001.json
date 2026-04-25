@@ -1,0 +1,51 @@
+{
+  "id": "measurement-tier-2-001",
+  "concept_id": "measurement",
+  "tier": 2,
+  "question_type": "multiple_choice_with_hint",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As a member of the Harvard Registrar's Office, you are reviewing a new student satisfaction survey regarding course enrollment systems. The survey asks students to rate their 'satisfaction with course access' on a scale of 1-5. Your colleague suggests this data proves that our course registration technology is functioning effectively.",
+  "prompt": "Before you report these results to the Dean, which concern best describes the difference between the construct and the measurement?",
+  "rubric": {
+    "primary_criterion": "The learner correctly identifies that the measure (survey rating) is an indirect proxy for the construct (system functionality), and that other factors impact the rating."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What specific question were the students answering versus what claim is my colleague making?",
+    "think": "How might a student's feelings about a course's difficulty or availability impact their rating of the 'system'?",
+    "wonder": "What other variables might be hidden in a 1-5 satisfaction score that have nothing to do with technical software functionality?"
+  },
+  "artifact": {
+    "type": "summary_stats",
+    "content": "Survey Item: 'How satisfied are you with your ability to register for your preferred courses?' Scale: 1 (Very Dissatisfied) to 5 (Very Satisfied). Current Mean Rating: 4.2."
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "The data is valid because it directly measures how the software code performs during high-traffic periods.",
+      "correct": false,
+      "feedback": "This confuses the user's perception with the system's objective technical performance. Satisfaction is a sentiment, not a system metric."
+    },
+    {
+      "id": "B",
+      "text": "The measure acts as a proxy for satisfaction, but we cannot conclude the software itself is the cause of that satisfaction without further investigation.",
+      "correct": true,
+      "feedback": "Correct. We are measuring student sentiment, which is a proxy (indirect measure) for system performance, not the performance itself."
+    },
+    {
+      "id": "C",
+      "text": "Because the average rating is 4.2, the measurement is exhaustive and covers all possible factors of the registration process.",
+      "correct": false,
+      "feedback": "A summary statistic describes the central tendency, but it does not account for the breadth or complexity of the construct being measured."
+    },
+    {
+      "id": "D",
+      "text": "We should focus on the 5-point scale structure, as that is the only way to accurately quantify student enrollment success.",
+      "correct": false,
+      "feedback": "This focuses on the mechanics of the survey design rather than the validity gap between the measurement and the underlying construct."
+    }
+  ],
+  "hint": {
+    "type": "always_visible",
+    "content": "Consider whether a student's satisfaction rating reflects only the technical performance of the software, or if it reflects their overall emotional experience with the registration process."
+  }
+}

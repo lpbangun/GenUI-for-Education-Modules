@@ -1,0 +1,21 @@
+{
+  "id": "distributions-tier-5-001",
+  "concept_id": "distributions",
+  "tier": 5,
+  "question_type": "wiki_draft",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are a senior data strategist at the Harvard Registrar's office. You are mentoring a new staff member tasked with presenting course evaluation results to faculty. They have asked you to help them write a short, accessible section for the departmental handbook about why we prioritize looking at the full shape of a distribution before reporting a single average score for a course.",
+  "prompt": "Draft a short handbook section (150-200 words) that explains to a new colleague why visualizing the shape of data (symmetric, skewed, or bimodal) is essential to understanding student feedback before calculating any summary stats like the mean.",
+  "rubric": {
+    "primary_criterion": "The response must accurately describe how distribution shapes (e.g., bimodal vs skewed) provide context that a single mean obscures. It should demonstrate an understanding that shape is a prerequisite for interpreting central tendency."
+  },
+  "visible_thinking_prompts": {
+    "wonder": "What might you wonder about the cause of a bimodal distribution in student satisfaction scores?",
+    "connect": "How does observing the shape connect to the goal of being transparent with faculty?",
+    "extend": "How might this practice extend to other kinds of institutional data beyond course evaluations?"
+  },
+  "artifact": {
+    "type": "report_excerpt",
+    "content": "Instructional Note: When a course evaluation shows a bimodal distribution, reporting only the 'mean' score might suggest the 'typical' student had a neutral experience, even if most students actually had either a very positive or very negative experience."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "categorical-vs-quantitative-tier-4-001",
+  "concept_id": "categorical-vs-quantitative",
+  "tier": 4,
+  "question_type": "long_answer",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As a member of the Harvard Office of Institutional Research, you are reviewing a new dataset containing feedback from recent alumni surveys. You are tasked with preparing a summary for a departmental meeting. One of the columns is labeled 'Alumni_Sentiment_Score' which ranges from 1 to 5. Another column is labeled 'Zip_Code' representing where the alumni reside. You notice a colleague is preparing to calculate the mean of both columns to show 'average sentiment' and 'average location'.",
+  "prompt": "Evaluate your colleague's proposed approach. Which column can be meaningfully summarized by a mean, and which cannot? Explain why a 'mean' is appropriate for one but mathematically misleading or illogical for the other, even if both consist of numerical characters.",
+  "rubric": {
+    "primary_criterion": "The response must distinguish between ordinal/interval data (sentiment) and nominal/categorical data (zip code). Successful answers explicitly state that calculating a mean of zip codes is nonsensical because zip codes are labels, not quantities, and that the mean of sentiment scores provides a representative measure of central tendency because the values represent a progression of magnitude."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you see in the composition of the 'Alumni_Sentiment_Score' versus the 'Zip_Code' data?",
+    "think": "What happens mathematically when you add two zip codes together and divide by two?",
+    "wonder": "What alternative descriptive statistics could better represent the 'average' location of alumni?"
+  }
+}

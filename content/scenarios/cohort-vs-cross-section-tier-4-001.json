@@ -1,0 +1,21 @@
+{
+  "id": "cohort-vs-cross-section-tier-4-001",
+  "concept_id": "cohort-vs-cross-section",
+  "tier": 4,
+  "question_type": "long_answer",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As a member of the Harvard registrar's data support team, you are tasked with advising a faculty committee on undergraduate research patterns. You have access to two datasets: Dataset A shows the average credit hours completed by current seniors compared to current juniors and sophomores in a single semester. Dataset B tracks the total research credits earned by a specific group of students from their first semester through their final semester. The committee wants to use these to claim that 'student research intensity increases significantly as students progress toward graduation'.",
+  "prompt": "Evaluate the committee's claim. How do the limitations of Dataset A versus Dataset B prevent or allow this conclusion? Explain what each data type reveals about the student experience.",
+  "rubric": {
+    "primary_criterion": "The learner must distinguish between a cross-sectional snapshot (A) and a longitudinal cohort study (B). The learner must demonstrate that Dataset A only shows differences between cohorts at a single point in time, which may be due to cohort differences rather than progression, whereas Dataset B tracks individual change over time. High-quality answers acknowledge that Dataset A cannot prove 'progress' because it does not track individuals."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What is the key difference in how these two datasets collect information over time?",
+    "think": "If Dataset A shows seniors have higher research credits than sophomores, could that be explained by something other than students doing more research over time?",
+    "wonder": "What might be hidden in the aggregate averages that could challenge the claim that every student's research intensity increases?"
+  },
+  "artifact": {
+    "type": "report_excerpt",
+    "content": "Dataset A: Average research credits for current students, by class year, Fall 2023. Dataset B: Average research credits earned by the Class of 2024, calculated individually for every semester from Fall 2020 through Spring 2024."
+  }
+}

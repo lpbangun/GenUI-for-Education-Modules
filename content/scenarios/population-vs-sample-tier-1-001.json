@@ -1,0 +1,47 @@
+{
+  "id": "population-vs-sample-tier-1-001",
+  "concept_id": "population-vs-sample",
+  "tier": 1,
+  "question_type": "multiple_choice",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are assisting a university researcher who is analyzing feedback from a 2023 undergraduate student survey. The researcher holds a file showing that out of 5,000 enrolled students, 250 students responded to the survey. You see a draft report statement: 'Our survey of 250 respondents shows that all 5,000 undergraduates prefer the new library hours.'",
+  "prompt": "Which critique of this draft report is most accurate regarding the difference between a sample and a population?",
+  "rubric": {
+    "primary_criterion": "The learner identifies that claims about the sample cannot be automatically applied to the entire population without qualification."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you see when you compare the survey participation count to the total enrollment count?",
+    "think": "What is the limitation of inferring the preferences of 5,000 people from only 250 respondents?",
+    "wonder": "What additional information would you need to feel confident that the 250 respondents reflect the views of the entire undergraduate body?"
+  },
+  "artifact": {
+    "type": "summary_stats",
+    "content": "Total undergraduate population (N=5,000). Total survey respondents (N=250)."
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "The statement is accurate because 250 students provide enough data to speak for the entire school.",
+      "correct": false,
+      "feedback": "This ignores the difference between a sample and the full population; size alone does not guarantee the sample represents every student's opinion."
+    },
+    {
+      "id": "B",
+      "text": "The statement should specify that the results represent the 250 students who responded, rather than all 5,000 undergraduates.",
+      "correct": true,
+      "feedback": "Correct. It is essential to distinguish between the sample (the respondents) and the population (the full student body) to avoid making an overgeneralized claim."
+    },
+    {
+      "id": "C",
+      "text": "The statement is only incorrect because the number of respondents is too small to be used in any report.",
+      "correct": false,
+      "feedback": "The issue is not just the number of respondents, but the leap in logic from 'these 250 people' to 'all 5,000 people' without proof of representativeness."
+    },
+    {
+      "id": "D",
+      "text": "The statement is correct as long as the researcher uses the mean result for all 5,000 students.",
+      "correct": false,
+      "feedback": "A mean calculated from a sample still only reflects the sample. Applying it to the population assumes all students are the same, which is a major inferential error."
+    }
+  ]
+}

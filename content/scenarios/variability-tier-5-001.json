@@ -1,0 +1,21 @@
+{
+  "id": "variability-tier-5-001",
+  "concept_id": "variability",
+  "tier": 5,
+  "question_type": "wiki_draft",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are a senior administrator in the Harvard Office of Institutional Research. You are drafting a section for the new staff handbook that explains why we prioritize standard deviation and interquartile range alongside averages when analyzing course evaluation scores across different departments. A new colleague just argued that 'the average is all that matters because it gives us one clean number to track performance'.",
+  "prompt": "Write a brief section (150-200 words) for the staff handbook that explains why the spread of our data matters as much as the central tendency. Using a hypothetical example of two different course clusters that both have a mean rating of 4.0, explain how their different distributions might lead to different departmental interventions.",
+  "rubric": {
+    "primary_criterion": "The response must clearly articulate that identical means can mask vastly different student experiences (e.g., universal satisfaction vs. a bimodal split) and that spread dictates the appropriateness of support strategies."
+  },
+  "visible_thinking_prompts": {
+    "wonder": "What might we wonder about the experiences of students in the 'tails' of the distribution that the average ignores?",
+    "connect": "How does this distinction connect to the goal of equitable student outcomes?",
+    "extend": "How might this perspective extend our current approach to faculty feedback?"
+  },
+  "artifact": {
+    "type": "report_excerpt",
+    "content": "Internal Report: 'Understanding Variability in Student Feedback'\nCourse Cluster A (N=100): Ratings are consistently 3.9, 4.0, or 4.1.\nCourse Cluster B (N=100): Ratings show a split: 50% are 5.0, 50% are 3.0.\nBoth clusters show an identical mean of 4.0."
+  }
+}

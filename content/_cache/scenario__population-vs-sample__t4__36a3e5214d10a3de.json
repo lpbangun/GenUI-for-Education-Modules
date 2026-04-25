@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Summer School, you are evaluating feedback from a student experience survey. You have access to a data table showing results from 450 students who participated in the survey out of a total population of 3,200 enrolled students. The survey asks students to rate the clarity of course materials on a scale of 1 to 5. The sample reports a mean rating of 4.2.",
+    "artifact_type": "summary_stats",
+    "prompt": "You are writing a briefing memo for the Dean. Write a paragraph explaining the finding. How do you articulate the result while being precise about the difference between your survey sample and the total student population? What limitations do you acknowledge when reporting this '4.2' rating to leadership?",
+    "hint_content": "Consider whether every student had an equal opportunity or motivation to take the survey. Can we assume the 450 students perfectly mirror the characteristics of the 2,750 who did not respond?",
+    "rubric_primary": "The response must explicitly differentiate between the survey sample and the broader student population, use probabilistic or cautious language (e.g., 'respondents suggest' rather than 'students feel'), and identify potential non-response bias as a limitation.",
+    "visible_thinking_prompts": {
+      "notice": "What is the difference between the set of 450 students and the set of 3,200 students?",
+      "think": "Why might the 450 students who chose to complete the survey have different perspectives than those who ignored it?",
+      "wonder": "What would it take to make a claim about the entire 3,200-student population with higher confidence?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1185,
+    "inputTokenDetails": {
+      "noCacheTokens": 1185,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 382,
+    "outputTokenDetails": {
+      "textTokens": 382,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1567,
+    "raw": {
+      "promptTokenCount": 1185,
+      "candidatesTokenCount": 382,
+      "totalTokenCount": 1567,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1185
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

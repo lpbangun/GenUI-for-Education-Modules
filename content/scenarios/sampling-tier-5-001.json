@@ -1,0 +1,17 @@
+{
+  "id": "sampling-tier-5-001",
+  "concept_id": "sampling",
+  "tier": 5,
+  "question_type": "wiki_draft",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are leading a data orientation workshop for new academic advisors at the college. You want them to understand that the data they see in the student advising portal only represents specific subsets of students, and that assuming these summaries represent the entire undergraduate population is a common error. You decide to write a section of the 'Advisor Handbook' on data stewardship.",
+  "prompt": "Draft a short handbook entry (approx. 150 words) for your colleagues. Your entry must explain the necessity of asking 'who is in this sample' before summarizing data, and provide an example of why generalizing a specific subset to the whole population might be misleading.",
+  "rubric": {
+    "primary_criterion": "The response must explicitly connect the identity of the survey participants to the potential for bias, define the distinction between sample and population, and provide a concrete example of why aggregate data is not universal."
+  },
+  "visible_thinking_prompts": {
+    "wonder": "Why might our data systems currently favor the voices of some student groups over others?",
+    "connect": "How does your own experience with student outreach inform the groups of students most likely to participate in surveys?",
+    "extend": "What new questions should we ask the Institutional Research office before we act on a summary report?"
+  }
+}

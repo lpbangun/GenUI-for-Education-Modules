@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Summer School, you are analyzing a report on student satisfaction metrics following the shift to a hybrid course model. The report presents a high satisfaction rate of 92%, but when you look closely at the methodology, you find that only 15% of the 4,000 enrolled students responded to the survey, and they were all students who had manually opted into early-access digital focus groups.",
+    "artifact_type": "report_excerpt",
+    "artifact_content": "Survey Report Summary: N=600 respondents (out of 4,000 enrolled). Method: Voluntary opt-in via digital focus group enrollment. Key Metric: 92% Satisfaction with hybrid course delivery.",
+    "prompt": "Evaluate the reliability of this 92% satisfaction figure as a representation of the overall student population. In your analysis, identify the primary risk to representativeness and describe the logical steps you would take to determine if this data can legitimately inform policy for the broader student body.",
+    "rubric_primary": "The learner must demonstrate an understanding of selection bias and representativeness. High marks are given for recognizing that the sample is self-selecting (not random) and for proposing an audit of the demographic characteristics of the respondents compared to the full student population.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about how the participants for this survey were chosen?",
+      "think": "What do you think motivates a student to opt into an 'early-access' focus group?",
+      "wonder": "What might you wonder about the 85% of students who chose not to respond to this survey?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1183,
+    "inputTokenDetails": {
+      "noCacheTokens": 1183,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 370,
+    "outputTokenDetails": {
+      "textTokens": 370,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1553,
+    "raw": {
+      "promptTokenCount": 1183,
+      "candidatesTokenCount": 370,
+      "totalTokenCount": 1553,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1183
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

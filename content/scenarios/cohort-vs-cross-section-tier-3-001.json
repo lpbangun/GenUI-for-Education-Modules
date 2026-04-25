@@ -1,0 +1,17 @@
+{
+  "id": "cohort-vs-cross-section-tier-3-001",
+  "concept_id": "cohort-vs-cross-section",
+  "tier": 3,
+  "question_type": "short_answer",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As a data analyst in the Registrar's office, you are reviewing two different datasets regarding student course engagement. Dataset A tracks the survey responses of the Class of 2024 at three points: freshman year, junior year, and senior year. Dataset B provides a single survey of all currently enrolled students across every year of study, collected during the current spring semester.",
+  "prompt": "Identify which dataset is a cohort study and which is a cross-sectional study. Explain why Dataset B cannot be used to determine how an individual student's engagement changes over the course of their Harvard career.",
+  "rubric": {
+    "primary_criterion": "The learner must correctly categorize the datasets and provide a reasoning based on the difference between longitudinal tracking (following the same individuals) versus a point-in-time snapshot (capturing different individuals at different stages)."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What differences do you see in the timeframes and student groups included in each dataset?",
+    "think": "What kind of conclusions can you draw about a student's experience from Dataset A versus Dataset B?",
+    "wonder": "What might you be missing about a student's journey if you only look at Dataset B?"
+  }
+}

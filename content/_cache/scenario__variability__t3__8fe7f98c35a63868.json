@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Course Evaluation office, you are reviewing two summer school lecture sections. Both sections have an identical mean rating of 4.2 out of 5 for student satisfaction. However, when you look at the raw distribution, Section A has ratings mostly clustered between 4.0 and 4.4, while Section B has a wide spread, with many students rating the course a 5 and many others rating it a 2.",
+    "artifact_type": "summary_stats",
+    "prompt": "If you are reporting these results to the department chair, why might reporting only the mean be insufficient? Provide a two-sentence explanation that highlights why the spread of these ratings changes your interpretation of student satisfaction.",
+    "hint_content": "Consider the difference between a consistent experience (low variability) and a polarized experience (high variability). If you only see the 4.2, do you know if students had a unified experience?",
+    "rubric_primary": "The response must distinguish between the 'average' experience and the presence of extreme dissatisfaction, demonstrating an understanding that two identical means can mask vastly different student experiences.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about the difference between Section A's clustered ratings and Section B's spread?",
+      "think": "What does a 'mean' of 4.2 mean in practice when the scores are polarized versus when they are consistent?",
+      "wonder": "What might you need to ask the faculty about their teaching methods for Section B to understand why the satisfaction is so polarized?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1195,
+    "inputTokenDetails": {
+      "noCacheTokens": 1195,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 352,
+    "outputTokenDetails": {
+      "textTokens": 352,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1547,
+    "raw": {
+      "promptTokenCount": 1195,
+      "candidatesTokenCount": 352,
+      "totalTokenCount": 1547,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1195
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

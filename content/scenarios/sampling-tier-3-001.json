@@ -1,0 +1,17 @@
+{
+  "id": "sampling-tier-3-001",
+  "concept_id": "sampling",
+  "tier": 3,
+  "question_type": "short_answer",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As an academic coordinator in the Faculty of Arts and Sciences, you are tasked with evaluating a report on student satisfaction with remote learning resources. The report summary claims that '75% of students are highly satisfied' with the online library tools. You review the methodology section and notice that the survey was sent via an internal newsletter and required students to voluntarily click a link to participate during the final week of the semester.",
+  "prompt": "Based on the provided methodology, write a 2-3 sentence assessment of the survey's validity. Explain what you notice about the participants and why this sample might not represent the entire student body.",
+  "rubric": {
+    "primary_criterion": "The learner must explicitly identify selection bias due to voluntary response and timing, and explain that the resulting data only speaks for highly engaged or available students rather than the entire student population."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you notice about how the participants were recruited and when the survey occurred?",
+    "think": "What might be true about the students who had the time and motivation to click a survey link during the final week of classes?",
+    "wonder": "Who is missing from this sample, and how might their experiences differ from the 75% who reported high satisfaction?"
+  }
+}

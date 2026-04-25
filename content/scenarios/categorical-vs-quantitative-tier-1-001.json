@@ -1,0 +1,47 @@
+{
+  "id": "categorical-vs-quantitative-tier-1-001",
+  "concept_id": "categorical-vs-quantitative",
+  "tier": 1,
+  "question_type": "multiple_choice",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As an admissions coordinator, you are reviewing a spreadsheet containing recent applicant data. The office head asks you to calculate the average of the column labeled 'Applicant_Ranking_Category,' which currently contains numerical values from 1 to 5, where 1 indicates a 'top priority' score and 5 indicates 'needs review.'",
+  "prompt": "Before you begin your analysis, you must decide how to handle the 'Applicant_Ranking_Category' column. What is the correct way to think about this data?",
+  "rubric": {
+    "primary_criterion": "The learner identifies that categorical rankings are qualitative labels and should not be used in arithmetic calculations."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you notice about how the numbers 1 through 5 are being used in this dataset?",
+    "think": "What would it mean to calculate the mean of these categories? Would the result be meaningful?",
+    "wonder": "What questions do you have about whether these values represent a true measurement or a subjective classification?"
+  },
+  "artifact": {
+    "type": "data_table",
+    "content": "Applicant Dataset Subset:\n- Applicant_ID: 99402, Ranking_Category: 1\n- Applicant_ID: 99403, Ranking_Category: 2\n- Applicant_ID: 99404, Ranking_Category: 5\n- Applicant_ID: 99405, Ranking_Category: 1"
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "Calculate the mean of the column to find the average ranking of the current applicant pool.",
+      "correct": false,
+      "feedback": "Calculating an average on these labels is misleading; the numerical difference between a '1' and a '2' is not equivalent to a physical distance or weight."
+    },
+    {
+      "id": "B",
+      "text": "Treat the values as categorical labels and count the frequency of each category instead of calculating a mean.",
+      "correct": true,
+      "feedback": "Correct. Since these numbers represent classifications rather than measurable quantities, counting how many applicants fall into each category is the appropriate analytical approach."
+    },
+    {
+      "id": "C",
+      "text": "Use the median to determine the typical applicant ranking since it is more robust than the mean.",
+      "correct": false,
+      "feedback": "While the median is more robust than the mean, it is still inappropriate to perform calculations on ordinal categories that function primarily as labels."
+    },
+    {
+      "id": "D",
+      "text": "Sum all the ranking values and divide by the total number of applicants to determine the overall score.",
+      "correct": false,
+      "feedback": "Summing these values treats them as if they are points on a scale. Because they are just labels for priority, this sum does not provide useful information."
+    }
+  ]
+}

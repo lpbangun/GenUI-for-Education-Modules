@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Faculty of Arts and Sciences, you are reviewing a new student feedback survey designed to measure 'instructional quality.' The survey consists of a single 5-point Likert scale question asking: 'Did you enjoy the time spent in class?' The department leadership wants to use the mean score of these responses to evaluate faculty performance during tenure reviews.",
+    "artifact_type": "report_excerpt",
+    "artifact_content": "Survey Question: 'Did you enjoy the time spent in class?'\nScale: 1 (Not at all) to 5 (Extremely).\nUsage: Mean score calculated for annual department faculty quality reporting.",
+    "prompt": "Identify the potential gap between the construct ('instructional quality') and the actual measure used in this survey, and explain why using this mean score for high-stakes evaluations might be problematic.",
+    "rubric_primary": "The learner identifies that enjoyment is a limited proxy for quality (the construct gap) and articulates how relying on an average of student satisfaction metrics may fail to reflect pedagogical effectiveness or learning outcomes.",
+    "visible_thinking_prompts": {
+      "notice": "What is the specific question asked of the students, and what is the target evaluation metric?",
+      "think": "How does 'enjoyment' relate to the definition of 'instructional quality' as practiced by a research university?",
+      "wonder": "What dimensions of teaching remain invisible when we reduce 'quality' to this specific survey item?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1187,
+    "inputTokenDetails": {
+      "noCacheTokens": 1187,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 331,
+    "outputTokenDetails": {
+      "textTokens": 331,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1518,
+    "raw": {
+      "promptTokenCount": 1187,
+      "candidatesTokenCount": 331,
+      "totalTokenCount": 1518,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1187
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

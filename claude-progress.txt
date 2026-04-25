@@ -44,3 +44,6 @@
 2026-04-25T14:11:00Z · F004 · BUILD · scripts/gen_dictionary.ts generated 50 entries (all 5 schools per term, plain_def ≤25 words)
 2026-04-25T14:11:00Z · F004 · REVIEW · validate_dictionary.ts → 51 entries valid (incl. median exemplar)
 2026-04-25T14:11:00Z · F004 · COMPLETE · accepted
+2026-04-25T14:18:00Z · F006 · BUILD · scripts/gen_scenarios.ts generated 39 fresh scenarios (8 foundational concepts × 5 tiers, exemplar skipped)
+2026-04-25T14:18:00Z · F006 · REVIEW · validate_scenarios.ts → 40 scenarios valid (39 fresh + 1 calibrated)
+2026-04-25T14:18:00Z · F006 · COMPLETE · accepted

@@ -1,0 +1,17 @@
+{
+  "id": "cohort-vs-cross-section-tier-5-001",
+  "concept_id": "cohort-vs-cross-section",
+  "tier": 5,
+  "question_type": "wiki_draft",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are a senior data coordinator at the registrar’s office. You are mentoring a new staff member tasked with analyzing student satisfaction. They are currently struggling to choose between using a single semester's survey responses from current students or tracking the survey responses of a specific group of students from their first year through their final year. You need to write a brief section for the departmental data handbook that clarifies the distinction between 'cross-sectional' and 'longitudinal/cohort' data, and when to use each.",
+  "prompt": "Draft a section for the internal staff handbook that explains the fundamental difference between cross-sectional data and cohort data, and provide one concrete scenario where one would be preferred over the other for institutional decision-making.",
+  "rubric": {
+    "primary_criterion": "The learner correctly defines the difference between a static moment (cross-section) and a process over time (cohort), and explains the methodological trade-off (e.g., snapshot vs. development)."
+  },
+  "visible_thinking_prompts": {
+    "wonder": "What might we wonder about student experiences that a cross-sectional snapshot simply cannot reveal?",
+    "connect": "How does your choice of data structure connect to the specific research question you are asking?",
+    "extend": "How could these data structures extend our understanding if used in combination?"
+  }
+}

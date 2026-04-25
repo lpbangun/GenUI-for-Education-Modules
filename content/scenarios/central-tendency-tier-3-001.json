@@ -1,0 +1,21 @@
+{
+  "id": "central-tendency-tier-3-001",
+  "concept_id": "central-tendency",
+  "tier": 3,
+  "question_type": "short_answer",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As a data analyst for Harvard's Office of Undergraduate Research, you are reviewing a report on student participation hours per semester for a specific volunteer program. The dataset consists of 45 students. You notice the report lists an average (mean) of 22 hours per student, while the median is only 8 hours per student. You are drafting a brief summary for the program director to help them understand how much time, on average, students are dedicating to this work.",
+  "prompt": "Write a 2-3 sentence summary explaining why you would choose one measure (mean or median) over the other to characterize the 'typical' student experience for the director, and what the difference between these two numbers suggests about the data distribution.",
+  "rubric": {
+    "primary_criterion": "The learner must argue for the use of the median as a more robust measure of typicality in skewed data and accurately interpret the gap between the mean and median as evidence of a small group of high-participation outliers."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you notice about the distance between the reported mean and median?",
+    "think": "What might explain why the mean is so much higher than the median in a volunteer context?",
+    "wonder": "What might you wonder about the students who are contributing significantly higher hours?"
+  },
+  "artifact": {
+    "type": "summary_stats",
+    "content": "Student Volunteer Hours (N=45): Mean = 22 hours, Median = 8 hours, Range = 1 to 110 hours."
+  }
+}

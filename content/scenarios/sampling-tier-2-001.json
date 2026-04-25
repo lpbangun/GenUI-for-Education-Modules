@@ -1,0 +1,47 @@
+{
+  "id": "sampling-tier-2-001",
+  "concept_id": "sampling",
+  "tier": 2,
+  "question_type": "multiple_choice_with_hint",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As an administrator for the Harvard Summer School, you are reviewing survey data to determine student satisfaction with dining hall hours. The survey was sent via email to all 4,000 enrolled students on a Tuesday afternoon. You receive 400 responses, all submitted within two hours of the email being sent. You are preparing to present these results to the dining services committee to propose a policy change.",
+  "prompt": "Before you share these results with the committee, how should you characterize the survey sample in your report?",
+  "rubric": {
+    "primary_criterion": "The learner correctly identifies the limitation of self-selected, fast-response samples and recognizes that the data may not represent the entire student body."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you see regarding the timing and nature of the response window?",
+    "think": "What might be different about students who check email and respond within two hours compared to those who do not?",
+    "wonder": "Who might be missing from this data set?"
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "The survey results provide an accurate reflection of the entire student body because 400 responses is a statistically large sample.",
+      "correct": false,
+      "feedback": "This is a misconception about sample size. Even a large sample is biased if the method of selection (self-selection) disproportionately captures certain types of students."
+    },
+    {
+      "id": "B",
+      "text": "The data is likely skewed toward students who are available at their desks during weekday afternoons and may not represent the broader student population.",
+      "correct": true,
+      "feedback": "Correct. The rapid, self-selected nature of the response suggests a 'convenience sample' that likely excludes students with conflicting schedules."
+    },
+    {
+      "id": "C",
+      "text": "Since we sent the survey to all 4,000 students, we can assume the results are representative regardless of who chose to respond.",
+      "correct": false,
+      "feedback": "This is a common error of confusing 'potential reach' with 'actual participation.' Sending to everyone does not prevent bias if the response rate is non-random."
+    },
+    {
+      "id": "D",
+      "text": "Because the response rate was 10%, we should ignore these results entirely and rely on previous year's anecdotal feedback instead.",
+      "correct": false,
+      "feedback": "Dismissing the data ignores the useful qualitative insights present; the goal is to acknowledge the limitations while still using the data for appropriate, non-definitive purposes."
+    }
+  ],
+  "hint": {
+    "type": "always_visible",
+    "content": "Consider who is most likely to respond to an email immediately on a weekday afternoon. Does this group necessarily represent a student who has a busy lab schedule, a job, or different dining habits?"
+  }
+}

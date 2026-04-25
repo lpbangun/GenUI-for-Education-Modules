@@ -1,0 +1,40 @@
+{
+  "object": {
+    "setup_prose": "As an administrator in the Office of Undergraduate Education, you are reviewing a student evaluation dataset that includes a column for 'Course Rank' (1-50, where 1 is the most popular) and 'Unique Student ID' (a 7-digit numeric string). You are tasked with determining which variables can be used to calculate a meaningful average for an annual report.",
+    "artifact_type": "data_table",
+    "artifact_content": "Dataset Sample: StudentID: 5049321, CourseRank: 3. StudentID: 5049322, CourseRank: 12. StudentID: 5049323, CourseRank: 5.",
+    "prompt": "Evaluate whether you should calculate the mean for 'Course Rank' and 'Student ID'. Explain your reasoning for why these numeric values should or should not be treated as quantitative data.",
+    "rubric_primary": "The response must clearly distinguish between numbers as labels (IDs) and numbers as ordinal data (ranks). High-quality reasoning explains that while averages are mathematically possible for both, they are conceptually invalid for labels and often misleading for ordinal ranks.",
+    "visible_thinking_prompts": {
+      "notice": "What patterns do you see in how the numbers represent the underlying data?",
+      "think": "What happens to the meaning of the data if I attempt to calculate a mean for these categories?",
+      "wonder": "What other information would I need to understand the 'value' of a course rank if the mean is not sufficient?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1196,
+    "inputTokenDetails": {
+      "noCacheTokens": 1196,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 350,
+    "outputTokenDetails": {
+      "textTokens": 350,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1546,
+    "raw": {
+      "promptTokenCount": 1196,
+      "candidatesTokenCount": 350,
+      "totalTokenCount": 1546,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1196
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

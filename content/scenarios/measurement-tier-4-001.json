@@ -1,0 +1,21 @@
+{
+  "id": "measurement-tier-4-001",
+  "concept_id": "measurement",
+  "tier": 4,
+  "question_type": "long_answer",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As a Harvard undergraduate advisor, you are reviewing a recent survey intended to measure 'student sense of belonging' within a specific house. The survey consists of a single question: 'On a scale of 1-5, how often do you attend house-sponsored social events?' The report concludes that house-sponsored event attendance is a direct proxy for sense of belonging, and therefore, students with lower attendance scores have a low sense of belonging.",
+  "prompt": "Evaluate this report's methodology. Specifically, analyze the disconnect between the construct (sense of belonging) and the measure used (event attendance frequency). In your response, address what might be missing from this measure and why relying on it exclusively could lead to flawed support strategies for students.",
+  "rubric": {
+    "primary_criterion": "The learner must articulate the distinction between attendance as an observable behavior and belonging as a subjective emotional state, identifying that attendance does not account for students who feel they belong but are busy, introverted, or engaged elsewhere."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What is the survey actually recording versus what the report claims it records?",
+    "think": "What are the limitations of using social event attendance as a metric for belonging?",
+    "wonder": "What other indicators might better represent a student's actual sense of belonging within the Harvard community?"
+  },
+  "artifact": {
+    "type": "report_excerpt",
+    "content": "Report Abstract: 'To measure student sense of belonging, we tracked attendance at weekly house events. Students scoring 1 or 2 on the 5-point frequency scale were identified as 'disconnected' and prioritized for targeted outreach. Attendance data showed a strong correlation with our departmental definition of community integration.'"
+  }
+}

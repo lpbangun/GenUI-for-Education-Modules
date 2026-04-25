@@ -1,0 +1,41 @@
+{
+  "object": {
+    "setup_prose": "As an administrator for the Harvard Summer School, you are reviewing survey data regarding the number of minutes students spend preparing for weekly seminars. You are preparing a summary for faculty to help them adjust their expectations for workload. You have visualized the data into a histogram and see two distinct, separate humps: one cluster of students reporting 30-45 minutes and another larger cluster reporting 180-210 minutes.",
+    "artifact_type": "chart_description",
+    "prompt": "Describe the shape of this distribution in your own words and explain to the faculty why reporting a single average (mean) would be misleading in this specific case. Write 2-3 sentences.",
+    "hint_content": "Consider whether a single 'typical' value can describe a population where groups are clearly behaving differently. What happens to the mean if you average the two extremes?",
+    "rubric_primary": "The learner correctly identifies the distribution as bimodal and provides a logical reason why a mean would fall in a gap between the two peaks, thereby failing to represent the actual experience of either group.",
+    "rubric_secondary": "The response must emphasize that central tendency is less useful when the data suggests distinct subgroups exist.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about the distribution of time spent among the student body?",
+      "think": "What might you think about the student body based on these two distinct clusters?",
+      "wonder": "What might you wonder about the course design or student demographics that would result in such a pattern?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1194,
+    "inputTokenDetails": {
+      "noCacheTokens": 1194,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 348,
+    "outputTokenDetails": {
+      "textTokens": 348,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1542,
+    "raw": {
+      "promptTokenCount": 1194,
+      "candidatesTokenCount": 348,
+      "totalTokenCount": 1542,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1194
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

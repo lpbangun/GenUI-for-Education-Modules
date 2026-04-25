@@ -1,0 +1,43 @@
+{
+  "id": "central-tendency-tier-1-001",
+  "concept_id": "central-tendency",
+  "tier": 1,
+  "question_type": "multiple_choice",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "As an administrator for the Harvard Summer School, you are reviewing a report on the number of hours students spent per week completing optional practice modules for a specific online course. The report shows a mean of 12 hours per week, but a median of 4 hours per week.",
+  "prompt": "Based on these figures, which of the following describes the students' engagement most accurately?",
+  "rubric": {
+    "primary_criterion": "The learner correctly identifies that the mean is being pulled upward by a few students with very high usage, making the median a better representation of the 'typical' student."
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you notice about the difference between the mean and the median?",
+    "think": "What might explain why the mean is so much higher than the median in this context?",
+    "wonder": "If you wanted to understand the student experience, which number would you prioritize and why?"
+  },
+  "options": [
+    {
+      "id": "A",
+      "text": "The typical student spends 12 hours per week on modules.",
+      "correct": false,
+      "feedback": "This assumes the mean represents the center, but here the mean is likely inflated by a few students spending an exceptionally high number of hours."
+    },
+    {
+      "id": "B",
+      "text": "The typical student spends about 4 hours per week on modules.",
+      "correct": true,
+      "feedback": "Because the median is much lower than the mean, it suggests that most students are clustered around 4 hours, while the mean is being pulled upward by outliers."
+    },
+    {
+      "id": "C",
+      "text": "Students are split evenly between spending 4 hours and 12 hours per week.",
+      "correct": false,
+      "feedback": "The mean and median provide information about central tendency, but they do not confirm a split distribution or specific groupings."
+    },
+    {
+      "id": "D",
+      "text": "The data is invalid because the mean and median should be the same.",
+      "correct": false,
+      "feedback": "Mean and median are only the same in perfectly symmetrical distributions. It is very common for them to differ in real-world educational data."
+    }
+  ]
+}

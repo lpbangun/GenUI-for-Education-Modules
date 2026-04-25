@@ -1,0 +1,66 @@
+{
+  "object": {
+    "setup_prose": "As a member of the Harvard Admissions team, you are reviewing student survey data regarding the number of extracurricular activities pursued by two different applicant pools: applicants to a new pilot program and applicants to the traditional academic track. Both groups have an identical average (mean) of 3 activities, but you notice the shapes of their participation look quite different.",
+    "artifact_type": "summary_stats",
+    "prompt": "You are asked by the admissions committee if these two groups have similar engagement profiles. Based on the summary statistics, which is the most accurate assessment?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Yes, because the average is 3 for both groups, the engagement profiles are effectively the same.",
+        "correct": false,
+        "feedback": "This is a common misconception called 'mean-ism.' It ignores the fact that different patterns of participation (e.g., consistency vs. polarization) result in the same mean."
+      },
+      {
+        "id": "B",
+        "text": "No, the group with higher variability likely contains a wider mix of students, whereas the low-variability group is more homogenous.",
+        "correct": true,
+        "feedback": "Correct. The mean describes the center, but the spread describes the diversity of the experiences within the group."
+      },
+      {
+        "id": "C",
+        "text": "It is impossible to tell if they are different without knowing the exact count of applicants in each pool.",
+        "correct": false,
+        "feedback": "While sample size matters for reliability, the variation in behavior itself indicates that the profiles are different, regardless of the number of applicants."
+      },
+      {
+        "id": "D",
+        "text": "The group with the higher range must have had more successful applicants, as they pushed the upper limits of activity.",
+        "correct": false,
+        "feedback": "This confuses spread with performance. High variability does not necessarily mean higher quality or 'success'; it just means the data is more dispersed."
+      }
+    ],
+    "hint_content": "Don't just look at the average. Consider the range and spread. If one group is consistently doing 3 activities and the other is split between 0 and 6, are those 'similar' groups?",
+    "rubric_primary": "The learner recognizes that identical averages do not imply identical distributions and that variability is essential for characterizing group behavior.",
+    "visible_thinking_prompts": {
+      "notice": "What do you notice about the distribution of activities in each pool?",
+      "think": "What might an 'average' of 3 mean for a student in a low-variability group versus a high-variability group?",
+      "wonder": "What questions do you have about the student experiences that led to such different spreads?"
+    }
+  },
+  "usage": {
+    "inputTokens": 1193,
+    "inputTokenDetails": {
+      "noCacheTokens": 1193,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 636,
+    "outputTokenDetails": {
+      "textTokens": 636,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1829,
+    "raw": {
+      "promptTokenCount": 1193,
+      "candidatesTokenCount": 636,
+      "totalTokenCount": 1829,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1193
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}
