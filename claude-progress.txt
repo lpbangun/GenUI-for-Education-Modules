@@ -1,0 +1,10 @@
+# claude-progress.txt
+#
+# Append-only journal for the autonomous build harness.
+# Most recent at the bottom. Read from the bottom on resume.
+# Format: <ISO timestamp> · <feature_id or HARNESS> · <event> · <one-line note>
+#
+# Events: PLAN | BUILD | REVIEW | E2E | COMPLETE | BLOCKED | STOP | DECISION | ROLLBACK
+
+2026-04-25T03:15:00Z · HARNESS · BOOTSTRAP · git init done; HARNESS.md, AGENTS.md, decisions/000, warnings/credential-blocks.md created
+2026-04-25T03:15:00Z · HARNESS · TASKLIST · 13 features queued; F003/F004/F006/F010/deploy pre-flagged on credential walls

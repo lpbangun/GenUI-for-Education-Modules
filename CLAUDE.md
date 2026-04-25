@@ -2,6 +2,8 @@
 
 This file is the project's authoritative spec. Every Claude Code agent (planner, builder, reviewer) reads this before doing anything. It encodes architectural invariants, hard rules, and calibration anchors. Do not modify without explicit human approval logged in `warnings/architecture-changes.md`.
 
+**If you are resuming an autonomous build:** read `HARNESS.md` first — it has the resume protocol, the autonomy charter, and the credential-block manifest. Then come back here.
+
 ## Project mission
 
 We are building a generative-UI proof-of-concept for the **T127 capstone**: a self-paced data fluency module for Harvard staff that fades scaffolding as the learner demonstrates mastery. Each learner response shapes both the next interaction and a backend dictionary of cross-school data terminology. The module sits inside Harvard's LMS as a Vue 3 component in an iframe.
