@@ -25,3 +25,10 @@
 2026-04-25T03:32:00Z · F005 · BUILD · validate_exemplar_consistency.ts generalized via pickNumericField (suffix-convention claims)
 2026-04-25T03:32:00Z · F005 · REVIEW · all 5 generators schema-valid + deterministic + consistency-clean (5/5 pass)
 2026-04-25T03:32:00Z · F005 · COMPLETE · accepted
+2026-04-25T03:42:00Z · F007 · BUILD · Vite Vue-TS scaffold + tailwind w/ DESIGN.md tokens + vue-router + AI SDK v6 deps + LMSShell + 4 routes (HomeView/ModuleView/DictionaryView/AutoplayView)
+2026-04-25T03:42:00Z · F007 · REVIEW · npm run build → clean, 120KB JS gzipped to 45KB; CSS 7KB
+2026-04-25T03:42:00Z · F007 · E2E · curl all 4 routes from dev server → 200, SPA shell served; title corrected
+2026-04-25T03:42:00Z · F007 · COMPLETE · accepted (CSS @import order hot-fixed during review round 1)
+2026-04-25T03:43:00Z · F009 · BUILD · DictionaryView with Fuse.js search + stub entries (5 terms) + Contributed-by-staff placeholder
+2026-04-25T03:43:00Z · F009 · REVIEW · ships in same build as F007; renders search/sidebar/detail; mock data documented as F004-pending
+2026-04-25T03:43:00Z · F009 · COMPLETE · accepted_with_workaround (stub data; flip to real once F004 generates dictionary MD; see decisions/002)
