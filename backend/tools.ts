@@ -33,7 +33,7 @@ export const scaffoldTools = {
       setup_prose: z.string(),
       artifact_summary_stats: z.string().optional(),
       prompt: z.string(),
-      options: z.array(ScenarioOption).length(4),
+      options: z.array(ScenarioOption).min(3).max(4),
       hint: z.string(),
     }),
     execute: async (input) => ({ scaffold: 'ScaffoldedMCQ', ...input }),

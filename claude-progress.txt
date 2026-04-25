@@ -47,3 +47,8 @@
 2026-04-25T14:18:00Z · F006 · BUILD · scripts/gen_scenarios.ts generated 39 fresh scenarios (8 foundational concepts × 5 tiers, exemplar skipped)
 2026-04-25T14:18:00Z · F006 · REVIEW · validate_scenarios.ts → 40 scenarios valid (39 fresh + 1 calibrated)
 2026-04-25T14:18:00Z · F006 · COMPLETE · accepted
+2026-04-25T14:35:00Z · DEPLOY · BUILD · vercel link → multi-service auto-detect (frontend Vite + backend Hono); GEMINI_API_KEY pushed to prod+dev envs
+2026-04-25T14:35:00Z · DEPLOY · BUILD · vercel.json simplified to experimentalServices only; SPA routing handled by vite framework preset
+2026-04-25T14:38:00Z · DEPLOY · E2E · live LLM tool call green: ScaffoldedMCQ returned full structured payload from prod backend
+2026-04-25T14:38:00Z · DEPLOY · COMPLETE · accepted; LIVE at https://data-fluency-module.vercel.app (frontend + /_/backend/api/* live)
+2026-04-25T14:38:00Z · HARNESS · STOP · 11/11 features + deploy COMPLETE; live demo URL ready for capstone defense

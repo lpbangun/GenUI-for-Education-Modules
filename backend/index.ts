@@ -51,7 +51,6 @@ app.post('/api/chat', async (c) => {
     system: systemPrompt,
     messages,
     tools: allTools,
-    providerOptions: { google: { thinkingConfig: { thinkingBudget: 'medium' } } },
   });
 
   return stream(c, async (s) => {
@@ -79,7 +78,6 @@ app.post('/api/state/infer', async (c) => {
     model: provider(MODEL_ID),
     schema: InferOutput,
     prompt: `You are the State Inferrer. Concept: ${concept_id}. Recent interactions:\n${JSON.stringify(recent_interactions, null, 2)}\n\nInfer mastery (0-1), your confidence in that estimate (0-1), and one paragraph of reasoning.`,
-    providerOptions: { google: { thinkingConfig: { thinkingBudget: 'low' } } },
   });
   return c.json(result.object);
 });
@@ -107,7 +105,6 @@ app.post('/api/quality/eval', async (c) => {
     model: provider(MODEL_ID),
     schema: QualityOutput,
     prompt: `You are the Quality Evaluator. Score this learner response on the central-tendency.md rubric anchor: claim quality, support quality, visible thinking presence (0-5 each). Set publishable=true only if overall ≥ 3.5 and visible_thinking_present ≥ 3.\n\nConcept: ${concept_id}\nResponse:\n${response_text}`,
-    providerOptions: { google: { thinkingConfig: { thinkingBudget: 'medium' } } },
   });
   return c.json(result.object);
 });
