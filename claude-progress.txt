@@ -21,3 +21,7 @@
 2026-04-25T03:25:00Z · F008 · BUILD · lib/scaffold-selector.ts (pure pickScaffold) + 11-case test
 2026-04-25T03:25:00Z · F008 · REVIEW · 11 pass / 0 fail; covers all 5 tiers, all 4 boundaries (≥), and floor/ceiling
 2026-04-25T03:25:00Z · F008 · COMPLETE · accepted
+2026-04-25T03:32:00Z · F005 · BUILD · 5 generators (cohort_outcomes, two_group_comparison, time_series_with_break, survey_categorical, paired_pre_post) + _lib + test_generators driver
+2026-04-25T03:32:00Z · F005 · BUILD · validate_exemplar_consistency.ts generalized via pickNumericField (suffix-convention claims)
+2026-04-25T03:32:00Z · F005 · REVIEW · all 5 generators schema-valid + deterministic + consistency-clean (5/5 pass)
+2026-04-25T03:32:00Z · F005 · COMPLETE · accepted

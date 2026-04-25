@@ -119,62 +119,69 @@ function loadScenarios(dir: string): Map<string, Scenario> {
   return map;
 }
 
+// Pick the numeric field to validate against. Generalized in F005 so the four
+// new generators (two_group_comparison, time_series_with_break,
+// survey_categorical, paired_pre_post) can declare their own field via
+// pedagogical_metadata.features.numeric_field. Falls back to salary_usd for the
+// original cohort_outcomes exemplar.
+function pickNumericField(d: SyntheticDataset): string | null {
+  const declared = d.pedagogical_metadata.features.numeric_field;
+  if (typeof declared === 'string' && d.fields_schema[declared]) return declared;
+  if (d.fields_schema.salary_usd) return 'salary_usd';
+  for (const [field, type] of Object.entries(d.fields_schema)) {
+    if (typeof type === 'string' && /integer|number|float|int/i.test(type)) return field;
+  }
+  return null;
+}
+
 function validateDatasetInternal(d: SyntheticDataset): void {
   const features = d.pedagogical_metadata.features;
+  const field = pickNumericField(d);
 
-  if (d.fields_schema.salary_usd) {
-    const stats = computeNumericStats(d.rows, 'salary_usd');
-    if (!stats) return;
+  if (field) {
+    const stats = computeNumericStats(d.rows, field);
+    if (stats) {
+      // Suffix convention: features.mean_<field-suffix>, median_<field-suffix>, etc.
+      // For salary_usd → suffix "usd"; for "score" → suffix "score"; etc.
+      const suffix = field.includes('_') ? field.split('_').pop()! : field;
+      const claim = (key: string) => features[`${key}_${suffix}`];
 
-    if (typeof features.mean_usd === 'number') {
-      const diff = Math.abs((features.mean_usd as number) - stats.mean);
-      if (diff > TOLERANCE_USD) {
-        errors.push({
+      const claimedMean = claim('mean');
+      if (typeof claimedMean === 'number') {
+        const diff = Math.abs(claimedMean - stats.mean);
+        if (diff > TOLERANCE_USD) errors.push({
           file: `dataset:${d.id}`,
-          message: `claimed mean_usd=${features.mean_usd}, computed=${stats.mean}, diff=${diff} exceeds tolerance ${TOLERANCE_USD}`
+          message: `claimed mean_${suffix}=${claimedMean}, computed=${stats.mean}, diff=${diff} exceeds tolerance ${TOLERANCE_USD}`
         });
       }
-    }
-    if (typeof features.median_usd === 'number') {
-      const diff = Math.abs((features.median_usd as number) - stats.median);
-      if (diff > TOLERANCE_USD) {
-        errors.push({
+      const claimedMedian = claim('median');
+      if (typeof claimedMedian === 'number') {
+        const diff = Math.abs(claimedMedian - stats.median);
+        if (diff > TOLERANCE_USD) errors.push({
           file: `dataset:${d.id}`,
-          message: `claimed median_usd=${features.median_usd}, computed=${stats.median}, diff=${diff} exceeds tolerance ${TOLERANCE_USD}`
+          message: `claimed median_${suffix}=${claimedMedian}, computed=${stats.median}, diff=${diff} exceeds tolerance ${TOLERANCE_USD}`
         });
       }
-    }
-    if (typeof features.min_usd === 'number' && features.min_usd !== stats.min) {
-      errors.push({
+      const claimedMin = claim('min');
+      if (typeof claimedMin === 'number' && claimedMin !== stats.min) errors.push({
         file: `dataset:${d.id}`,
-        message: `claimed min_usd=${features.min_usd}, computed=${stats.min}`
+        message: `claimed min_${suffix}=${claimedMin}, computed=${stats.min}`
       });
-    }
-    if (typeof features.max_usd === 'number' && features.max_usd !== stats.max) {
-      errors.push({
+      const claimedMax = claim('max');
+      if (typeof claimedMax === 'number' && claimedMax !== stats.max) errors.push({
         file: `dataset:${d.id}`,
-        message: `claimed max_usd=${features.max_usd}, computed=${stats.max}`
+        message: `claimed max_${suffix}=${claimedMax}, computed=${stats.max}`
       });
-    }
 
-    if (features.right_skew === true && stats.mean <= stats.median) {
-      errors.push({
+      if (features.right_skew === true && stats.mean <= stats.median) errors.push({
         file: `dataset:${d.id}`,
         message: `claims right_skew=true but mean (${stats.mean}) <= median (${stats.median})`
       });
-    }
-    if (features.left_skew === true && stats.mean >= stats.median) {
-      errors.push({
+      if (features.left_skew === true && stats.mean >= stats.median) errors.push({
         file: `dataset:${d.id}`,
         message: `claims left_skew=true but mean (${stats.mean}) >= median (${stats.median})`
       });
-    }
-    if (
-      features.has_outlier === true &&
-      features.outlier_is_extreme === true &&
-      stats.max < 3 * stats.median
-    ) {
-      errors.push({
+      if (features.has_outlier === true && features.outlier_is_extreme === true && stats.max < 3 * stats.median) errors.push({
         file: `dataset:${d.id}`,
         message: `claims extreme outlier but max (${stats.max}) < 3x median (${stats.median})`
       });
@@ -213,8 +220,9 @@ function validateScenarioReferencesDataset(
 
   if (!s.artifact || s.artifact.type !== 'summary_stats') return;
 
-  if (d.fields_schema.salary_usd) {
-    const computedStats = computeNumericStats(d.rows, 'salary_usd');
+  const field = pickNumericField(d);
+  if (field) {
+    const computedStats = computeNumericStats(d.rows, field);
     if (!computedStats) return;
 
     const checks: Array<[string, number]> = [
