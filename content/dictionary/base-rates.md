@@ -1,0 +1,41 @@
+---
+term: base rates
+plain_definition: Base rates are the fundamental frequencies or probabilities of an event occurring within a population before considering any new, specific information.
+related_terms: ["Prior Probability", "False Positive Paradox", "Bayesian Inference", "Sample Bias"]
+common_confusion_with: ["Conditional Probability", "Success Rate", "Correlation"]
+school_usage:
+  HGSE: "Common in educational research when evaluating the likelihood of student outcomes across demographic groups before specific interventions are applied."
+  HBS: "Typically used in behavioral economics courses to prevent cognitive biases like the base rate fallacy in management and investment decision-making."
+  FAS: "Frequent in social science data analysis to establish a control baseline before measuring the effect of specific department-level policy changes."
+  HMS: "Used heavily in clinical epidemiology to ensure that diagnostic test results are interpreted alongside the actual prevalence of a condition in the population."
+  SEAS: "Applied in computational modeling and machine learning to understand how class imbalance in training data can lead to misleading predictive accuracy."
+version: 1
+---
+
+## Plain-language definition
+Base rates are the fundamental frequencies or probabilities of an event occurring within a population before considering any new, specific information.
+
+## What it tells you
+It provides the essential context. If you want to know if a specific intervention is working, you must know what happens without that intervention. Base rates anchor your expectations, preventing you from over-attributing an outcome to a specific cause when the event might have been likely to happen anyway.
+
+## When it matters
+Use base rates when evaluating success metrics or diagnostic outcomes. They are critical when:
+- Assessing the impact of student success initiatives or pilot programs.
+- Interpreting positive test results in health or screening contexts.
+- Estimating the potential yield of a new recruiting or fundraising pipeline.
+- Avoiding the temptation to infer causation from isolated incidents.
+
+## Common confusion with conditional probability
+People often mistake the probability of a finding *given* the event for the probability of the event *itself*. For example, if a specific survey result has a low base rate in the general staff population, a single outlier response might feel more significant than it actually is. The base rate serves as your 'starting' point; it prevents you from being swayed by the intensity of one data point while ignoring the scarcity or frequency of the event in the total population.
+
+## Example in context
+An office evaluates a new professional development workshop by noting that 80 percent of participants reported higher satisfaction. However, if the base rate for general staff satisfaction is already 75 percent, the workshop might not be as transformative as the simple percentage suggests. Ignoring the base rate leads to miscalculating the actual lift provided by the intervention.
+
+## Usage across Harvard
+At HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.
+
+## Related terms
+- **Prior Probability**: The statistical name for a base rate before new evidence is incorporated.
+- **False Positive Paradox**: A common error that occurs when ignoring low base rates, leading to overestimating the accuracy of a test.
+- **Bayesian Inference**: A method of updating probabilities that requires an accurate starting base rate.
+- **Sample Bias**: A frequent cause of incorrect base rate estimation, where the observed population does not match the actual population of interest.

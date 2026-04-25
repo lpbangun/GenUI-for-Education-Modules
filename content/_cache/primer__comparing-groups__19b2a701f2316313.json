@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "connect-extend-challenge",
+    "core_misconceptions": [
+      "Assuming any difference in group means implies the groups are fundamentally different",
+      "Ignoring the overlap between two distributions when comparing them",
+      "Believing that sample size does not impact the reliability of group comparisons"
+    ],
+    "body_markdown": "### The logic of comparing groups. When we look at two sets of data—such as student satisfaction scores in two different departments or engagement rates across two donor segments—we naturally want to know if one is better or higher than the other. Comparing groups is about determining if an observed difference is a genuine trend or merely a byproduct of individual variation. The goal is to avoid seeing patterns where only noise exists. ## The three factors of comparison. First, we look at the central tendency to see if the bulk of the data points in each group are clustered in different spots. Second, we must examine the variability, or the spread; if one group has a massive range of values, a small difference in the center becomes much less significant. Third, we account for sample size, because a small group might produce a high mean simply by luck of the draw. If both groups have tight clusters that barely touch, we can feel more confident that the groups are actually distinct. If the ranges overlap significantly, any difference in the mean might just be a matter of perspective rather than a structural reality. ## Why this matters for Harvard staff. You are frequently tasked with identifying successes or flagging areas for improvement. If you see a report stating that Program A has higher completion rates than Program B, your role as a data-fluent staff member is to pause. Does Program A have ten times the enrollment of Program B? If so, the comparison is likely skewed by size. Is the variation within each program so wide that the groups are effectively indistinguishable? By asking these questions, you ensure that decisions are based on evidence rather than coincidental numbers. Understanding group comparison protects you from overreacting to minor fluctuations while helping you spot when a genuine gap in service or performance actually requires your intervention. ## A reading example. Consider a memo from the Office of Undergraduate Education: \"The satisfaction score for students in the Fall term seminar series was 4.2, compared to 3.8 in the Spring term. This indicates that our revised curriculum design is significantly more effective.\" Before accepting this narrative, consider that the satisfaction scores for both terms spanned from 1 to 5. A large portion of students in both terms gave ratings of 3, 4, and 5. The shift in the mean might be due to a few students in the Spring session who felt overwhelmed, rather than a systematic change in the course experience for the entire cohort. Without knowing the overlap or the spread, the claim of \"significantly more effective\" is premature. ## What to practice. Next time you see a report comparing two programs or populations, apply the following routine to your analysis: 1. Connect: How does this comparison connect to what you already know about these two groups? 2. Extend: How does this data extend your understanding of the programs, and what new ideas does it push you toward? 3. Challenge: What about this comparison is still challenging or confusing for you? What missing information would make you feel more certain about the conclusion?"
+  },
+  "usage": {
+    "inputTokens": 1086,
+    "inputTokenDetails": {
+      "noCacheTokens": 1086,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 694,
+    "outputTokenDetails": {
+      "textTokens": 694,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1780,
+    "raw": {
+      "promptTokenCount": 1086,
+      "candidatesTokenCount": 694,
+      "totalTokenCount": 1780,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1086
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "object": {
+    "plain_definition": "A treatment group is the subset of participants in an experiment that receives the specific intervention or policy being tested by researchers.",
+    "related_terms": [
+      "Control group",
+      "Randomized controlled trial",
+      "Counterfactual",
+      "Treatment effect",
+      "Selection bias"
+    ],
+    "common_confusion_with": [
+      "Control group",
+      "Population sample",
+      "Experimental cohort"
+    ],
+    "school_usage": {
+      "HGSE": "Common in educational pilot program evaluations, where researchers compare students receiving a new curriculum against those continuing with standard instruction.",
+      "HBS": "Typically used in business field experiments to measure the impact of specific management interventions or nudges on employee productivity.",
+      "FAS": "Frequent in experimental economics or psychology labs, where student participants are assigned specific prompts to gauge behavioral reactions.",
+      "HMS": "Used in clinical trials to distinguish patients receiving the investigative drug or therapeutic device from those receiving a placebo.",
+      "SEAS": "Common in A/B testing for user-interface experiments or algorithmic impact studies, where one group interacts with an updated system feature."
+    },
+    "body_markdown": "## Plain-language definition\nA treatment group is the subset of participants in an experiment that receives the specific intervention or policy being tested by researchers.\n\n## What it tells you\nThe treatment group provides the 'observed' outcome of an experiment. By comparing the results of this group against a control group, you can isolate the specific impact of the intervention from background variables. If the groups are assigned randomly, differences in outcomes between the treatment and control groups can be attributed to the intervention itself.\n\n## When it matters\nUse the concept of the treatment group whenever you are evaluating the efficacy of a new initiative. It is critical for: \n- Distinguishing causality from correlation.\n- Determining if a new software rollout or student resource actually improves metrics.\n- Controlling for external factors that affect both groups equally.\n- Understanding the net impact of a policy change on a specific target population.\n\n## Common confusion with control group\nStaff often conflate the two groups in the study design phase. The treatment group receives the 'active' change, while the control group serves as the baseline or 'business as usual' group. Mixing up the data streams between these two groups will invalidate the entire experiment, leading to false conclusions about the success of an intervention.\n\n## Example in context\nA department implements a new automated reminder system for student application deadlines. Students who receive the automated emails are the treatment group, while students who proceed without these reminders constitute the control group. Comparing the completion rates of these two cohorts reveals whether the email intervention was the primary driver of increased application submissions.\n\n## Usage across Harvard\nAt HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.\n\n## Related terms\n- **Control group** is the group that receives no intervention or a placebo, serving as the baseline for comparison.\n- **Randomized controlled trial** is the gold standard design where participants are assigned to the treatment group by chance.\n- **Counterfactual** represents what would have happened to the treatment group had they not received the intervention.\n- **Treatment effect** is the measured difference in outcomes between the treatment group and the control group.\n- **Selection bias** occurs when participants in a treatment group are not representative of the whole population, distorting results."
+  },
+  "usage": {
+    "inputTokens": 915,
+    "inputTokenDetails": {
+      "noCacheTokens": 915,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 816,
+    "outputTokenDetails": {
+      "textTokens": 816,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1731,
+    "raw": {
+      "promptTokenCount": 915,
+      "candidatesTokenCount": 816,
+      "totalTokenCount": 1731,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 915
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "claim-support-question",
+    "core_misconceptions": [
+      "Thinking a raw count (e.g., 50 people) implies high or low impact without knowing the total pool.",
+      "Ignoring the size of the denominator when comparing two different groups.",
+      "Assuming percentages are self-explanatory without knowing what they represent out of."
+    ],
+    "body_markdown": "# Knowing what your rate is hitting against\n\nWhen you see a headline like \"The number of internship applications increased by 40 percent,\" it feels like a definitive success. But data rarely travels alone. To understand if that increase is actually significant, you need the base rate: the starting context against which that change is measured. Without the denominator—the total pool of possibilities—a number is just a floating fragment. Data fluency starts with the instinct to ask, \"Compared to what?\"\n\n## The three parts of a proportion\n\n- **The Numerator:** This is the count of the specific event or group you are looking at. It is the \"what\" of your data.\n- **The Denominator:** This is the baseline or the total pool. It is the \"out of what\" that gives the numerator its true scale.\n- **The Context:** This is the time frame or the comparison group that allows the rate to make sense. Without context, a numerator and denominator are just static snapshots.\n\nThink of it this way: 10 students failing a midterm is a tragedy in a class of 12, but it is a standard fluctuation in a lecture hall of 400. The raw number is the same, but the proportion changes the entire story.\n\n## Why this matters for Harvard staff\n\nIn your daily work, you are constantly presented with rates of progress, engagement, or success. If an internal report notes that \"donor participation for our department rose by 10 points,\" that sounds impressive. However, if that 10-point rise happened in a pool of only 50 prospects, it is a very different narrative than if it happened across a pool of 5,000. \n\nStaff often face pressure to highlight the numerator—the growth, the engagement, the volume—because it feels more tangible. But your role is to provide the critical perspective that anchors these figures. By identifying the denominator, you ensure that decisions are made based on the scale of the challenge or success, not just the volume of the activity.\n\n## A reading example\n\nConsider this email from an administrative office: \"Our new library resource portal saw 500 unique logins in the first week of September. This represents a 25 percent increase in engagement compared to the previous portal launch.\"\n\nBefore you accept this as a sign of success, look for the hidden denominator. How many total students were eligible to log in? Was the eligible pool size the same during the previous launch? If the total student population grew by 30 percent while engagement only grew by 25 percent, the proportion of students actually using the portal has effectively dropped. The raw number of logins increased, but the rate of engagement is failing to keep pace.\n\n## What to practice\n\nNext time you see a report citing an increase, a decrease, or a percentage, pause and use the claim-support-question routine to interrogate the baseline:\n\n1. **Claim:** What is this percentage or rate trying to convince me of regarding the program's success or failure?\n2. **Support:** What is the actual denominator, and does the report provide enough context to make this rate meaningful?\n3. **Question:** What is the denominator missing, and how would the story change if I knew the size of the total pool?"
+  },
+  "usage": {
+    "inputTokens": 1080,
+    "inputTokenDetails": {
+      "noCacheTokens": 1080,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 813,
+    "outputTokenDetails": {
+      "textTokens": 813,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1893,
+    "raw": {
+      "promptTokenCount": 1080,
+      "candidatesTokenCount": 813,
+      "totalTokenCount": 1893,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1080
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

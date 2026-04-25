@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "claim-support-question",
+    "core_misconceptions": [
+      "Thinking percentage increases are additive rather than multiplicative",
+      "Confusing the absolute difference between two rates with the relative change of a rate",
+      "Assuming any change in a percentage figure is equivalent to the same change in raw numbers"
+    ],
+    "body_markdown": "### Understanding percentage and point shifts When a news outlet or internal report claims that a department success rate rose from 20 percent to 25 percent, you are often told it is a five percent increase. In reality, that is a common error of language. To understand the impact of data, you must distinguish between a percentage change and a percentage-point change. While the numbers are related, they describe entirely different stories about performance and scale. ## The building blocks - Percentage change represents the relative growth or decline of a value. If your yield rate moves from 20 percent to 25 percent, your success has grown by one quarter, or 25 percent. - Percentage points describe the absolute arithmetic difference between two percentages. The move from 20 percent to 25 percent is a five percentage-point increase. - Base matters because every percentage point change is relative to the starting scale. A change of one percentage point in a group of 100 students means one student, while the same change in a group of 10,000 means 100 students. When you see a percentage figure, clarify if the source is describing a change in the total number of items or a shift in the proportional rate itself. ## Why this matters for Harvard staff As staff, you manage trends across diverse populations, from applicant pools to survey respondents. Confusing these two terms can lead to significant misinterpretations. If an enrollment team says yield is up by 10 percent, they are claiming a major relative improvement. If they mean 10 percentage points, the growth is actually much more dramatic. Being precise with this language prevents panic over small fluctuations and ensures that you are accurately communicating the magnitude of a change. You do not need to calculate these figures to recognize when a report is being imprecise with its terminology. ## A reading example Consider this internal memo: \"Our student satisfaction survey results improved significantly this year, moving from 70 percent to 77 percent. This represents a 7 percent increase in student satisfaction across the board.\" This phrasing is misleading. The satisfaction rate actually increased by 7 percentage points. Because the original satisfaction level was 70 percent, a 7 percentage-point increase is effectively a 10 percent relative improvement. By conflating the two, the memo understates the positive shift in sentiment. ## What to practice The next time you review a report showing a change in percentages, use the claim-support-question routine to sharpen your analysis: 1. Claim: What is the specific argument being made about the change in data? 2. Support: What evidence exists to show whether the figure refers to an absolute percentage-point difference or a relative percentage change? 3. Question: If the author swapped the term percentage for percentage point, how would the narrative change, and would it be more or less accurate?"
+  },
+  "usage": {
+    "inputTokens": 1085,
+    "inputTokenDetails": {
+      "noCacheTokens": 1085,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 677,
+    "outputTokenDetails": {
+      "textTokens": 677,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1762,
+    "raw": {
+      "promptTokenCount": 1085,
+      "candidatesTokenCount": 677,
+      "totalTokenCount": 1762,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1085
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

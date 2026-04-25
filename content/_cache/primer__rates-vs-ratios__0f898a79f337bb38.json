@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "claim-support-question",
+    "core_misconceptions": [
+      "Thinking that any fraction is automatically a rate",
+      "Confusing a part-to-whole relationship with a part-to-part relationship",
+      "Assuming all percentages are equivalent to likelihoods"
+    ],
+    "body_markdown": "# Three different things people call the same word. In administrative work, we often use the word 'rate' to describe any number expressed as a fraction. While these numbers help us understand performance or trends, they are not interchangeable. A rate, a ratio, and a proportion each tell a fundamentally different story about your department’s data. Understanding the distinction prevents us from misinterpreting administrative benchmarks or misrepresenting student outcomes. ## The three distinct types. First, a **ratio** is a part-to-part comparison. If a department advising office serves ten first-year students for every one senior, the ratio is ten to one. It describes the relationship between two separate groups without implying that one is a subset of the other. Second, a **proportion** is a part-to-whole relationship. If 40 of our 100 graduate student fellows are enrolled in cross-disciplinary courses, the proportion is 40 percent of the total. The numerator is a piece of the denominator. Third, a **rate** is a measure of change or frequency over time or space. It connects two different types of units, like 'admissions applications processed per hour' or 'student help-desk tickets per week.' A rate tracks the velocity of an activity rather than a simple snapshot of the population. ## Why this matters for Harvard staff. We encounter these figures in dashboards and annual reports daily. If a dean sees a report stating the 'student-to-faculty ratio' has shifted, we are looking at how many students exist per instructor. If we look at the 'graduation rate,' we are looking at the frequency of completion over a set timeframe. Mixing these up leads to bad strategy. If you mistake a ratio for a proportion, you might misjudge how many resources you need. If you assume a change in the total volume of something is a rate of growth, you might overreact to a temporary fluctuation. You do not need to perform complex math to identify which of these three you are looking at; you only need to label the numerator and the denominator and ask: is this comparing parts, showing a part of the whole, or tracking a pace? ## A reading example. Imagine a memo from the Office of Undergraduate Education: 'Our current engagement data shows that the ratio of students attending optional workshops is 1 to 3, and our engagement rate has increased by 15 percent this semester.' Here, the memo uses 'ratio' and 'rate' almost interchangeably. However, a 1-to-3 ratio suggests that for every one student who attended, three did not. That is a part-to-part comparison. Meanwhile, the 'engagement rate' increase of 15 percent is a frequency measure compared to a previous semester. If the report implies these numbers mean the same thing, it obscures the reality of how students interact with our programming. ## What to practice. Take a recent report or email from your office that contains a fraction, percentage, or rate. Before you accept the premise as stated, use the following steps: 1. Claim: What is this number explicitly trying to tell me about our staff or students? 2. Support: What are the two specific units in this fraction, and do they represent parts, a whole, or a change over time? 3. Question: If I swapped the term 'rate' for 'ratio' or 'proportion,' would the core message of this data change significantly?"
+  },
+  "usage": {
+    "inputTokens": 1090,
+    "inputTokenDetails": {
+      "noCacheTokens": 1090,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 785,
+    "outputTokenDetails": {
+      "textTokens": 785,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1875,
+    "raw": {
+      "promptTokenCount": 1090,
+      "candidatesTokenCount": 785,
+      "totalTokenCount": 1875,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1090
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

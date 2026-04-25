@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "see-think-wonder",
+    "core_misconceptions": [
+      "Assuming that a snapshot tells you about individual growth.",
+      "Believing that cross-sectional data is sufficient to prove a program caused a long-term outcome.",
+      "Confusing a group of students arriving at the same time with a group of students tracked through a specific experience."
+    ],
+    "body_markdown": "# Snapshot or follow-along\n\nWhen we review data on student success or alumni engagement, the way we group the participants determines what we can actually claim about their experience. In data fluency, we distinguish between two primary ways to organize data: the cross-section and the cohort. Understanding which one you are looking at is the difference between seeing a status report and watching a movie.\n\n## The two formats\n\n- **Cross-sectional data** is a snapshot. It collects information from different people at a single moment in time. Think of it as a class photo: you can see who is there, but you cannot see where they came from or where they are going.\n- **Cohort data** is a follow-along. It tracks the same group of individuals over a period of time. This is more like a documentary, allowing you to see how the group changes, progresses, or reacts to specific interventions.\n- **The distinction** matters because cross-sectional data describes a state, while cohort data describes a process. You can report that \"30 percent of students expressed high satisfaction in October,\" but that cross-section does not tell you if those are the same students who were satisfied in September or an entirely different group.\n\n## Why this matters for Harvard staff\n\nAs staff, we often look for evidence of impact. If you want to know if a new advising initiative improved graduation rates, you need cohort data—you must track the specific students who received the advising to see if their outcomes differed from those who did not. If you only look at cross-sectional data, comparing \"graduation rates this year\" to \"graduation rates last year,\" you are looking at two different groups of people. You might see a change, but you cannot assume the advising caused it, because the students in each year might have been fundamentally different in their preparation or needs. Knowing the format of your data prevents you from mistaking a correlation for a trajectory.\n\n## A reading example\n\nConsider this line from a department memo: \"Survey results indicate that 85 percent of current undergraduates report feeling well-supported by their faculty advisors, a ten percentage point increase compared to the campus-wide survey from three years ago.\" \n\nBefore accepting this as evidence of improvement, note the format. Because these are two different sets of undergraduates (a cross-sectional comparison across three years), the change could stem from many things: different incoming student profiles, changes in course load requirements, or even general campus culture shifts. The report claims progress, but the snapshot format makes it impossible to know if the same students felt more supported over time or if we simply have a different cohort with different baseline expectations.\n\n## What to practice\n\nWhen you encounter a report describing trends or changes in student or staff outcomes, pause to analyze the data structure before deciding what it proves. Use the see-think-wonder routine to evaluate the evidence:\n\n1. **See:** What specific group of people is represented in this data, and is it a single moment in time or a tracked group over time?\n2. **Think:** What story is the report trying to tell, and is the data format actually strong enough to support that conclusion?\n3. **Wonder:** What would a different data format—a cohort study instead of a snapshot, or vice versa—reveal that I am missing right now?"
+  },
+  "usage": {
+    "inputTokens": 1094,
+    "inputTokenDetails": {
+      "noCacheTokens": 1094,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 806,
+    "outputTokenDetails": {
+      "textTokens": 806,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1900,
+    "raw": {
+      "promptTokenCount": 1094,
+      "candidatesTokenCount": 806,
+      "totalTokenCount": 1900,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1094
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

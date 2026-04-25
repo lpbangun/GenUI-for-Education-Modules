@@ -1,0 +1,15 @@
+---
+term: mean
+plain_definition: The mean is the arithmetic average, calculated by summing all values in a set and dividing by the total count of those values.
+related_terms: ["Median", "Standard Deviation", "Average", "Sum", "Arithmetic Mean"]
+common_confusion_with: ["Median", "Mode", "Weighted Average"]
+school_usage:
+  HGSE: "Common in educational psychology and psychometrics to describe the central tendency of scores across longitudinal student assessment datasets."
+  HBS: "Typically used in financial modeling and case study analysis to represent the expected value of revenue projections or operational performance metrics."
+  FAS: "Used frequently in administrative reporting to summarize general trends in departmental faculty headcount or research expenditure growth over several years."
+  HMS: "Common in clinical trial reports for calculating the mean change in biomarkers, provided the data distribution remains roughly normal."
+  SEAS: "Used in engineering and computer science contexts as a primary descriptive statistic for performance benchmarking and hardware efficiency metrics."
+version: 1
+---
+
+## Plain-language definition → The mean is the arithmetic average, calculated by summing all values in a set and dividing by the total count of those values. ## What it tells you → The mean accounts for the magnitude of every single value in your dataset. It represents the point at which all differences from the average sum to zero, effectively acting as the center of gravity for your data. ## When it matters → Use the mean when you have normally distributed data without extreme outliers. It is essential when calculating totals, such as predicting the total budget required if every project costs the 'mean' amount, or when performing further mathematical operations like calculating standard deviation. ## Common confusion → The mean is frequently conflated with the median. While the mean is mathematically elegant and inclusive of all data points, it is extremely sensitive to outliers; a single massive donation or an anomalous data entry can pull the mean far away from the 'typical' observation. ## Example in context → An administrator analyzing energy usage across several buildings calculates the mean consumption to determine the total annual carbon footprint of a campus site. Because the buildings are similarly sized and used, the mean provides a reliable estimate for total utilities expenditure. ## Usage across Harvard → HGSE and HBS typically use the mean for reporting cohort outcomes where data is balanced, while HMS relies on it for laboratory experiment precision. FAS and SEAS administrators use the mean to establish budgetary baselines across diverse departments. ## Related terms → The Median represents the middle point regardless of value size. Standard Deviation measures how much values spread away from the mean. The Weighted Average adjusts the mean by assigning importance to specific data points.

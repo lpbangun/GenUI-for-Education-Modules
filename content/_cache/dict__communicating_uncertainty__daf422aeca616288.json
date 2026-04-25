@@ -1,0 +1,51 @@
+{
+  "object": {
+    "plain_definition": "Communicating uncertainty is the practice of explicitly expressing the range of potential outcomes or the level of confidence behind a data-driven conclusion.",
+    "related_terms": [
+      "Margin of Error",
+      "Confidence Interval",
+      "Probability Distribution",
+      "Sensitivity Analysis",
+      "Standard Deviation"
+    ],
+    "common_confusion_with": [
+      "Lack of Data",
+      "Precision",
+      "Imprecision"
+    ],
+    "school_usage": {
+      "HGSE": "Commonly used when explaining student assessment trends to faculty to ensure they understand that small performance fluctuations do not always signal significant learning shifts.",
+      "HBS": "Typically used in case studies and quantitative analysis courses to teach students how to qualify strategic projections rather than presenting forecasts as absolute certainties.",
+      "FAS": "Frequently applied in undergraduate advising reports to clarify that predictive models regarding student retention are probabilistic estimates rather than definitive individual outcomes.",
+      "HMS": "Standard practice in clinical research and population health reporting to include confidence intervals alongside effect sizes to acknowledge inherent biological and sample variability.",
+      "SEAS": "Used in engineering and data science communication to distinguish between measurement error, model assumptions, and the inherent stochastic nature of physical systems."
+    },
+    "body_markdown": "## Plain-language definition\nCommunicating uncertainty is the practice of explicitly expressing the range of potential outcomes or the level of confidence behind a data-driven conclusion.\n\n## What it tells you\nIt provides essential context about the reliability of your data. By framing a result not as a single point but as a range, you signal to your audience how much they should rely on the number when making decisions.\n\n## When it matters\nUse this approach whenever a specific number could be misinterpreted as a guaranteed outcome. It is vital for:\n- Enrollment forecasts where demographics create shifting targets.\n- Budget projections based on fluctuating research grant cycles.\n- Sentiment analysis where survey respondent bias might influence findings.\n- Any decision-making process involving long-term strategic risks.\n\n## Common confusion with precision\nStaff often conflate precision with certainty. Providing a result like $45,231.78 implies extreme precision, but it does not tell the reader if you are 10% certain or 99% certain of that outcome. Accuracy refers to how close the number is to reality, while communicating uncertainty explains the limits of your knowledge.\n\n## Example in context\nWhen presenting a forecast of summer program applications, instead of stating 'We will have 400 applicants,' a data-fluent staff member might state, 'We expect between 375 and 425 applicants, based on a 95% confidence interval of historical trends.' This allows stakeholders to prepare for a range of resource needs rather than anchoring to a single, potentially incorrect figure.\n\n## Usage across Harvard\nAt HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.\n\n## Related terms\n- **Margin of Error:** The plus-or-minus figure that quantifies the uncertainty in a survey result.\n- **Confidence Interval:** A statistical range that is likely to contain the true population parameter.\n- **Sensitivity Analysis:** Testing how changes in assumptions change the final output.\n- **Stochastic:** Refers to systems governed by random probability rather than deterministic laws.\n- **Bias:** A systematic error that leads to a skew in the results, which is a different issue than uncertainty."
+  },
+  "usage": {
+    "inputTokens": 916,
+    "inputTokenDetails": {
+      "noCacheTokens": 916,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 826,
+    "outputTokenDetails": {
+      "textTokens": 826,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1742,
+    "raw": {
+      "promptTokenCount": 916,
+      "candidatesTokenCount": 826,
+      "totalTokenCount": 1742,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 916
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

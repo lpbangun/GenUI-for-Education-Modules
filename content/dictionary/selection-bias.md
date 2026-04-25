@@ -1,0 +1,48 @@
+---
+term: selection bias
+plain_definition: Selection bias occurs when the data you analyze does not accurately represent the intended population because certain groups were excluded or overrepresented.
+related_terms: ["Sampling bias", "Self-selection bias", "Coverage error", "Generalizability", "Non-response bias"]
+common_confusion_with: ["Measurement error", "Confounding", "Random variation"]
+school_usage:
+  HGSE: "Researchers at HGSE often account for selection bias when evaluating education interventions, specifically when participants self-select into high-impact programs."
+  HBS: "Case study faculty typically discuss selection bias when analyzing market data where successful firms are overrepresented in industry success metrics."
+  FAS: "Departmental administrators frequently address selection bias when analyzing survey feedback that only captures the opinions of the most vocal constituents."
+  HMS: "Clinical investigators focus on selection bias during trial recruitment to ensure that participant health profiles match the broader patient population being studied."
+  SEAS: "Technical leads mitigate selection bias in sensor or usage data by verifying that missing data points are not correlated with specific device settings or user behavior."
+version: 1
+---
+
+## Plain-language definition
+
+Selection bias occurs when the data you analyze does not accurately represent the intended population because certain groups were excluded or overrepresented.
+
+## What it tells you
+
+It warns you that your findings may be distorted because your sample was not chosen randomly. If the mechanism that determines who enters your dataset is related to the outcome you are studying, your results will likely reflect the preferences or circumstances of the sample rather than the true reality of the entire population.
+
+## When it matters
+
+- Analyzing satisfaction surveys where only unhappy or very satisfied people respond.
+- Studying success rates of pilot programs that only attracted highly motivated participants.
+- Comparing retention rates when the sample excludes students who dropped out before the observation period began.
+- Evaluating digital platform performance based only on users who successfully registered.
+
+## Common confusion
+
+People often confuse selection bias with simple measurement error. Measurement error happens when the information collected from an individual is wrong, while selection bias happens because the wrong individuals were collected in the first place.
+
+## Example in context
+
+A central office emails an alumni sentiment survey to all graduates of the last ten years. Only 5% respond, most of whom are either extremely satisfied or extremely disgruntled. Reporting these results as the 'average alumni experience' is a classic case of selection bias. The sample does not reflect the silent majority of alumni who were neither particularly happy nor unhappy, but simply too busy to respond.
+
+## Usage across Harvard
+
+At HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.
+
+## Related terms
+
+- **Sampling bias**: A broad category of bias where some members of a population are less likely to be selected than others.
+- **Self-selection bias**: When individuals select themselves into a group, potentially skewing the data based on personal characteristics.
+- **Generalizability**: The extent to which results from a sample can be applied to the target population.
+- **Coverage error**: Occurs when the sampling frame does not fully cover the target population.
+- **Non-response bias**: A subset of selection bias where the people who choose not to respond differ significantly from those who do.

@@ -1,0 +1,51 @@
+{
+  "object": {
+    "plain_definition": "A quartile is one of three values that divide a data set into four equal parts, each containing twenty-five percent of the observations.",
+    "technical_definition": "A quartile is a type of quantile which divides the number of data points into four parts, or quarters, of more-or-less equal size. The first quartile (Q1) is the 25th percentile, the second quartile (Q2) is the 50th percentile (median), and the third quartile (Q3) is the 75th percentile.",
+    "related_terms": [
+      "Percentile",
+      "Median",
+      "Interquartile Range",
+      "Box Plot",
+      "Distribution"
+    ],
+    "common_confusion_with": [
+      "Quartile vs. Quarter",
+      "Quartile vs. Percentile"
+    ],
+    "school_usage": {
+      "HGSE": "Commonly used in psychometric analysis and standardized testing reports to categorize student performance bands or achievement levels.",
+      "HBS": "Typically used in financial reporting to describe performance brackets or to segment competitive benchmarking data in case study analyses.",
+      "FAS": "Often used in administrative data analysis to understand the spread of undergraduate aid packages or faculty grant funding distribution across departments.",
+      "HMS": "Frequently used in clinical trials to represent the dispersion of patient demographics or biological markers in study cohorts.",
+      "SEAS": "Commonly used for visualizing variance in technical datasets through box plots to identify data spread and potential outliers in research metrics."
+    },
+    "body_markdown": "## Plain-language definition\nA quartile is one of three values that divide a data set into four equal parts, each containing twenty-five percent of the observations. Think of it as a set of markers that partition your sorted data into quarters.\n\n## What it tells you\nQuartiles provide a snapshot of how data is distributed. They tell you where the bulk of your data points reside and help you understand the density of your information. By looking at the boundaries, you can see how much the data 'stretches' from the center.\n\n## When it matters\nUse quartiles when you want to look past simple averages to see the spread of your data. They are particularly useful for:\n- Creating box plots to visualize the distribution of metrics like student test scores or staff salary bands.\n- Identifying the spread or variability within a group without being misled by extreme high or low values.\n- Comparing two different groups to see if one group has a tighter range of outcomes than the other.\n\n## Common confusion\nPeople often confuse 'quartile' with 'quarter.' A quartile is the boundary point (the cut-off), whereas the quarter is the actual group of data falling between two boundaries. You might hear someone say, 'Our results are in the first quartile,' when they actually mean the bottom quarter (the first 25%).\n\n## Example in context\nAn analyst reviewing staff wellness survey scores calculates the quartiles to see how opinion is clustered. If the bottom quartile ends at a score of 3 and the top quartile starts at 8, it reveals that half the staff are tightly clustered between those scores, highlighting that the majority of responses are relatively consistent despite the wide total range.\n\n## Usage across Harvard\nAt HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.\n\n## Related terms\n- **Median**: The 2nd quartile, splitting the data exactly in half.\n- **Interquartile Range**: The distance between the 1st and 3rd quartile, representing the middle 50% of the data.\n- **Percentile**: A more granular way to divide data, where quartiles are simply the 25th, 50th, and 75th percentiles.\n- **Box Plot**: A visualization tool that uses quartiles to show the distribution and spread of data."
+  },
+  "usage": {
+    "inputTokens": 915,
+    "inputTokenDetails": {
+      "noCacheTokens": 915,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 928,
+    "outputTokenDetails": {
+      "textTokens": 928,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1843,
+    "raw": {
+      "promptTokenCount": 915,
+      "candidatesTokenCount": 928,
+      "totalTokenCount": 1843,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 915
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

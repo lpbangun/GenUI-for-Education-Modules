@@ -1,0 +1,45 @@
+---
+term: central tendency
+plain_definition: Central tendency refers to a statistical measure that identifies the single value representing the center or typicality of a data distribution.
+related_terms: ["Mean", "Median", "Mode", "Skewness", "Standard Deviation"]
+common_confusion_with: ["Average", "Arithmetic mean", "Normal distribution"]
+school_usage:
+  HGSE: "Commonly referenced in educational assessment research to summarize student performance scores across diverse cohorts."
+  HBS: "Frequently used in case study data analysis to establish baseline expectations for market or financial variables."
+  FAS: "Typically used in administrative data reporting to characterize enrollment or course size trends across academic departments."
+  HMS: "Often employed in clinical trial summaries to determine the most representative patient response for a specific treatment group."
+  SEAS: "Used in engineering and applied science labs to identify stable output points within experimental datasets subject to noise."
+version: 1
+---
+
+## Plain-language definition
+
+Central tendency refers to a statistical measure that identifies the single value representing the center or typicality of a data distribution.
+
+## What it tells you
+
+It provides a snapshot of where most data points cluster. By boiling down a massive set of numbers into one representative value, it allows you to compare groups easily—such as comparing the typical course enrollment at two different schools.
+
+## When it matters
+
+Central tendency is essential when you need to summarize large datasets. You look for it whenever you need a 'go-to' number to represent a whole group. It is the first step in understanding if your data is balanced or if it has unusual outliers dragging the results one way or another.
+
+## Common confusion with the average
+
+Many assume 'average' and 'central tendency' are identical, but they are not. An average (mean) is just one way to express central tendency. If your data is heavily skewed, the median or even the mode might be a much more accurate representation of the 'center' than the mean.
+
+## Example in context
+
+A staff analyst looking at student dining patterns across all Harvard houses might calculate the mean, median, and mode for daily swipes. By checking all three measures of central tendency, they realize that while the mean is high due to a few constant users, the mode is significantly lower, revealing what the 'typical' student actually does daily.
+
+## Usage across Harvard
+
+At HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.
+
+## Related terms
+
+- Mean: The arithmetic average; sensitive to outliers.
+- Median: The middle value; robust against outliers.
+- Mode: The most frequently occurring value in the set.
+- Skewness: Indicates whether a distribution leans toward one side, necessitating careful choice of central tendency.
+- Standard Deviation: Measures spread; used alongside central tendency to describe the full shape of the data.

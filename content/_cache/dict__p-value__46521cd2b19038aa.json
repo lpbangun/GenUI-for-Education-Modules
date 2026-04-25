@@ -1,0 +1,51 @@
+{
+  "object": {
+    "plain_definition": "A p-value measures the probability that observed study results occurred due to random chance rather than a genuine effect.",
+    "related_terms": [
+      "Statistical significance",
+      "Confidence interval",
+      "Null hypothesis",
+      "Alpha level",
+      "Type I error"
+    ],
+    "common_confusion_with": [
+      "Effect size",
+      "Probability of being true",
+      "Practical significance"
+    ],
+    "school_usage": {
+      "HGSE": "Common in educational research to determine if a specific intervention, such as a new reading curriculum, shows a statistically meaningful impact on student test scores.",
+      "HBS": "Typically used in behavioral lab studies or field experiments to evaluate whether consumer preference shifts are robust or merely noise in the data.",
+      "FAS": "Frequent in faculty research across social sciences where large datasets are tested against null hypotheses to support claims in academic publications.",
+      "HMS": "Standard in clinical trial reporting to verify whether a new drug or procedure leads to patient outcomes that are unlikely to have happened by random variation alone.",
+      "SEAS": "Used in computational and experimental modeling to ensure that hardware performance improvements or algorithmic efficiencies reach the threshold for scientific validity."
+    },
+    "body_markdown": "## Plain-language definition → A p-value measures the probability that observed study results occurred due to random chance rather than a genuine effect. ## What it tells you → It indicates how surprising your data is under the assumption that nothing 'real' is happening. A low p-value suggests the observed result is unlikely to be explained by pure luck, prompting researchers to reject the null hypothesis. It does not measure the size of an effect, only the strength of evidence against the notion of randomness. ## When it matters → Use it when you need to decide if a change in your data—such as a shift in engagement metrics or patient recovery rates—is statistically distinguishable from natural fluctuations. It is essential in formal research design to prevent drawing false conclusions from limited or noisy samples. ## Common confusion → Many mistakenly believe a p-value of 0.05 means there is a 95 percent chance the result is true. It actually means that if the null hypothesis were true, you would see a result this extreme only 5 percent of the time. It also does not imply the result is 'important' or 'large' in a real-world sense; a tiny, meaningless difference can have a tiny p-value if your sample size is large enough. ## Example in context → A pilot program for student advising reported a small increase in usage rates. Researchers calculated a p-value of 0.03. Because this is below the typical 0.05 threshold, they concluded the increase was likely due to the program's structure rather than just random variance. This gave them the confidence to propose expanding the program to other departments. ## Usage across Harvard → HGSE and HBS utilize p-values in experimental design to validate policy or intervention outcomes. FAS relies on them for peer-reviewed social science inquiries. HMS treats them as a fundamental requirement for clinical trial evidence. SEAS applies them when verifying that experimental results in physics or engineering simulations represent a reproducible physical phenomenon rather than measurement error. ## Related terms → Statistical significance is the status granted when a p-value falls below a preset alpha level. Confidence interval provides the range of values where the 'true' effect likely sits. Null hypothesis is the 'nothing to see here' assumption that the p-value tests against."
+  },
+  "usage": {
+    "inputTokens": 916,
+    "inputTokenDetails": {
+      "noCacheTokens": 916,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 722,
+    "outputTokenDetails": {
+      "textTokens": 722,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1638,
+    "raw": {
+      "promptTokenCount": 916,
+      "candidatesTokenCount": 722,
+      "totalTokenCount": 1638,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 916
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

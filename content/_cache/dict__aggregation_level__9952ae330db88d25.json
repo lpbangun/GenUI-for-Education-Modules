@@ -1,0 +1,51 @@
+{
+  "object": {
+    "plain_definition": "Aggregation level refers to the specific depth of detail at which data is summarized, ranging from individual records to high-level institutional totals.",
+    "related_terms": [
+      "granularity",
+      "drill-down",
+      "summary statistic",
+      "data hierarchy",
+      "dimension"
+    ],
+    "common_confusion_with": [
+      "data volume",
+      "data quality",
+      "sample size"
+    ],
+    "school_usage": {
+      "HGSE": "Common in course enrollment analysis, where researchers toggle between student-level course selection and department-wide registration patterns.",
+      "HBS": "Typically used for case study metrics or alumni giving trends, where analysts pivot between individual donor histories and broad donor segment performance.",
+      "FAS": "Frequent in faculty committee reporting, where the need to balance department-level hiring budgets against individual tenure-track records necessitates strict attention to aggregation level.",
+      "HMS": "Used extensively in clinical operations and research reporting, where data is viewed at the level of individual patient encounters versus aggregate clinical trial outcomes.",
+      "SEAS": "Common in space planning and laboratory utilization studies, where data is reviewed from individual bench-seat occupancy up to multi-building infrastructure capacity."
+    },
+    "body_markdown": "## Plain-language definition\n\nThe **aggregation level** is the specific depth of detail at which data is summarized, ranging from individual records to high-level institutional totals.\n\n## What it tells you\n\nIt dictates the 'view' of your data. If you are looking at student grades, the individual record is the lowest level. Aggregating to the course level gives you an average grade per section. Aggregating to the school level gives you a longitudinal trend of academic performance. Knowing the aggregation level helps you understand if you are looking at specific trends or high-level noise.\n\n## When it matters\n\n- When designing dashboards, you must set the default aggregation level to show users exactly what they need to decide, avoiding over-generalized summaries or overwhelming individual detail.\n- When merging datasets, you must ensure both sets are at the same aggregation level—comparing school-wide budgets to individual-level expenses without proper re-aggregation will yield incorrect conclusions.\n- When interpreting KPIs, ensure that outliers or local trends have not been 'smoothed out' by an aggregation level that is too broad.\n\n## Common confusion with granularity\n\nPeople often treat 'aggregation level' and 'granularity' as synonyms. While related, they are opposites: a high-granularity dataset is very detailed (e.g., individual transactions), whereas high-level aggregation summarizes those details into a single, broad figure. If you are looking for specific root causes, you need lower levels of aggregation.\n\n## Example in context\n\nA staff member is reviewing research funding. At the 'Principal Investigator' level of aggregation, they see a steady increase in revenue. However, when they drill down to the 'grant type' level of aggregation, they notice that federal funding is actually declining, while private foundation gifts are masking the dip. The broad view was accurate but failed to show the structural change.\n\n## Usage across Harvard\n\nAt HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.\n\n## Related terms\n\n- **Granularity** describes the level of detail or the 'fineness' of the data points.\n- **Drill-down** is the act of shifting from a high level of aggregation to a lower, more detailed one.\n- **Dimension** is an attribute (like school, department, or term) used to define how data is grouped during aggregation.\n- **Roll-up** is the process of combining data from lower levels into a higher-level summary.\n- **Hierarchy** is the structure that defines how different levels of aggregation relate to one another, such as department to school."
+  },
+  "usage": {
+    "inputTokens": 915,
+    "inputTokenDetails": {
+      "noCacheTokens": 915,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 921,
+    "outputTokenDetails": {
+      "textTokens": 921,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1836,
+    "raw": {
+      "promptTokenCount": 915,
+      "candidatesTokenCount": 921,
+      "totalTokenCount": 1836,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 915
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

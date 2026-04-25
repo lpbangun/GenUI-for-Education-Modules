@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "connect-extend-challenge",
+    "core_misconceptions": [
+      "Assuming percentages in a table always sum to 100 percent in every direction",
+      "Confusing row-based comparisons with column-based comparisons",
+      "Believing that raw counts are always more useful than percentages when comparing group sizes"
+    ],
+    "body_markdown": "### Making sense of tables\n\nTables are the most common way we share data at Harvard, yet they are frequently misinterpreted. When you glance at a matrix of numbers, your brain wants to find the most significant trend immediately. However, a table is not just a collection of facts; it is a framework for comparison. To read a table effectively, you must understand exactly how the author organized the rows and columns to show the relationship between categories.\n\n## The anatomy of a table\n\n- **The Rows (Horizontal):** These represent the independent categories you are investigating, such as academic departments or undergraduate class years. When you read across a row, you are looking at how a specific group is distributed across your target variables.\n- **The Columns (Vertical):** These represent the specific attributes or outcomes you are measuring, such as student engagement levels or faculty research interests. Reading down a column allows you to see how different groups perform or exist within a single category.\n- **The Total:** This is your anchor. Always check if the percentages are calculated across the row or down the column. If the row totals are 100 percent, the table is showing you the composition of each group. If the column totals are 100 percent, it is showing you the distribution of an outcome across the entire population.\n\n## Why this matters for Harvard staff\n\nMisinterpreting the direction of a percentage is a common error that leads to false conclusions. If you are reviewing a report on student survey responses, a row percentage might tell you what percentage of seniors prefer online seminars, while a column percentage might tell you what proportion of the total group of online-seminar supporters are seniors. These are two different stories. If you assume the table is answering your specific question without checking which way the percentages flow, you risk misrepresenting the student experience to faculty or leadership. You do not need to perform complex analysis to avoid this; you simply need to identify the denominator used for the percentage.\n\n## A reading example\n\nImagine you receive a table titled \"Workshop Attendance by Department.\" The rows represent three departments: Social Sciences, Humanities, and Sciences. The columns represent attendance frequency: Low, Medium, and High. A cell in the Social Sciences row and the High attendance column shows 40 percent. If the row totals 100 percent, this tells you that 40 percent of all Social Science participants attend workshops frequently. If the column totals 100 percent, it tells you that 40 percent of all frequent workshop attendees come from the Social Sciences. These are different insights, and reporting the wrong one could change how you allocate support staff to those departments.\n\n## What to practice\n\nFind a table in a recent departmental report or internal dashboard. Before you draw any conclusions, apply the connect-extend-challenge routine to your reading process:\n\n1. **Connect:** How does this table connect to what you already assumed about these categories?\n2. **Extend:** How does the way the data is organized (by row or by column) extend your understanding of the group, or shift your perspective?\n3. **Challenge:** What is a new question you have about the data that this table structure makes difficult to answer?"
+  },
+  "usage": {
+    "inputTokens": 1086,
+    "inputTokenDetails": {
+      "noCacheTokens": 1086,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 774,
+    "outputTokenDetails": {
+      "textTokens": 774,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1860,
+    "raw": {
+      "promptTokenCount": 1086,
+      "candidatesTokenCount": 774,
+      "totalTokenCount": 1860,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1086
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

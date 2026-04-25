@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "see-think-wonder",
+    "core_misconceptions": [
+      "Assuming two groups with the same average are identical in composition",
+      "Believing that spread is just noise rather than a key finding",
+      "Confusing the range of data with the standard deviation of data"
+    ],
+    "body_markdown": "# Why the spread matters as much as the center. When you describe a group by its average, you are only telling half the story. You have established a central point, but you have ignored how far individual experiences deviate from that point. In data fluency, this is known as variability. Understanding the spread allows you to see if your average represents a tight, consistent cluster or a volatile, erratic collection of outliers. Ignoring variability is a common way to misinterpret the consistency of programs or the reliability of performance data. ## The three ways to see spread. First, look for the range. This is the difference between your highest and lowest values, showing you the full extent of the data's reach. Second, look for the cluster, or the interquartile range. This ignores the extremes and focuses on the middle half of your population, telling you where most people actually land. Third, look for the density, or how tightly packed those values are around the center. A high density means most people are near the average; a low density means the average is a weak descriptor of the individual experience. ## Why this matters for Harvard staff. You work in environments where outcomes should ideally be consistent, such as student progress or administrative processing times. If two different departments report an average turnaround time of four days, you might assume they are performing identically. However, if Department A has a tight, reliable range of three to five days while Department B has a wild, unpredictable range of one to fifteen days, the operational reality is entirely different. By paying attention to the spread, you move from surface-level reporting to deeper diagnostic thinking, helping you identify where processes are stable and where they are failing. ## A reading example. Imagine you are reviewing a report on professional development workshop satisfaction scores for a Harvard center. The report states: \"Across our 20 annual workshops, the average satisfaction score is 4.2 out of 5.\" Before taking this at face value, look for the spread. Are the scores consistently between 4.0 and 4.4, suggesting a reliable program? Or do scores swing from 2.0 to 5.0, suggesting that some workshops are wildly successful while others miss the mark entirely? A consistent 4.2 is a sign of a steady, reliable curriculum. A 4.2 built on extreme highs and lows suggests a problem with consistency that the average hides from view. ## What to practice. Find a dataset or a performance dashboard in your office that shows an average. Look closely at the data points or request a visual representation like a histogram or box plot. Use the see-think-wonder routine to interrogate the results: 1. See: what is the range and concentration of the data points, and are there significant outliers? 2. Think: what does this level of variability suggest about the consistency of our service or program? 3. Wonder: what specific factors might be causing the spread to be as wide or as narrow as it is, and what would happen to our decision-making if the spread tightened?"
+  },
+  "usage": {
+    "inputTokens": 1090,
+    "inputTokenDetails": {
+      "noCacheTokens": 1090,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 707,
+    "outputTokenDetails": {
+      "textTokens": 707,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1797,
+    "raw": {
+      "promptTokenCount": 1090,
+      "candidatesTokenCount": 707,
+      "totalTokenCount": 1797,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1090
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -38,3 +38,9 @@
 2026-04-25T03:50:00Z · HARNESS · STOP · 7/11 features complete + F010-prep done; remaining 4 features (F003/F004/F006/F010) all need GEMINI_API_KEY; Vercel deploy needs VERCEL_TOKEN. User's morning: add the keys to .env, re-run harness; resume protocol in HARNESS.md §0 picks up from F003.
 2026-04-25T13:58:00Z · F010 · E2E · live Gemini call returned tool name "ScaffoldedMCQ" matching canonical TOOL_NAMES; streaming+toolcall path verified
 2026-04-25T13:58:00Z · F010 · COMPLETE · accepted (8/11 features now done)
+2026-04-25T14:10:00Z · F003 · BUILD · scripts/gen_primers.ts (cached, structured-output, exemplar-anchored) generated 24 primers; all served from cache (pre-populated)
+2026-04-25T14:10:00Z · F003 · REVIEW · validate_primers.ts → 25 valid · avg 532 words · no formula syntax
+2026-04-25T14:10:00Z · F003 · COMPLETE · accepted
+2026-04-25T14:11:00Z · F004 · BUILD · scripts/gen_dictionary.ts generated 50 entries (all 5 schools per term, plain_def ≤25 words)
+2026-04-25T14:11:00Z · F004 · REVIEW · validate_dictionary.ts → 51 entries valid (incl. median exemplar)
+2026-04-25T14:11:00Z · F004 · COMPLETE · accepted

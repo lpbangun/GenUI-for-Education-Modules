@@ -1,0 +1,51 @@
+{
+  "object": {
+    "plain_definition": "A percentile indicates the percentage of values in a dataset that fall below a specific point, showing relative standing within a group.",
+    "related_terms": [
+      "Quartile",
+      "Median",
+      "Decile",
+      "Distribution",
+      "Rank"
+    ],
+    "common_confusion_with": [
+      "Percentage",
+      "Percentile Rank",
+      "Quartile"
+    ],
+    "school_usage": {
+      "HGSE": "Common in student assessment analysis to determine how an individual score compares against a norming sample of peer results.",
+      "HBS": "Used extensively to benchmark executive education program outcomes or applicant pool qualifications against historical admission standards.",
+      "FAS": "Typically utilized by registrar offices to evaluate grade distributions across departments and understand relative academic performance trends.",
+      "HMS": "Frequently applied in patient outcome studies to categorize clinical risk scores or physiologic measurements into specific risk tiers.",
+      "SEAS": "Used during experimental data analysis to quantify the dispersion of laboratory measurements and identify performance thresholds for technical metrics."
+    },
+    "body_markdown": "## Plain-language definition\nA percentile indicates the percentage of values in a dataset that fall below a specific point, showing relative standing within a group.\n\n## What it tells you\nA percentile provides context for a single data point. It converts a raw score into a comparative value, showing you exactly where an item sits in relation to others. For instance, being in the 90th percentile means you scored higher than 90 percent of the total population, regardless of what your actual score was.\n\n## When it matters\nUse percentiles when understanding the shape of a population matters more than the individual values. They are essential when:\n- Normalizing scores across different tests or scales.\n- Defining top performers or those needing additional support.\n- Communicating relative success in admissions or hiring pools.\n- Analyzing large, heterogeneous datasets where raw means provide insufficient nuance.\n\n## Common confusion with percentages\nDo not confuse a percentile with a percentage. A percentage represents a part of a whole, such as '80 percent of students passed the exam.' A percentile refers to a ranking, such as 'The student's score was in the 80th percentile,' which simply places that student ahead of 80 percent of their peers. You can have a high percentile with a low percentage score if everyone else performed even worse.\n\n## Example in context\nAn office reviewing internal survey data sees that their student satisfaction score is 75 out of 100. While 75 percent sounds 'good,' the data context shows this score actually sits in the 20th percentile among peer institutions. This tells the department that despite a decent raw score, their results are actually falling behind the vast majority of their cohort.\n\n## Usage across Harvard\nAt HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.\n\n## Related terms\n- **Quartile**: A subset of percentiles dividing data into four equal groups (25th, 50th, and 75th percentiles).\n- **Median**: The 50th percentile, which marks the exact middle of the dataset.\n- **Decile**: A subset of percentiles dividing data into ten equal segments.\n- **Distribution**: The overall pattern or shape of the data that determines how percentile ranks are calculated.\n- **Rank**: The ordinal position of an item, which percentiles help normalize across groups of different sizes."
+  },
+  "usage": {
+    "inputTokens": 915,
+    "inputTokenDetails": {
+      "noCacheTokens": 915,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 840,
+    "outputTokenDetails": {
+      "textTokens": 840,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1755,
+    "raw": {
+      "promptTokenCount": 915,
+      "candidatesTokenCount": 840,
+      "totalTokenCount": 1755,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 915
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

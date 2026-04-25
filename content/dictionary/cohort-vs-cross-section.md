@@ -1,0 +1,38 @@
+---
+term: cohort vs cross section
+plain_definition: A cohort analysis tracks the same specific group over time, while a cross-section looks at a diverse population at one single moment.
+related_terms: ["Longitudinal study", "Snapshot", "Attrition", "Time-series data", "Panel data"]
+common_confusion_with: ["Trend analysis", "Control group", "Correlation"]
+school_usage:
+  HGSE: "Common in education research to track student learning trajectories or program persistence within specific entry-year cohorts."
+  HBS: "Typically used in alumni studies to compare how different graduating classes navigate career progression over multiple decades."
+  FAS: "Frequently used in longitudinal faculty or student surveys to observe how departmental culture changes within a single class."
+  HMS: "Often used in patient outcomes research, contrasting cohort studies that follow groups over time against cross-sectional prevalence surveys."
+  SEAS: "Typically used for measuring student performance or retention across a single semester to understand the impact of specific pedagogical interventions."
+version: 1
+---
+
+## Plain-language definition
+A cohort analysis tracks the same specific group over time, while a cross-section looks at a diverse population at one single moment.
+
+## What it tells you
+A cross-section offers a 'snapshot' of a population right now, showing you the current mix of students, staff, or finances. A cohort study reveals how individuals evolve, helping you distinguish between growth and replacement. For example, if test scores rise, a cohort analysis tells you if students are learning more over time, whereas a cross-section might just show you that this year's incoming class entered with better preparation.
+
+## When it matters
+Use cross-sections for immediate situational awareness, like identifying the current demographic distribution of staff. Use cohorts when causality or growth is the goal, such as measuring whether a new advising initiative actually changes long-term completion rates for a specific incoming class of students.
+
+## Common confusion with static reporting
+Staff often mistake a cross-sectional improvement for actual growth. If a program reports that average student engagement increased, it might simply be that a more engaged group entered this year, not that the program itself is improving student outcomes. Without cohort tracking, you are only seeing a change in the group's composition, not the impact of your intervention.
+
+## Example in context
+An administrator reviews an annual survey showing higher student satisfaction in the library. A cross-sectional view suggests the library is doing better this year. However, a cohort analysis tracks the 'Class of 2028' specifically; it finds that their satisfaction dropped since freshman year. The initial 'increase' was just because the new incoming group was naturally more positive than the upperclassmen, masking an issue that only the cohort study could detect.
+
+## Usage across Harvard
+At HGSE and HBS, outcome reports for graduating cohorts typically lead with the median salary because graduate outcomes often skew right. In clinical research at HMS, median survival time is the standard summary for time-to-event data because the mean can be undefined when patients are still alive at study end. Institutional research reports on giving or compensation at the central level generally include both, though the median is the more informative number in both cases.
+
+## Related terms
+- Longitudinal study is an observational research method that gathers data from the same subjects repeatedly over a period of time.
+- Snapshot is the common term for cross-sectional data, implying it is a static, non-evolving view.
+- Attrition refers to the loss of participants in a cohort, which can bias long-term results.
+- Time-series data is a sequence of data points indexed in time order, often used in cohort tracking.
+- Panel data is a specific form of longitudinal data that tracks the same entities over multiple time periods.

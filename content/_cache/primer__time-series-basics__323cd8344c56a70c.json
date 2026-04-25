@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "claim-support-question",
+    "core_misconceptions": [
+      "Assuming any two consecutive data points indicate a trend",
+      "Ignoring the inherent noise in small-scale reporting",
+      "Believing that recent performance is always predictive of long-term trajectory"
+    ],
+    "body_markdown": "When you see a line graph showing student engagement metrics, course enrollment, or annual donor cycles, your brain is hard-wired to spot a story. You see the line go up, and you assume growth. You see the line dip, and you assume a problem. But data over time is rarely a straight path. It is a mix of long-term signal and short-term noise. Understanding time-series data is less about math and more about discipline—the discipline to stop reading significance into every minor wiggle of the line. The goal is to separate the underlying direction from the random static that occurs in every office, department, and cycle. ## The three components of time-series - The Trend: This is the persistent, long-term movement in your data. It represents the actual trajectory of your program or activity over years, not weeks. - The Seasonality: These are the predictable ups and downs that repeat at the same time every year, such as the registration surge before the fall semester or the dip in faculty inquiries during summer break. - The Noise: These are the random, irregular fluctuations caused by one-off events, clerical errors, or pure chance. Noise is what makes the line jagged even when the trend is perfectly flat. Most people mistake noise for a signal, leading to unnecessary interventions or premature celebrations based on a single quarter's performance. ## Why this matters for Harvard staff In your role, you are frequently asked to report on progress or decline. If you present data covering only two time points—like comparing this month to last month—you are not showing a trend. You are showing a blip. If a department head sees a drop in attendance and immediately shifts policy, they may be reacting to noise. By demanding to see the data over a longer duration, you protect your team from chasing temporary fluctuations as if they were permanent changes. Understanding that seasonality is normal allows you to contextualize dips as expected variations rather than organizational failures. You do not need to model the data; you just need to ensure the time frame is wide enough to see the actual story. ## A reading example From a hypothetical departmental newsletter: The Office of Admissions reports, 'After a promising uptick in prospective student inquiries in February, our March inquiries fell by 4 percent. We are currently reassessing our outreach strategy to address this sudden cooling of interest.' Before accepting this narrative, notice the trap: the office is reacting to two adjacent points—February and March. They assume March is a failure rather than a return to the mean, or simply the end of a seasonal spike. They have turned a standard monthly fluctuation into a 'cooling of interest' without acknowledging the longer-term context of the prior three years. ## What to practice Find a regular report you receive, such as monthly budget spending or weekly traffic for a student service center. Before acting on the latest change, apply the claim-support-question routine: 1. Claim: What specific trend is this report claiming exists? 2. Support: What evidence exists in the historical data to support the idea that this is a trend rather than seasonal noise? 3. Question: If I looked at the past three years of this same month, would this current dip still look like a problem, or would it look like the normal state of affairs?"
+  },
+  "usage": {
+    "inputTokens": 1085,
+    "inputTokenDetails": {
+      "noCacheTokens": 1085,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 749,
+    "outputTokenDetails": {
+      "textTokens": 749,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1834,
+    "raw": {
+      "promptTokenCount": 1085,
+      "candidatesTokenCount": 749,
+      "totalTokenCount": 1834,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1085
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}

@@ -1,0 +1,44 @@
+---
+id: skew
+title: "When the distribution leans"
+level: interpretive
+prerequisites: [distributions, central-tendency, variability]
+icap_alignment: [passive, active]
+visible_thinking_routine: claim-support-question
+connected_concepts: [distributions, central-tendency, variability]
+core_misconceptions:
+  - Thinking that data is always naturally symmetric
+  - Assuming that mean and median are interchangeable
+  - Believing that extreme outliers should be ignored or deleted rather than investigated
+version: 1
+---
+
+# When the distribution leans
+
+When you look at data, it is natural to imagine a perfect, bell-shaped curve where everything sits neatly in the middle. Yet, in our work at the University, that perfect symmetry is rarely the case. Often, our data leans in one direction or another, pulled by a few extreme examples. This phenomenon is called **skew**, and it tells you that your data set is not balanced. Understanding skew is the key to knowing whether your typical measures are painting a fair picture or a distorted one.
+
+## The three ways data leans
+
+- **Symmetric:** Data clusters in the middle, and the tails on either side are mirror images. The mean and median are roughly the same.
+- **Right-skewed:** Most of your data points are on the left, but a few very high values pull the tail out to the right. In this case, the mean is higher than the median because the high values act like a magnet, pulling the average upward.
+- **Left-skewed:** Most of your data points are on the right, but a few very low values pull the tail out to the left. Here, the mean is lower than the median because those low values drag the average down.
+
+In a right-skewed distribution, the mean is often misleadingly high, making a group seem more successful or wealthy than most individuals actually are. Conversely, in a left-skewed distribution, the mean is dragged down, potentially obscuring the performance of the majority.
+
+## Why this matters for Harvard staff
+
+Staff frequently encounter skewed data in administrative reporting. Consider time-to-degree records for PhD students. Most students might finish in five or six years, but a few might take nine or ten years due to research leave or interdisciplinary work. This creates a right-skewed distribution. If an administrator reports only the mean time-to-degree, the result might look like a seven-year average, which feels inaccurate to the five-year majority. Being able to spot this skew helps you request or interpret data that actually reflects the student experience. You learn to spot when an average is being pushed away from the center, helping you avoid drawing broad conclusions from what are actually just extreme, exceptional cases.
+
+## A reading example
+
+Consider this line from an internal program evaluation report: "The average attendance at our Friday lecture series is 85 people, despite the lecture room capacity of 200." 
+
+Before accepting this figure as the standard experience, look for skew. Is it possible that three guest speakers drew 200 people, while the remaining fifteen sessions drew only 40 or 50? If that is the case, the mean is being pulled upward by a few popular events. Without seeing a median or a breakdown of the distribution, you cannot know if 85 is representative of a typical Friday or if the report is masking a significant drop in consistent attendance for most of the semester.
+
+## What to practice
+
+Find a spreadsheet or chart in your daily tasks that shows a mean. Use the following routine to examine it for potential skew:
+
+1. **Claim:** What is the primary message this number is attempting to convey about the "typical" outcome?
+2. **Support:** What evidence suggests that this distribution might be skewed (e.g., are there "superstars," "outliers," or "exceptional cases" that could be pulling the mean)?
+3. **Question:** What would I need to know about the median or the range of the data to feel confident that this average represents the majority of our community?

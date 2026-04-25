@@ -1,0 +1,37 @@
+{
+  "object": {
+    "visible_thinking_routine": "see-think-wonder",
+    "core_misconceptions": [
+      "Treating all numerical data as points on a line where addition and averages make sense",
+      "Assuming that because a value is a number, it can be mathematically manipulated",
+      "Confusing ordinal rankings with quantitative intervals"
+    ],
+    "body_markdown": "### Numbers that aren't for counting In our daily work with student records, donor files, and course enrollment systems, we encounter digits everywhere. But not all numbers behave the same way. Some quantify how much or how many, while others simply act as labels for sorting or identification. Distinguishing between quantitative and categorical data is the first step toward fluency. If you treat a label like a quantity, you will arrive at a mathematically valid result that is completely meaningless in the real world. ## The three categories of numbers - **Quantitative** values measure a magnitude, like the number of credits a student is enrolled in or the dollar amount of a gift. These have an order and a fixed distance between points, so it makes sense to ask for the mean or median. - **Ordinal** values represent an ordered sequence, like a ranking of course satisfaction from one to five. While they have an order, the gap between 'one' and 'two' is not necessarily the same as the gap between 'four' and 'five'. Averaging these can lead to misleading precision. - **Categorical** labels are names dressed up as digits, like zip codes, student ID numbers, or department codes. A zip code of 02138 is not twice as large as 02000. You cannot calculate an average zip code, nor would you want to. ## Why this matters for Harvard staff As staff, we often pull data into spreadsheets to look for trends. If you include an ID column in your calculation, your software will happily produce an average of those IDs. Because it is a number, the software treats it like a measurement. If you report an 'average department code' or an 'average zip code' in a meeting, you lose credibility immediately. More importantly, understanding this difference helps you identify when a report is forcing a false hierarchy. If a report averages 'Likert scale' survey results, remember that while you can describe the middle point, the average itself is a conceptual blur, not a precise measurement of intensity. ## A reading example Consider an internal report evaluating a new student wellness initiative: 'The program served 450 students, with an average student ID of 884021, and an average student-rating of 4.2 out of 5.' Before you accept these findings, see the numbers clearly. The student ID average is a mathematical hallucination; IDs are labels, not quantities. The rating average is a descriptive shorthand, but one that masks whether students were split between strongly agreeing and strongly disagreeing or were universally satisfied. When you see numbers, check if they describe something that exists in reality, like a duration, or something that exists for organization, like an ID. ## What to practice The next time you open a dashboard, look at the columns of numbers and apply the See-Think-Wonder routine: 1. **See:** Look at the data points. Are they measurements of a quantity (like test scores) or labels (like course codes)? 2. **Think:** What happens if I try to add or average these numbers together? Does the result describe a real-world characteristic of the student or program? 3. **Wonder:** If this is a categorical label, what was the report designer trying to represent by grouping them, and is there a better way to visualize the distribution than calculating a mean?"
+  },
+  "usage": {
+    "inputTokens": 1086,
+    "inputTokenDetails": {
+      "noCacheTokens": 1086,
+      "cacheReadTokens": 0
+    },
+    "outputTokens": 775,
+    "outputTokenDetails": {
+      "textTokens": 775,
+      "reasoningTokens": 0
+    },
+    "totalTokens": 1861,
+    "raw": {
+      "promptTokenCount": 1086,
+      "candidatesTokenCount": 775,
+      "totalTokenCount": 1861,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 1086
+        }
+      ]
+    },
+    "reasoningTokens": 0,
+    "cachedInputTokens": 0
+  }
+}
