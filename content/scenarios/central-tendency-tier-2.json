@@ -1,0 +1,53 @@
+{
+  "id": "central-tendency-tier-2-001",
+  "concept_id": "central-tendency",
+  "tier": 2,
+  "question_type": "multiple_choice_with_hint",
+  "dataset_ref": "hgse_cohort_salaries_v1",
+  "visible_thinking_scaffold": "see-think-wonder",
+  "setup_prose": "You are a career advisor meeting with a graduating student who wants to understand what salaries their cohort is typically reporting. You pull up the department's outcomes dashboard. The student asks what they should tell their family when they ask about expected earnings.",
+  "artifact": {
+    "type": "summary_stats",
+    "content": "Cohort salary summary (N=28):\n- Mean: $93,400\n- Median: $68,500\n- Range: $58,000 to $500,000"
+  },
+  "prompt": "Which response most honestly represents what the data actually shows?",
+  "options": [
+    {
+      "id": "A",
+      "text": "Tell them graduates in this cohort typically earn around $93,000.",
+      "correct": false,
+      "feedback": "This reports the mean without acknowledging what pulled it upward. The range reaches $500,000, which tells you a value at the top is skewing the mean. The typical graduate is not earning $93,000."
+    },
+    {
+      "id": "B",
+      "text": "Tell them most graduates earn closer to $68,500, with a few earning much more.",
+      "correct": true,
+      "feedback": "This leads with the median, which is resistant to outliers, and acknowledges the high-end tail without letting it dominate the story. Honest and useful."
+    },
+    {
+      "id": "C",
+      "text": "Tell them salaries range from $58,000 to $500,000.",
+      "correct": false,
+      "feedback": "The range is accurate but not useful. It does not help the family understand what is typical. It is technically true and practically unhelpful for advising."
+    },
+    {
+      "id": "D",
+      "text": "Tell them the data is too noisy to generalize.",
+      "correct": false,
+      "feedback": "The data has a clear central tendency. It is skewed, not noisy. Dismissing the data avoids the interpretive work the question is asking for."
+    }
+  ],
+  "hint": {
+    "type": "always_visible",
+    "content": "Notice how far apart the mean and median sit. When they differ substantially, one of them is being pulled by extreme values. Which one represents the typical graduate more faithfully?"
+  },
+  "rubric": {
+    "primary_criterion": "identifies median as more representative of typical cases in right-skewed distributions",
+    "secondary_criterion": "recognizes distractors that embody common misconceptions (mean worship, range-only, avoidance)"
+  },
+  "visible_thinking_prompts": {
+    "notice": "What do you see in the difference between mean and median?",
+    "think": "What story does each number tell?",
+    "wonder": "What would you need to know about the $500,000 value to interpret it responsibly?"
+  }
+}

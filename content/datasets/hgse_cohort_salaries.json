@@ -1,0 +1,77 @@
+{
+  "id": "hgse_cohort_salaries_v1",
+  "title": "Synthetic HGSE masters cohort salary distribution",
+  "n_rows": 28,
+  "generator_function": "generate_cohort_outcomes",
+  "generator_parameters": {
+    "cohort_size": 28,
+    "skew_type": "right",
+    "outlier_count": 1,
+    "outlier_magnitude": "extreme",
+    "seed": 42
+  },
+  "pedagogical_metadata": {
+    "primary_concept": "central-tendency",
+    "teaches": ["central-tendency", "skew", "outliers", "median-vs-mean"],
+    "features": {
+      "right_skew": true,
+      "has_outlier": true,
+      "outlier_is_extreme": true,
+      "mean_median_gap_significant": true,
+      "mean_usd": 93400,
+      "median_usd": 68500,
+      "min_usd": 58000,
+      "max_usd": 500000
+    },
+    "pitfalls_surfaced": [
+      "Reporting mean without median overstates typical outcome",
+      "Ignoring the outlier misses a legitimate pathway that exists in the data",
+      "Treating the range as the whole story erases the clustering"
+    ],
+    "appropriate_tiers": [1, 2, 3, 4, 5],
+    "relevant_roles": ["career_advisor", "admissions", "program_director", "institutional_researcher"]
+  },
+  "fields_schema": {
+    "graduate_id": "string, synthetic id, no real person",
+    "graduation_year": "integer",
+    "role_taken": "string, job title",
+    "sector": "string, one of: nonprofit, public, industry, academia, consulting",
+    "salary_usd": "integer"
+  },
+  "plausibility_notes": [
+    "All values synthetic, no real individuals represented",
+    "Salary ranges roughly reflect 2024 ed-sector reporting for early-career masters graduates",
+    "Outlier represents a plausible but rare outcome in the tech or industry path",
+    "Role titles representative of common HGSE graduate destinations"
+  ],
+  "rows": [
+    { "graduate_id": "g001", "graduation_year": 2024, "role_taken": "teacher", "sector": "public", "salary_usd": 58000 },
+    { "graduate_id": "g002", "graduation_year": 2024, "role_taken": "curriculum designer", "sector": "nonprofit", "salary_usd": 58500 },
+    { "graduate_id": "g003", "graduation_year": 2024, "role_taken": "program coordinator", "sector": "nonprofit", "salary_usd": 59500 },
+    { "graduate_id": "g004", "graduation_year": 2024, "role_taken": "teacher", "sector": "public", "salary_usd": 60000 },
+    { "graduate_id": "g005", "graduation_year": 2024, "role_taken": "teacher", "sector": "public", "salary_usd": 60500 },
+    { "graduate_id": "g006", "graduation_year": 2024, "role_taken": "program coordinator", "sector": "nonprofit", "salary_usd": 61000 },
+    { "graduate_id": "g007", "graduation_year": 2024, "role_taken": "teaching fellow", "sector": "academia", "salary_usd": 61500 },
+    { "graduate_id": "g008", "graduation_year": 2024, "role_taken": "policy analyst", "sector": "public", "salary_usd": 62000 },
+    { "graduate_id": "g009", "graduation_year": 2024, "role_taken": "program assistant", "sector": "nonprofit", "salary_usd": 62500 },
+    { "graduate_id": "g010", "graduation_year": 2024, "role_taken": "research associate", "sector": "academia", "salary_usd": 63500 },
+    { "graduate_id": "g011", "graduation_year": 2024, "role_taken": "instructional coach", "sector": "public", "salary_usd": 64500 },
+    { "graduate_id": "g012", "graduation_year": 2024, "role_taken": "curriculum specialist", "sector": "nonprofit", "salary_usd": 66000 },
+    { "graduate_id": "g013", "graduation_year": 2024, "role_taken": "evaluation specialist", "sector": "nonprofit", "salary_usd": 67500 },
+    { "graduate_id": "g014", "graduation_year": 2024, "role_taken": "instructional designer", "sector": "academia", "salary_usd": 68000 },
+    { "graduate_id": "g015", "graduation_year": 2024, "role_taken": "program director", "sector": "nonprofit", "salary_usd": 69000 },
+    { "graduate_id": "g016", "graduation_year": 2024, "role_taken": "policy advisor", "sector": "public", "salary_usd": 71000 },
+    { "graduate_id": "g017", "graduation_year": 2024, "role_taken": "research project manager", "sector": "academia", "salary_usd": 74000 },
+    { "graduate_id": "g018", "graduation_year": 2024, "role_taken": "senior curriculum writer", "sector": "nonprofit", "salary_usd": 77000 },
+    { "graduate_id": "g019", "graduation_year": 2024, "role_taken": "learning experience designer", "sector": "industry", "salary_usd": 80000 },
+    { "graduate_id": "g020", "graduation_year": 2024, "role_taken": "learning designer", "sector": "industry", "salary_usd": 84000 },
+    { "graduate_id": "g021", "graduation_year": 2024, "role_taken": "instructional designer", "sector": "industry", "salary_usd": 88000 },
+    { "graduate_id": "g022", "graduation_year": 2024, "role_taken": "program manager", "sector": "industry", "salary_usd": 93000 },
+    { "graduate_id": "g023", "graduation_year": 2024, "role_taken": "senior learning designer", "sector": "industry", "salary_usd": 98000 },
+    { "graduate_id": "g024", "graduation_year": 2024, "role_taken": "edtech product manager", "sector": "industry", "salary_usd": 107000 },
+    { "graduate_id": "g025", "graduation_year": 2024, "role_taken": "consultant, education practice", "sector": "consulting", "salary_usd": 118000 },
+    { "graduate_id": "g026", "graduation_year": 2024, "role_taken": "senior consultant", "sector": "consulting", "salary_usd": 132000 },
+    { "graduate_id": "g027", "graduation_year": 2024, "role_taken": "director of learning", "sector": "industry", "salary_usd": 152000 },
+    { "graduate_id": "g028", "graduation_year": 2024, "role_taken": "chief technology officer", "sector": "industry", "salary_usd": 500000 }
+  ]
+}

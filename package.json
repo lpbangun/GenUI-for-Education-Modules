@@ -1,0 +1,23 @@
+{
+  "name": "data-fluency-module",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Capstone POC: a self-paced data fluency module for Harvard staff. See CLAUDE.md and SPEC.md for full spec.",
+  "type": "module",
+  "scripts": {
+    "validate:taxonomy": "bun run scripts/validate_taxonomy.ts",
+    "validate:primers": "bun run scripts/validate_primers.ts",
+    "validate:dictionary": "bun run scripts/validate_dictionary.ts",
+    "validate:scenarios": "bun run scripts/validate_scenarios.ts",
+    "validate:exemplars": "bun run scripts/validate_exemplar_consistency.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.0",
+    "typescript": "^5.5.0"
+  }
+}

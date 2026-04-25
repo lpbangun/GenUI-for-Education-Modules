@@ -1,0 +1,249 @@
+{
+  "version": "1.0",
+  "total_concepts": 25,
+  "philosophy": "Data fluency is interpretation, not computation. No concept in this taxonomy requires calculation beyond mean, median, and proportion. The goal is shared vocabulary and reading skill across Harvard staff.",
+  "categories": {
+    "foundational": {
+      "description": "What data is and how it gets shaped",
+      "concepts": [
+        "distributions",
+        "central-tendency",
+        "variability",
+        "sampling",
+        "measurement",
+        "cohort-vs-cross-section",
+        "population-vs-sample",
+        "categorical-vs-quantitative"
+      ]
+    },
+    "interpretive": {
+      "description": "How to read data honestly",
+      "concepts": [
+        "outliers",
+        "skew",
+        "base-rates",
+        "rates-vs-ratios",
+        "percentages-vs-points",
+        "confounding",
+        "selection-bias",
+        "missing-data",
+        "aggregation-level",
+        "time-series-basics"
+      ]
+    },
+    "communication": {
+      "description": "How data gets used and misused",
+      "concepts": [
+        "correlation-causation",
+        "reading-charts",
+        "reading-tables",
+        "statistical-vs-practical-significance",
+        "confidence-intervals-conceptual",
+        "comparing-groups",
+        "communicating-uncertainty"
+      ]
+    }
+  },
+  "concepts": [
+    {
+      "id": "distributions",
+      "title": "What shape your data takes",
+      "category": "foundational",
+      "prerequisites": [],
+      "outcome": "Learner can describe the shape of a distribution (symmetric, skewed, bimodal) and explain why shape matters before any single number is reported.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "central-tendency",
+      "title": "What 'typical' really means",
+      "category": "foundational",
+      "prerequisites": ["distributions"],
+      "outcome": "Learner can identify when mean and median differ substantially and explain which is more honest in skewed contexts.",
+      "exemplar_status": "calibrated"
+    },
+    {
+      "id": "variability",
+      "title": "Why the spread matters as much as the center",
+      "category": "foundational",
+      "prerequisites": ["distributions", "central-tendency"],
+      "outcome": "Learner recognizes that two groups with the same average can differ wildly in spread, and that spread changes what conclusions are defensible.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "sampling",
+      "title": "Who is actually in the data",
+      "category": "foundational",
+      "prerequisites": ["distributions"],
+      "outcome": "Learner asks who is included before interpreting any aggregate, and recognizes when a sample cannot speak for the population.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "measurement",
+      "title": "What was actually measured",
+      "category": "foundational",
+      "prerequisites": [],
+      "outcome": "Learner distinguishes the construct (what we mean) from the measure (what we capture), and identifies the gap.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "cohort-vs-cross-section",
+      "title": "Snapshot or follow-along",
+      "category": "foundational",
+      "prerequisites": ["sampling", "measurement"],
+      "outcome": "Learner identifies whether a dataset tracks a group over time (cohort) or a single moment (cross-section), and what each can and cannot say.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "population-vs-sample",
+      "title": "Talking about everyone vs talking about some",
+      "category": "foundational",
+      "prerequisites": ["sampling"],
+      "outcome": "Learner uses inferential language carefully, distinguishing claims about a sample from claims about a population.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "categorical-vs-quantitative",
+      "title": "When numbers are not numbers",
+      "category": "foundational",
+      "prerequisites": ["measurement"],
+      "outcome": "Learner identifies when a number is a label (zip code, ID, ranking) versus a measurable quantity, and treats each appropriately.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "outliers",
+      "title": "When one value dominates",
+      "category": "interpretive",
+      "prerequisites": ["distributions", "central-tendency"],
+      "outcome": "Learner recognizes outliers and asks whether to keep, exclude, or report them separately, based on context.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "skew",
+      "title": "When the distribution leans",
+      "category": "interpretive",
+      "prerequisites": ["distributions", "central-tendency", "variability"],
+      "outcome": "Learner identifies right- and left-skewed distributions and predicts which summary statistic will mislead.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "base-rates",
+      "title": "What's the denominator",
+      "category": "interpretive",
+      "prerequisites": ["measurement"],
+      "outcome": "Learner asks 'compared to what?' before reading any rate or proportion, and recognizes when a baseline is missing.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "rates-vs-ratios",
+      "title": "Three different things people call the same word",
+      "category": "interpretive",
+      "prerequisites": ["measurement", "categorical-vs-quantitative"],
+      "outcome": "Learner distinguishes rates, ratios, and proportions and recognizes when one is being used in place of another.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "percentages-vs-points",
+      "title": "A 5 percent rise is not 5 percentage points",
+      "category": "interpretive",
+      "prerequisites": ["rates-vs-ratios"],
+      "outcome": "Learner separates percentage change from percentage-point change and reads each correctly.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "confounding",
+      "title": "The third variable in the room",
+      "category": "interpretive",
+      "prerequisites": ["variability", "sampling"],
+      "outcome": "Learner identifies plausible confounders before accepting a relationship between two variables.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "selection-bias",
+      "title": "Who got into the data and who did not",
+      "category": "interpretive",
+      "prerequisites": ["sampling", "measurement"],
+      "outcome": "Learner identifies systematic patterns in who is included or excluded and how this distorts conclusions.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "missing-data",
+      "title": "Why the gap is part of the story",
+      "category": "interpretive",
+      "prerequisites": ["sampling", "measurement"],
+      "outcome": "Learner asks why values are missing and recognizes that missingness is rarely random.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "aggregation-level",
+      "title": "Averages of averages can mislead",
+      "category": "interpretive",
+      "prerequisites": ["central-tendency", "sampling"],
+      "outcome": "Learner identifies when data has been aggregated and asks what the disaggregation might reveal.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "time-series-basics",
+      "title": "Trends, noise, and pretending you can tell them apart",
+      "category": "interpretive",
+      "prerequisites": ["variability"],
+      "outcome": "Learner distinguishes signal from noise in time-ordered data and resists narratives built on two adjacent points.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "correlation-causation",
+      "title": "The most famous pitfall",
+      "category": "communication",
+      "prerequisites": ["confounding"],
+      "outcome": "Learner produces alternative explanations for a reported correlation and identifies what evidence would support causal claims.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "reading-charts",
+      "title": "Axes lie, choices lie, defaults lie",
+      "category": "communication",
+      "prerequisites": ["distributions", "categorical-vs-quantitative"],
+      "outcome": "Learner reads chart axes, scales, and aggregation choices critically before accepting the visual claim.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "reading-tables",
+      "title": "Rows, columns, and what is being compared",
+      "category": "communication",
+      "prerequisites": ["categorical-vs-quantitative"],
+      "outcome": "Learner identifies the comparison being made in a table and recognizes how row vs column percentages tell different stories.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "statistical-vs-practical-significance",
+      "title": "A big-enough number is not necessarily a meaningful number",
+      "category": "communication",
+      "prerequisites": ["variability", "sampling"],
+      "outcome": "Learner separates 'statistically detectable' from 'big enough to matter' and asks which one is being claimed.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "confidence-intervals-conceptual",
+      "title": "What an error bar is actually telling you",
+      "category": "communication",
+      "prerequisites": ["variability", "sampling"],
+      "outcome": "Learner reads confidence intervals as a measure of estimation precision, not certainty about a value.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "comparing-groups",
+      "title": "When you can fairly say two groups differ",
+      "category": "communication",
+      "prerequisites": ["variability", "central-tendency"],
+      "outcome": "Learner identifies the conditions under which a group comparison is fair and the conditions under which it is misleading.",
+      "exemplar_status": "to_generate"
+    },
+    {
+      "id": "communicating-uncertainty",
+      "title": "Saying you do not know without losing trust",
+      "category": "communication",
+      "prerequisites": ["confidence-intervals-conceptual", "statistical-vs-practical-significance"],
+      "outcome": "Learner communicates uncertainty in their own reports without hedging into uselessness or pretending to false precision.",
+      "exemplar_status": "to_generate"
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "version": "1.1",
+  "harness_config": {
+    "max_review_rounds": 2,
+    "on_rounds_exceeded": "accept_with_warning",
+    "warning_log_dir": "warnings/",
+    "needs_human_input_blocks_dependents": true,
+    "progress_log": "claude-progress.txt"
+  },
+  "features": [
+    {
+      "id": "F000",
+      "title": "Bootstrap external references (AI SDK skill + llms.txt)",
+      "phase": 0,
+      "team": "team_a",
+      "depends_on": [],
+      "planner_notes": "Fetch the official AI SDK Claude Code skill from Vercel's repo and place at .claude/skills/ai-sdk/SKILL.md. Fetch ai-sdk.dev/llms.txt to docs/references/ai-sdk-llms.txt. If exact URLs change, search ai-sdk.dev/docs/getting-started or vercel/ai GitHub repo for current locations. Fallback: use the inline patterns in CLAUDE.md § AI SDK v6 idioms section as the reference.",
+      "acceptance_criteria": [
+        ".claude/skills/ai-sdk/SKILL.md exists with non-empty content",
+        "docs/references/ai-sdk-llms.txt exists with non-empty content (or a stub explaining manual fetch)",
+        "If fetch fails, status set to accepted_with_warning and warning logged"
+      ],
+      "test_command": "test -s .claude/skills/ai-sdk/SKILL.md && test -s docs/references/ai-sdk-llms.txt",
+      "max_review_rounds": 1,
+      "on_rounds_exceeded": "accept_with_warning",
+      "status": "pending"
+    },
+    {
+      "id": "F001",
+      "title": "Validate taxonomy.json against schema and DAG rules",
+      "phase": 1,
+      "team": "team_a",
+      "depends_on": [],
+      "planner_notes": "Read taxonomy.json. Write scripts/validate_taxonomy.ts that checks: (a) 25 concepts present, (b) each has required fields, (c) categories are foundational/interpretive/communication, (d) prerequisites form a DAG with no cycles, (e) every prerequisite references an existing concept id.",
+      "acceptance_criteria": [
+        "scripts/validate_taxonomy.ts exists and runs via bun run",
+        "Script exits 0 when taxonomy is valid",
+        "Script exits 1 with specific error messages when invalid",
+        "All 25 concepts in taxonomy.json pass validation"
+      ],
+      "test_command": "bun run scripts/validate_taxonomy.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F002",
+      "title": "Verify Zod schemas parse all four exemplars",
+      "phase": 1,
+      "team": "team_a",
+      "depends_on": [],
+      "planner_notes": "Schemas exist at lib/schemas/content-schemas.ts. Write a test that loads each of the four exemplars and parses it through the matching Zod schema. All four must parse without errors.",
+      "acceptance_criteria": [
+        "Test file exists at lib/schemas/__tests__/exemplar-validation.test.ts",
+        "ConceptPrimerFrontmatter parses central-tendency.md frontmatter",
+        "DictionaryEntryFrontmatter parses median.md frontmatter",
+        "ScenarioSchema parses central-tendency-tier-2.json",
+        "SyntheticDatasetSchema parses hgse_cohort_salaries.json",
+        "All four assertions pass"
+      ],
+      "test_command": "bun test lib/schemas/__tests__/exemplar-validation.test.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F003",
+      "title": "Generate 24 remaining concept primers (Gemini Content Generator)",
+      "phase": 2,
+      "team": "team_b",
+      "worktree": "worktrees/content-gen",
+      "depends_on": ["F001", "F002"],
+      "planner_notes": "Use Gemini 3.1 Flash Lite via @ai-sdk/google with thinkingLevel='medium'. For each concept in taxonomy.json except 'central-tendency', generate a primer following the exact structure of content/concepts/central-tendency.md. Use Gal 2002 framework grounding. Avoid calculation-heavy examples. Reading examples must be plausibly Harvard-staff-relevant. Visible thinking routine must match the routine declared in the concept's primer frontmatter.",
+      "builder_rules": [
+        "One file per concept at content/concepts/<id>.md",
+        "Match exemplar structure: hook, three-part breakdown, Harvard-relevant 'why this matters' section, reading example, visible-thinking closer",
+        "Frontmatter must validate against ConceptPrimerFrontmatter schema",
+        "No formulas anywhere (regex /=|\\+|\\*|sum\\(|avg\\(/ returns no matches)",
+        "Word count between 400 and 700 (roughly matches exemplar)",
+        "Use the model defaults from CLAUDE.md § LLM call configuration per role"
+      ],
+      "acceptance_criteria": [
+        "24 new files exist in content/concepts/",
+        "Each parses against ConceptPrimerFrontmatter via validate_primers script",
+        "LLM-judge score ≥ 3.5/5 against central-tendency.md anchor on (clarity, level, visible-thinking)",
+        "No formula syntax in any primer",
+        "Each references at least one prerequisite from its taxonomy entry"
+      ],
+      "test_command": "bun run scripts/validate_primers.ts && bun run scripts/judge_primers.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F004",
+      "title": "Generate 50 dictionary entries (Gemini Content Generator)",
+      "phase": 2,
+      "team": "team_b",
+      "worktree": "worktrees/content-gen",
+      "depends_on": ["F001", "F002"],
+      "planner_notes": "Generate 50 dictionary entries: one per taxonomy concept (25), plus 25 adjacent terms that appear in scenarios but aren't full concepts. Follow median.md structure. school_usage notes are inferred ('common in...', 'typically used for...'), not asserted. Cover HGSE, HBS, FAS, HMS, SEAS minimum per entry.",
+      "acceptance_criteria": [
+        "50 files in content/dictionary/",
+        "Each parses against DictionaryEntryFrontmatter schema",
+        "Every related_terms[] reference points to an existing dictionary entry or concept primer id",
+        "School_usage block covers at least 4 of: HGSE, HBS, FAS, HMS, SEAS",
+        "Plain-language definition under 25 words"
+      ],
+      "test_command": "bun run scripts/validate_dictionary.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F005",
+      "title": "Implement 5 parametric synthetic dataset generators",
+      "phase": 2,
+      "team": "team_c",
+      "worktree": "worktrees/dataset-gen",
+      "depends_on": ["F002"],
+      "planner_notes": "Implement 5 generators in scripts/generators/: cohort_outcomes (already has output exemplar — use as reference), two_group_comparison, time_series_with_break, survey_categorical, paired_pre_post. Each must emit JSON conforming to SyntheticDatasetSchema. pedagogical_metadata.features must reflect actual statistical features computed from the rows. Generators are pure deterministic code — NO LLM calls.",
+      "builder_rules": [
+        "Generators are deterministic given a seed parameter",
+        "Every generator declares its tunable pedagogical features (skew, outliers, confounding, etc.)",
+        "All values synthetic; plausibility_notes[] declares the synthetic boundary",
+        "Output passes validate_exemplar_consistency.ts — note this validator is currently hardcoded to the salary_usd field from the cohort_outcomes exemplar; F005 must generalize it to accept a configurable numeric field per dataset (read pedagogical_metadata to discover the field), so the four new generators (two_group_comparison, time_series_with_break, survey_categorical, paired_pre_post) can be checked against their own numeric columns",
+        "No LLM calls in generators — pure TypeScript"
+      ],
+      "acceptance_criteria": [
+        "5 scripts in scripts/generators/",
+        "Each runs via 'bun run scripts/generators/<n>.ts > /tmp/test.json' producing valid JSON",
+        "Output matches SyntheticDatasetSchema",
+        "pedagogical_metadata.features values verifiable from rows (validator passes)"
+      ],
+      "test_command": "bun run scripts/test_generators.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F006",
+      "title": "Generate scenarios for foundational concepts (5 tiers × 8 = 40 scenarios)",
+      "phase": 2,
+      "team": "team_b",
+      "worktree": "worktrees/content-gen",
+      "depends_on": ["F003", "F005"],
+      "planner_notes": "For each of the 8 foundational concepts, generate 5 scenarios (one per tier). Tier 1 = MCQ comprehension check, tier 2 = MCQ with always-visible hint, tier 3 = short answer with prompt scaffolds, tier 4 = long answer with no scaffolding, tier 5 = wiki draft prompt. Reference datasets generated in F005 where appropriate. Maintain mathematical consistency: stats in artifact match dataset rows. Use Gemini 3.1 Flash Lite with thinkingLevel='medium' and JSON response mode.",
+      "builder_rules": [
+        "File naming: content/scenarios/<concept-id>-tier-<n>-<seq>.json",
+        "Each scenario validates against ScenarioSchema",
+        "Tier-appropriate question_type: tier 1 → multiple_choice, tier 2 → multiple_choice_with_hint, tier 3 → short_answer, tier 4 → long_answer, tier 5 → wiki_draft",
+        "Visible thinking scaffold matches the routine declared in the concept's primer frontmatter",
+        "If dataset_ref is set, scenario artifact stats must match dataset stats within $100"
+      ],
+      "acceptance_criteria": [
+        "40 files in content/scenarios/",
+        "Each parses against ScenarioSchema",
+        "All dataset_ref values point to existing datasets",
+        "validate_exemplar_consistency.ts passes",
+        "LLM-judge score ≥ 3.5/5 against central-tendency-tier-2.json anchor"
+      ],
+      "test_command": "bun run scripts/validate_scenarios.ts && bun run scripts/judge_scenarios.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F007",
+      "title": "Bootstrap Vue 3 frontend skeleton with AI SDK Vue v2",
+      "phase": 3,
+      "team": "team_d",
+      "worktree": "worktrees/frontend",
+      "depends_on": ["F002"],
+      "planner_notes": "Do NOT block on F000. The inline AI SDK v6 idioms in CLAUDE.md § 'AI SDK v6 idioms' are sufficient to scaffold the Vue app. If .claude/skills/ai-sdk/SKILL.md and docs/references/ai-sdk-llms.txt exist, prefer them as a deeper reference; otherwise proceed with the inline section. Create frontend/ via 'npm create vite@latest frontend -- --template vue-ts'. Install: @ai-sdk/vue@^2.0.0, ai@^6.0.0, @ai-sdk/google@^2.0.0, shadcn-vue, tailwindcss, vue-router, fuse.js, marked, gray-matter. Set up routing for: /module/:concept_id, /dictionary, /demo/autoplay. Build LMSShell component (breadcrumb, lesson counter, progress bar).",
+      "acceptance_criteria": [
+        "frontend/ contains valid Vue 3 + Vite + TS app",
+        "package.json pins @ai-sdk/vue to ^2.0.0 and ai to ^6.0.0",
+        "npm run dev starts without errors",
+        "Three routes accessible and render placeholders",
+        "LMSShell component renders breadcrumb and progress",
+        "Tailwind classes work",
+        "npm run build succeeds"
+      ],
+      "test_command": "cd frontend && npm run build && npm run lint",
+      "status": "pending"
+    },
+    {
+      "id": "F008",
+      "title": "Implement Scaffold Selector function",
+      "phase": 3,
+      "team": "team_d",
+      "depends_on": ["F002"],
+      "planner_notes": "Pure function in lib/scaffold-selector.ts. Takes (mastery: number, history: Interaction[]) and returns one of the 5 component names. Implement thresholds from CLAUDE.md exactly. Edge cases: mastery exactly at 0.20 → tier 2 (use ≥, not >). Tests cover all 5 transitions plus edges.",
+      "acceptance_criteria": [
+        "lib/scaffold-selector.ts exports pickScaffold(state) function",
+        "Tests cover all 5 tier transitions (5 cases)",
+        "Tests cover all 4 boundaries (4 cases)",
+        "All tests pass",
+        "Function has no side effects (pure)"
+      ],
+      "test_command": "bun test lib/__tests__/scaffold-selector.test.ts",
+      "status": "pending"
+    },
+    {
+      "id": "F009",
+      "title": "Build Dictionary viewer (standalone page + inline popover)",
+      "phase": 3,
+      "team": "team_d",
+      "worktree": "worktrees/frontend",
+      "depends_on": ["F004", "F007"],
+      "planner_notes": "Two surfaces: (a) standalone DictionaryView.vue page at /dictionary with searchable list (Fuse.js), term detail with school_usage table; (b) DictionaryPopover.vue component for inline term mentions in scenario prose. Term detection: any word matching a dictionary entry's `term` field becomes a hover-target. Popover shows plain_definition; click opens full term page.",
+      "acceptance_criteria": [
+        "DictionaryView renders all 50 terms with search",
+        "Search uses Fuse.js, filters on term + plain_definition + related_terms",
+        "Term detail shows full content with school_usage table",
+        "DictionaryPopover renders on hover for any matched term in scenario prose",
+        "Click on popover navigates to /dictionary/<term>",
+        "All keyboard navigation accessible (focus, escape closes popover)"
+      ],
+      "test_command": "cd frontend && npm run test",
+      "status": "pending"
+    },
+    {
+      "id": "F010",
+      "title": "Wire backend API with Hono and Gemini 3.1 Flash Lite via @ai-sdk/google",
+      "phase": 4,
+      "team": "team_e",
+      "worktree": "worktrees/backend",
+      "depends_on": ["F002", "F003", "F006"],
+      "planner_notes": "Hono server in backend/. Three endpoints: POST /api/chat (streaming via streamText with @ai-sdk/google + gemini-3.1-flash-lite-preview), POST /api/state/infer, POST /api/quality/eval. Tool definitions for streamText must match BOTH the 5 scaffold component names AND the 2 visualization tool names exactly: WorkedExample, ScaffoldedMCQ, GuidedShortAnswer, BareLongAnswer, WikiDraft, render_chart, render_flowchart. Tool input schemas come from DESIGN.md § RenderedChart and § RenderedFlowchart — the Vue components receive tool input as props with no JSON re-parsing. CORS configurable via env. Provider initialization reads GEMINI_API_KEY from env; HARVARD_PORTAL_GEMINI_BASE_URL is a v1.5 swap and not used in v1. Per-role thinkingLevel from CLAUDE.md § LLM call configuration. Set max_review_rounds=4 for this feature — tool name drift is a silent failure mode worth extra rounds to catch.",
+      "max_review_rounds": 4,
+      "acceptance_criteria": [
+        "Backend starts via 'bun run backend/index.ts'",
+        "POST /api/chat streams a response with tool calls",
+        "Tool definitions match scaffold names exactly: WorkedExample, ScaffoldedMCQ, GuidedShortAnswer, BareLongAnswer, WikiDraft",
+        "Tool definitions also include render_chart and render_flowchart with input schemas from DESIGN.md § RenderedChart and § RenderedFlowchart",
+        "render_chart and render_flowchart tool calls produce inline visualizations rendered as message.parts; both require non-empty caption and provenance fields",
+        "POST /api/state/infer returns valid LearnerState JSON",
+        "POST /api/quality/eval returns rubric scores",
+        "All API keys read from env; no hardcoded secrets",
+        "Errors return JSON with status codes (not HTML)",
+        "CORS allows configurable origin (LMS iframe)",
+        "Provider config supports both direct Google API and Harvard portal baseURL"
+      ],
+      "test_command": "bun test backend/__tests__/",
+      "status": "pending"
+    }
+  ]
+}
