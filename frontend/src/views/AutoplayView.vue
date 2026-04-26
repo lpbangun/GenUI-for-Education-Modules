@@ -1,79 +1,55 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import Scaffolds from '../components/Scaffolds.vue';
-import { streamScaffold, pickTier, type ScaffoldCall } from '../lib/api';
+import { pickTier, type ScaffoldResult } from '../lib/api';
+import bundle from '../data/autoplay-bundle.json';
 
-// Five mastery checkpoints, one per tier. Each fetches a fresh scaffold from
-// the backend, holds for ~12-15s, then advances. Total runtime ~75-90 seconds.
-const CHECKPOINTS = [
-  { mastery: 0.10, label: 'Brand new learner' },
-  { mastery: 0.30, label: 'Recognizes the pattern' },
-  { mastery: 0.55, label: 'Articulating their own interpretation' },
-  { mastery: 0.75, label: 'Working without scaffolds' },
-  { mastery: 0.92, label: 'Contributing to the wiki' },
-];
+// Pre-generated bundle — no LLM call at runtime. Re-run scripts/pregenerate_autoplay.ts to refresh.
+const checkpoints = bundle as Array<{
+  mastery: number;
+  label: string;
+  tier_name: string;
+  scaffold: { name: string; input: any };
+  chart: any | null;
+  flowchart: any | null;
+}>;
 
 const stepIndex = ref(0);
-const call = ref<ScaffoldCall | null>(null);
-const loading = ref(false);
-const error = ref<string | null>(null);
 const playing = ref(false);
 let timer: number | undefined;
-let abort: AbortController | undefined;
 
-async function loadStep(i: number) {
-  if (i >= CHECKPOINTS.length) {
-    stepIndex.value = CHECKPOINTS.length;
-    playing.value = false;
-    return;
-  }
-  stepIndex.value = i;
-  loading.value = true;
-  error.value = null;
-  call.value = null;
-  abort?.abort();
-  abort = new AbortController();
-  try {
-    call.value = await streamScaffold({
-      conceptId: 'central-tendency',
-      mastery: CHECKPOINTS[i].mastery,
-      signal: abort.signal,
-    });
-  } catch (e: any) {
-    if (e.name !== 'AbortError') error.value = e.message;
-  } finally {
-    loading.value = false;
-  }
-}
+const currentResult = (): ScaffoldResult | null => {
+  const cp = checkpoints[stepIndex.value];
+  if (!cp) return null;
+  return { scaffold: cp.scaffold as any, chart: cp.chart, flowchart: cp.flowchart };
+};
 
 function play() {
   playing.value = true;
-  loadStep(0);
+  stepIndex.value = 0;
   timer = window.setInterval(() => {
-    if (stepIndex.value + 1 >= CHECKPOINTS.length) {
+    if (stepIndex.value + 1 >= checkpoints.length) {
       clearInterval(timer);
       playing.value = false;
+      stepIndex.value = checkpoints.length;
       return;
     }
-    loadStep(stepIndex.value + 1);
-  }, 18000); // 18s per step × 5 = 90s
+    stepIndex.value++;
+  }, 18000);
 }
 
 function stop() {
   if (timer) clearInterval(timer);
-  abort?.abort();
   playing.value = false;
 }
 
-onMounted(() => {
-  // Auto-load the first scaffold so the page isn't blank on arrival.
-  loadStep(0);
-});
-onUnmounted(() => {
+function jumpTo(i: number) {
   stop();
-});
+  stepIndex.value = i;
+}
 
-const current = () => CHECKPOINTS[stepIndex.value];
+onUnmounted(stop);
+onMounted(() => {/* show first step */});
 </script>
 
 <template>
@@ -85,45 +61,42 @@ const current = () => CHECKPOINTS[stepIndex.value];
           <h1 class="text-h1 text-ink mt-4">The fade, observable</h1>
         </div>
         <div class="flex gap-4 items-center">
-          <button v-if="!playing" @click="play"
-                  class="text-ink hover:underline text-body">▶ play (~90s)</button>
+          <button v-if="!playing" @click="play" class="text-ink hover:underline text-body">▶ play (~90s)</button>
           <button v-else @click="stop" class="text-ink hover:underline text-body">■ stop</button>
-          <button @click="loadStep(stepIndex)" :disabled="loading"
-                  class="text-ink-muted hover:text-ink hover:underline text-small disabled:opacity-40">↻ regenerate</button>
         </div>
       </div>
 
       <p class="text-body text-ink-muted mt-6 max-w-[640px]">
-        Five checkpoints, each fetches a fresh scaffold from the live Gemini backend.
-        Same concept (<code class="font-mono text-small">central-tendency</code>), five different surfaces.
+        Five checkpoints, pre-generated from Gemini 3.1 Flash Lite (so the demo costs zero per play). Same concept (<code class="font-mono text-small">central-tendency</code>), five different scaffold surfaces, each paired with a generative-UI artifact (chart or flowchart).
       </p>
 
-      <!-- Step indicator -->
+      <!-- Step indicator + jump-to -->
       <div class="mt-12 max-w-[820px]">
         <div class="flex gap-2">
-          <div v-for="(_, i) in CHECKPOINTS" :key="i"
-               class="flex-1 h-1"
-               :class="i <= stepIndex ? 'bg-ink' : 'bg-overlay'"></div>
+          <button v-for="(cp, i) in checkpoints" :key="i"
+                  @click="jumpTo(i)"
+                  class="flex-1 h-1 hover:bg-ink-muted transition"
+                  :class="i <= stepIndex && stepIndex < checkpoints.length ? 'bg-ink' : 'bg-overlay'"
+                  :title="`jump to ${cp.tier_name}`"></button>
         </div>
         <div class="mt-3 flex justify-between text-small text-ink-muted font-mono">
-          <span>Step {{ Math.min(stepIndex + 1, CHECKPOINTS.length) }}/{{ CHECKPOINTS.length }} · {{ current()?.label ?? 'done' }}</span>
-          <span>mastery = {{ current()?.mastery.toFixed(2) ?? '—' }} → tier {{ current() ? pickTier(current().mastery).num : '—' }}</span>
+          <span>Step {{ Math.min(stepIndex + 1, checkpoints.length) }}/{{ checkpoints.length }} · {{ checkpoints[stepIndex]?.label ?? 'done' }}</span>
+          <span v-if="checkpoints[stepIndex]">
+            mastery = {{ checkpoints[stepIndex].mastery.toFixed(2) }} → tier {{ pickTier(checkpoints[stepIndex].mastery).num }}
+          </span>
         </div>
       </div>
 
       <div class="mt-12 max-w-[820px]">
-        <Scaffolds :call="call" :loading="loading" />
-
-        <div v-if="error" class="bg-accent-tint p-4 text-small text-ink mt-4">
-          Backend error: {{ error }}.
-        </div>
-
-        <div v-if="stepIndex >= CHECKPOINTS.length" class="bg-surface p-8">
+        <Scaffolds v-if="stepIndex < checkpoints.length" :result="currentResult()" />
+        <div v-else class="bg-surface p-8">
           <div class="text-h2 text-ink">Done.</div>
           <p class="text-body text-ink-muted mt-4">
             The committee just watched the same concept render through five distinct scaffolds, each picked deterministically by
             <code class="font-mono text-small">pickScaffold(mastery)</code> in <code class="font-mono text-small">lib/scaffold-selector.ts</code>.
+            Each scaffold paired with a generative-UI artifact — histogram, bar, flowchart, time-series, or cycle — chosen by the model alongside the prose.
           </p>
+          <button @click="stepIndex = 0" class="mt-6 text-ink hover:underline">↻ replay</button>
         </div>
       </div>
     </div>

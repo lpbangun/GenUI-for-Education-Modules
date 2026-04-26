@@ -55,3 +55,10 @@
 2026-04-25T15:05:00Z · F011 · BUILD · frontend/src/lib/api.ts (streamScaffold) + Scaffolds.vue (5-tier renderer) + ModuleView/AutoplayView wired to live backend
 2026-04-25T15:05:00Z · F011 · REVIEW · clean build (129KB JS, 9KB CSS); live MCQ tool call verified through deployed backend
 2026-04-25T15:05:00Z · F011 · COMPLETE · accepted; autoplay now renders real scaffolds from live LLM
+2026-04-25T15:30:00Z · F012 · BUILD · TopNav (Home/Module/Dictionary/Autoplay/About) + AboutView explainer page
+2026-04-25T15:30:00Z · F012 · BUILD · RenderedChart.vue (5 chart types via inline SVG) + RenderedFlowchart.vue (3 types)
+2026-04-25T15:30:00Z · F012 · BUILD · scripts/pregenerate_autoplay.ts → frontend/src/data/autoplay-bundle.json (5 checkpoints, all w/ viz: histogram→bar→linear-flow→time-series→cycle-flow)
+2026-04-25T15:30:00Z · F012 · BUILD · backend/tools.ts: render_chart now accepts inline values array
+2026-04-25T15:30:00Z · F012 · BUILD · AutoplayView reads static bundle (zero per-play LLM cost); ModuleView keeps live LLM
+2026-04-25T15:30:00Z · F012 · E2E · all 5 routes 200; backend health green; bundle has 25/2/4-node/7/4-node viz payloads
+2026-04-25T15:30:00Z · F012 · COMPLETE · accepted

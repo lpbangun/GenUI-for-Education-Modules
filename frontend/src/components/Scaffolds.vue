@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { ScaffoldCall } from '../lib/api';
+import type { ScaffoldResult } from '../lib/api';
 import { TIER_COLORS } from '../lib/api';
+import RenderedChart from './RenderedChart.vue';
+import RenderedFlowchart from './RenderedFlowchart.vue';
 
-const props = defineProps<{ call: ScaffoldCall | null; loading?: boolean }>();
+const props = defineProps<{ result: ScaffoldResult | null; loading?: boolean }>();
 
 const tierNum = computed(() => {
-  switch (props.call?.scaffold) {
+  switch (props.result?.scaffold?.name) {
     case 'WorkedExample': return 1;
     case 'ScaffoldedMCQ': return 2;
     case 'GuidedShortAnswer': return 3;
@@ -16,11 +18,13 @@ const tierNum = computed(() => {
   }
 });
 
-const tierColor = computed(() => props.call ? TIER_COLORS[props.call.scaffold] : 'bg-ink-subtle');
+const tierColor = computed(() => props.result?.scaffold ? TIER_COLORS[props.result.scaffold.name] : 'bg-ink-subtle');
+const sc = computed(() => props.result?.scaffold);
+const input = computed(() => sc.value?.input ?? {});
 </script>
 
 <template>
-  <section class="bg-surface p-8" v-if="loading || call">
+  <section class="bg-surface p-8" v-if="loading || result?.scaffold">
     <div class="h-0.5 w-8" :class="tierColor"></div>
 
     <div v-if="loading" class="mt-6">
@@ -30,19 +34,21 @@ const tierColor = computed(() => props.call ? TIER_COLORS[props.call.scaffold] :
       </div>
     </div>
 
-    <template v-else-if="call">
+    <template v-else-if="sc">
       <div class="text-micro text-ink-subtle uppercase mt-6">
-        Tier {{ tierNum }} · {{ call.scaffold }}
+        Tier {{ tierNum }} · {{ sc.name }}
       </div>
 
       <!-- WorkedExample -->
-      <template v-if="call.scaffold === 'WorkedExample'">
-        <h2 class="text-h2 text-ink mt-4">{{ call.input.title }}</h2>
-        <p class="text-body mt-6 whitespace-pre-line">{{ call.input.setup_prose }}</p>
-        <ol class="mt-4 space-y-3 list-decimal pl-6">
-          <li v-for="(step, i) in call.input.worked_steps" :key="i" class="text-body">{{ step }}</li>
+      <template v-if="sc.name === 'WorkedExample'">
+        <h2 class="text-h2 text-ink mt-4">{{ input.title }}</h2>
+        <p class="text-body mt-6 whitespace-pre-line">{{ input.setup_prose }}</p>
+        <RenderedChart v-if="result?.chart" :chart="result.chart" />
+        <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
+        <ol class="mt-6 space-y-3 list-decimal pl-6">
+          <li v-for="(step, i) in (input.worked_steps ?? [])" :key="i" class="text-body">{{ step }}</li>
         </ol>
-        <p class="text-body mt-6 whitespace-pre-line">{{ call.input.interpretation }}</p>
+        <p class="text-body mt-6 whitespace-pre-line">{{ input.interpretation }}</p>
         <div class="mt-6" style="width:80px; border-top: 0.5px solid #8B8B8B;"></div>
         <div class="text-micro text-ink-subtle uppercase mt-6">Did this land?</div>
         <div class="space-y-3 mt-3">
@@ -54,14 +60,16 @@ const tierColor = computed(() => props.call ? TIER_COLORS[props.call.scaffold] :
       </template>
 
       <!-- ScaffoldedMCQ -->
-      <template v-else-if="call.scaffold === 'ScaffoldedMCQ'">
-        <h2 class="text-h2 text-ink mt-4">{{ call.input.title }}</h2>
-        <p class="text-body mt-6 whitespace-pre-line">{{ call.input.setup_prose }}</p>
-        <pre v-if="call.input.artifact_summary_stats"
-             class="font-mono text-small mt-4 p-4 bg-accent-tint whitespace-pre-line">{{ call.input.artifact_summary_stats }}</pre>
-        <p class="text-body mt-6">{{ call.input.prompt }}</p>
+      <template v-else-if="sc.name === 'ScaffoldedMCQ'">
+        <h2 class="text-h2 text-ink mt-4">{{ input.title }}</h2>
+        <p class="text-body mt-6 whitespace-pre-line">{{ input.setup_prose }}</p>
+        <pre v-if="input.artifact_summary_stats"
+             class="font-mono text-small mt-4 p-4 bg-accent-tint whitespace-pre-line">{{ input.artifact_summary_stats }}</pre>
+        <RenderedChart v-if="result?.chart" :chart="result.chart" />
+        <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
+        <p class="text-body mt-6">{{ input.prompt }}</p>
         <div class="space-y-3 mt-4">
-          <label v-for="opt in (call.input.options ?? [])" :key="opt.id"
+          <label v-for="opt in (input.options ?? [])" :key="opt.id"
                  class="block border border-ink-subtle p-4 hover:border-ink cursor-pointer transition">
             <span class="font-mono text-small text-ink-subtle mr-3">{{ opt.id }}</span>
             <span class="text-body">{{ opt.text }}</span>
@@ -69,19 +77,21 @@ const tierColor = computed(() => props.call ? TIER_COLORS[props.call.scaffold] :
         </div>
         <div class="mt-6" style="width:48px; border-top: 0.5px solid #8B8B8B;"></div>
         <div class="text-micro text-ink-subtle uppercase mt-6">Hint</div>
-        <p class="text-small text-ink-muted mt-2 whitespace-pre-line">{{ call.input.hint }}</p>
+        <p class="text-small text-ink-muted mt-2 whitespace-pre-line">{{ input.hint }}</p>
       </template>
 
       <!-- GuidedShortAnswer -->
-      <template v-else-if="call.scaffold === 'GuidedShortAnswer'">
-        <h2 class="text-h2 text-ink mt-4">{{ call.input.title }}</h2>
-        <p class="text-body mt-6 whitespace-pre-line">{{ call.input.setup_prose }}</p>
-        <p class="text-body mt-6">{{ call.input.prompt }}</p>
+      <template v-else-if="sc.name === 'GuidedShortAnswer'">
+        <h2 class="text-h2 text-ink mt-4">{{ input.title }}</h2>
+        <p class="text-body mt-6 whitespace-pre-line">{{ input.setup_prose }}</p>
+        <RenderedChart v-if="result?.chart" :chart="result.chart" />
+        <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
+        <p class="text-body mt-6">{{ input.prompt }}</p>
         <textarea rows="5" placeholder="Type your response…"
                   class="w-full mt-4 p-3 border border-ink-subtle bg-surface text-body resize-none focus:outline-none focus:border-accent"></textarea>
         <div class="text-micro text-ink-subtle uppercase mt-6">Consider</div>
         <ul class="text-small text-ink-muted mt-2 space-y-2">
-          <li v-for="(s, i) in (call.input.consider_scaffolds ?? [])" :key="i">· {{ s }}</li>
+          <li v-for="(s, i) in (input.consider_scaffolds ?? [])" :key="i">· {{ s }}</li>
         </ul>
         <div class="text-right mt-6">
           <button class="text-ink hover:underline">submit response →</button>
@@ -89,10 +99,12 @@ const tierColor = computed(() => props.call ? TIER_COLORS[props.call.scaffold] :
       </template>
 
       <!-- BareLongAnswer -->
-      <template v-else-if="call.scaffold === 'BareLongAnswer'">
-        <h2 class="text-h2 text-ink mt-4">{{ call.input.title }}</h2>
-        <p class="text-body mt-6 whitespace-pre-line">{{ call.input.setup_prose }}</p>
-        <p class="text-body mt-6">{{ call.input.prompt }}</p>
+      <template v-else-if="sc.name === 'BareLongAnswer'">
+        <h2 class="text-h2 text-ink mt-4">{{ input.title }}</h2>
+        <p class="text-body mt-6 whitespace-pre-line">{{ input.setup_prose }}</p>
+        <RenderedChart v-if="result?.chart" :chart="result.chart" />
+        <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
+        <p class="text-body mt-6">{{ input.prompt }}</p>
         <textarea rows="9" placeholder="Type your response…"
                   class="w-full mt-4 p-3 border border-ink-subtle bg-surface text-body resize-none focus:outline-none focus:border-accent"></textarea>
         <div class="flex justify-between items-end mt-6">
@@ -102,9 +114,11 @@ const tierColor = computed(() => props.call ? TIER_COLORS[props.call.scaffold] :
       </template>
 
       <!-- WikiDraft -->
-      <template v-else-if="call.scaffold === 'WikiDraft'">
-        <h2 class="text-h2 text-ink mt-4">{{ call.input.title }}</h2>
-        <p class="text-body mt-6 whitespace-pre-line">{{ call.input.framing_prose }}</p>
+      <template v-else-if="sc.name === 'WikiDraft'">
+        <h2 class="text-h2 text-ink mt-4">{{ input.title }}</h2>
+        <p class="text-body mt-6 whitespace-pre-line">{{ input.framing_prose }}</p>
+        <RenderedChart v-if="result?.chart" :chart="result.chart" />
+        <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
         <textarea rows="11" placeholder="Write your entry…"
                   class="w-full mt-4 p-3 border border-ink-subtle bg-surface text-body resize-none focus:outline-none focus:border-accent"></textarea>
         <p class="text-small text-ink-muted mt-4">

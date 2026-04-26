@@ -1,0 +1,296 @@
+[
+  {
+    "mastery": 0.1,
+    "label": "Brand new learner",
+    "tier_name": "WorkedExample",
+    "viz_hint": "render_chart with chart_type histogram showing a right-skewed salary distribution; ~25 inline numeric values; caption + provenance.",
+    "scaffold": {
+      "name": "WorkedExample",
+      "input": {
+        "title": "Choosing Between Mean and Median: A Case of Skewed Salary Data",
+        "setup_prose": "As an analyst in the Harvard Office of Institutional Research, you are asked to report the 'typical' annual salary for a specific group of newly hired junior research staff. You have been provided with a dataset of 25 salaries. You notice that while most staff earn between $60,000 and $80,000, there are a few highly specialized roles with salaries exceeding $150,000. This is creating a 'right-skewed' distribution.",
+        "worked_steps": [
+          "Step 1: Calculate the Mean. Add all 25 salary values and divide by 25. Note that the mean is 'pulled' toward the high end by the few very large salaries.",
+          "Step 2: Identify the Median. Order the 25 salaries from least to greatest and select the middle (13th) value. This value is not affected by how high the extreme salaries are.",
+          "Step 3: Compare. In this right-skewed distribution, the mean > median. For the purpose of describing the 'typical' staff salary, the median is the more representative metric because it is not inflated by the high-earners."
+        ],
+        "interpretation": "The learner understands that the mean is sensitive to extreme values, while the median provides a more robust representation of the 'typical' value in a skewed distribution. Self-report: I understand why the median is preferred over the mean for salary distributions."
+      }
+    },
+    "chart": {
+      "chart_type": "histogram",
+      "dataset_ref": "synthetic_staff_salaries_2024",
+      "field_x": "Salary ($k)",
+      "field_y": "Count of Staff",
+      "values": [
+        62,
+        64,
+        65,
+        66,
+        67,
+        68,
+        68,
+        69,
+        70,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        78,
+        80,
+        82,
+        85,
+        95,
+        110,
+        135,
+        155,
+        160
+      ],
+      "caption": "Distribution of junior research staff salaries (n=25). Note the long tail toward the right.",
+      "provenance": "Synthetic data · Harvard OIR Cohort 2024"
+    },
+    "flowchart": null
+  },
+  {
+    "mastery": 0.3,
+    "label": "Recognizes the pattern",
+    "tier_name": "ScaffoldedMCQ",
+    "viz_hint": "render_chart with chart_type bar showing mean vs median side by side using {x, y, label, highlight} objects.",
+    "scaffold": {
+      "name": "ScaffoldedMCQ",
+      "input": {
+        "title": "Central Tendency in Fundraising Data",
+        "setup_prose": "You are analyzing donation data for a recent fundraising push. The dataset consists of 500 gifts. Due to a small number of very high-net-worth donors, the distribution is highly right-skewed. You need to select the most appropriate metric to describe the 'typical' gift to stakeholders.",
+        "artifact_summary_stats": "mastery: 0.30",
+        "prompt": "As a data analyst in the University Development Office, you are asked to report the 'typical' donation amount for an annual fundraising campaign. You observe that while most gifts are between $50 and $250, there are a few major donors who contributed $10,000+. Given this positive skew, which measure of central tendency should you report to the Dean, and why?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Use the mean, because it accounts for the exact dollar amount of every single donation.",
+            "correct": false,
+            "feedback": "While the mean is a common average, in skewed data like this, it is heavily influenced by a few high-gift donors, potentially misrepresenting the 'typical' donor experience."
+          },
+          {
+            "id": "B",
+            "text": "Use the median, because the distribution is skewed and the mean is being pulled by outliers.",
+            "correct": true,
+            "feedback": "Correct! Because the data is skewed by a few extremely large gifts, the mean is artificially inflated. The median provides a much more accurate reflection of what a typical donor gives."
+          },
+          {
+            "id": "C",
+            "text": "Use the mode, because it represents the most common donation amount.",
+            "correct": false,
+            "feedback": "The mode is the most frequent value, which may not accurately represent the center of this dataset. We need a measure of center that is less sensitive to extreme outliers."
+          }
+        ],
+        "hint": "Remember: The mean is highly sensitive to extreme values (outliers), which 'pull' it toward the tail of a distribution. The median is more robust, representing the middle-most value regardless of how high or low the extreme values are."
+      }
+    },
+    "chart": {
+      "chart_type": "bar",
+      "dataset_ref": "fundraising_data_2024",
+      "field_x": "Metric",
+      "field_y": "Value ($)",
+      "values": [
+        {
+          "x": "Mean",
+          "y": 850,
+          "label": "Mean (Inflated by Outliers)",
+          "highlight": false
+        },
+        {
+          "x": "Median",
+          "y": 125,
+          "label": "Median (Typical Gift)",
+          "highlight": true
+        }
+      ],
+      "caption": "Comparison of Mean vs. Median donation amounts in a right-skewed distribution.",
+      "provenance": "Synthetic data · Development Office Cohort 2024"
+    },
+    "flowchart": null
+  },
+  {
+    "mastery": 0.55,
+    "label": "Articulating their own interpretation",
+    "tier_name": "GuidedShortAnswer",
+    "viz_hint": "render_flowchart with flowchart_type linear: a 3-4 node funnel/funnel-like reasoning path (e.g., notice the gap → infer skew → pick a measure). Use the See-Think-Wonder routine as the structure.",
+    "scaffold": {
+      "name": "GuidedShortAnswer",
+      "input": {
+        "title": "Choosing Central Tendency in Donor Analysis",
+        "setup_prose": "As a development officer, you are preparing a report on alumni giving habits. Your team needs to summarize the 'typical' gift size for the annual report. You have a dataset where most gifts are small, but a small handful are extremely large.",
+        "prompt": "You are analyzing the recent Harvard College Fund campaign results. You find that 95% of alumni donated between $50 and $200, but a few 'mega-donors' gave gifts exceeding $50,000. Given this highly skewed data, would you report the mean or the median donation amount to the Dean, and why?",
+        "consider_scaffolds": [
+          "Check if the distribution of gifts has a long tail.",
+          "Consider if one massive donation could pull the average away from the 'typical' donor.",
+          "Decide whether the mean or median better reflects the experience of the average alum."
+        ],
+        "rubric_primary_criterion": "Demonstrates understanding that the median is more resistant to outliers/skew than the mean."
+      }
+    },
+    "chart": null,
+    "flowchart": {
+      "provenance": "Synthetic data · cohort 2024",
+      "nodes": [
+        {
+          "id": "see",
+          "annotation": "Identify the distribution shape or outliers.",
+          "label": "See the Data Distribution"
+        },
+        {
+          "label": "Think About Skewness",
+          "annotation": "Evaluate the impact of extreme values.",
+          "id": "think"
+        },
+        {
+          "label": "Wonder: What is typical?",
+          "annotation": "Determine which measure represents the 'center' best.",
+          "id": "wonder"
+        },
+        {
+          "id": "decide",
+          "label": "Select Measure",
+          "annotation": "Select Mean or Median."
+        }
+      ],
+      "caption": "Reasoning path for choosing an appropriate central tendency measure. Synthetic data · cohort 2024",
+      "edges": [
+        {
+          "from": "see",
+          "to": "think"
+        },
+        {
+          "from": "think",
+          "to": "wonder"
+        },
+        {
+          "from": "wonder",
+          "to": "decide"
+        }
+      ],
+      "flowchart_type": "linear"
+    }
+  },
+  {
+    "mastery": 0.75,
+    "label": "Working without scaffolds",
+    "tier_name": "BareLongAnswer",
+    "viz_hint": "render_chart with chart_type time_series showing hypothetical year-over-year averages with one anomalous year highlighted; ~6-8 inline {x, y, label, highlight} objects.",
+    "scaffold": {
+      "name": "BareLongAnswer",
+      "input": {
+        "title": "Choosing Central Tendency in Fundraising Analytics",
+        "setup_prose": "You are an analyst in the Office of Development and Alumni Relations. You have been tasked with summarizing the performance of the Annual Fund. The following time series chart displays the average gift amount ($) received per donor from 2018 to 2024. Note the significant anomaly in 2021 caused by a single, multi-million dollar 'legacy' gift that is not representative of typical donor behavior.",
+        "prompt": "Based on the data shown in the chart below, you are preparing a briefing for the Dean of Admissions regarding the 'Alumni Giving Contribution' dataset over the last seven years. \n\n1. Identify the measure of central tendency (mean or median) that better represents the 'typical' yearly contribution amount, given the presence of the outlier in 2021. \n2. Explain why this measure is more robust in this specific context.\n3. How would using the other measure potentially mislead the Dean's interpretation of recent fundraising trends?",
+        "rubric_primary_criterion": "Ability to justify the choice of median over mean in the presence of extreme outliers (skewed data)."
+      }
+    },
+    "chart": {
+      "chart_type": "time_series",
+      "dataset_ref": "Annual Fund Gift Data",
+      "field_x": "x",
+      "field_y": "y",
+      "values": [
+        {
+          "x": 2018,
+          "y": 120,
+          "label": "2018"
+        },
+        {
+          "x": 2019,
+          "y": 135,
+          "label": "2019"
+        },
+        {
+          "x": 2020,
+          "y": 125,
+          "label": "2020"
+        },
+        {
+          "x": 2021,
+          "y": 850,
+          "label": "2021",
+          "highlight": true
+        },
+        {
+          "x": 2022,
+          "y": 140,
+          "label": "2022"
+        },
+        {
+          "x": 2023,
+          "y": 150,
+          "label": "2023"
+        },
+        {
+          "x": 2024,
+          "y": 155,
+          "label": "2024"
+        }
+      ],
+      "caption": "Average Annual Gift per Donor (2018-2024). Note the 2021 anomaly representing an extreme outlier.",
+      "provenance": "Synthetic data · Cohort 2024"
+    },
+    "flowchart": null
+  },
+  {
+    "mastery": 0.92,
+    "label": "Contributing to the wiki",
+    "tier_name": "WikiDraft",
+    "viz_hint": "render_flowchart with flowchart_type cycle: 4-node loop showing claim → support → question → revise. This is the wiki-writing routine the contributor is being invited into.",
+    "scaffold": {
+      "name": "WikiDraft",
+      "input": {
+        "title": "Drafting Institutional Reporting Standards",
+        "framing_prose": "As an experienced analyst in the Office of Institutional Research, you have successfully mastered the nuances of when to report the mean versus the median in skewed distributions—a skill critical for maintaining integrity in our reports. Your colleagues rely on your expertise to ensure our data narratives are precise.\n\nWe are inviting you to draft a new entry for our internal 'Data Reporting Standards' wiki. Please draft a 'Best Practice' guide that explains the institutional logic for choosing between these two measures when communicating tuition or financial aid disbursement trends to the Harvard Corporation. Your goal is to provide clear, actionable guidance for junior analysts who may be prone to reporting only the mean, regardless of skewness.",
+        "target_dictionary_term": "Central Tendency: Mean vs. Median for Skewed Institutional Data"
+      }
+    },
+    "chart": null,
+    "flowchart": {
+      "flowchart_type": "cycle",
+      "nodes": [
+        {
+          "id": "claim",
+          "label": "Make Claim"
+        },
+        {
+          "id": "support,label:",
+          "label": "Add Evidence"
+        },
+        {
+          "id": "question,label:",
+          "label": "Peer Review"
+        },
+        {
+          "id": "revise,label:",
+          "label": "Refine Entry"
+        }
+      ],
+      "edges": [
+        {
+          "from": "claim",
+          "to": "support"
+        },
+        {
+          "from": "support",
+          "to": "question"
+        },
+        {
+          "from": "question",
+          "to": "revise"
+        },
+        {
+          "from": "revise",
+          "to": "claim"
+        }
+      ],
+      "caption": "The Iterative Wiki Contribution Workflow. Synthetic data · cohort 2024",
+      "provenance": "Synthetic data · cohort 2024"
+    }
+  }
+]

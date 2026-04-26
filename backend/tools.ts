@@ -81,9 +81,21 @@ export const visualizationTools = {
     inputSchema: z.object({
       chart_type: z.enum(['histogram', 'bar', 'box', 'scatter', 'time_series']),
       dataset_ref: z.string(),
-      field_x: z.string(),
+      field_x: z.string().optional(),
       field_y: z.string().optional(),
       highlight_ids: z.array(z.string()).optional(),
+      // Inline values for the renderer. Use numbers for histogram/box;
+      // {x, y, label?, highlight?} objects for bar/scatter/time_series.
+      values: z.array(z.union([
+        z.number(),
+        z.object({
+          x: z.union([z.number(), z.string()]),
+          y: z.number().optional(),
+          label: z.string().optional(),
+          id: z.string().optional(),
+          highlight: z.boolean().optional(),
+        }),
+      ])).min(1),
       caption: z.string().min(1),
       provenance: z.string().min(1),
     }),

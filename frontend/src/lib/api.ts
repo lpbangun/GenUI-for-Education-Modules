@@ -1,28 +1,42 @@
 // Streaming client for /_/backend/api/chat. Parses the AI SDK UIMessage stream
-// and surfaces the tool call (scaffold name + input) as it arrives.
+// and surfaces the scaffold tool call PLUS any visualization tool calls
+// (render_chart, render_flowchart) as they arrive.
 
 const BACKEND_BASE = import.meta.env.VITE_BACKEND_BASE
   ?? (window.location.hostname === 'localhost' ? 'http://localhost:3001' : '/_/backend');
 
-export interface ScaffoldCall {
-  scaffold: 'WorkedExample' | 'ScaffoldedMCQ' | 'GuidedShortAnswer' | 'BareLongAnswer' | 'WikiDraft';
+export type ScaffoldName = 'WorkedExample' | 'ScaffoldedMCQ' | 'GuidedShortAnswer' | 'BareLongAnswer' | 'WikiDraft';
+export type VizName = 'render_chart' | 'render_flowchart';
+
+export interface ToolCall {
+  toolName: string;
   input: any;
 }
+
+export interface ScaffoldResult {
+  scaffold: { name: ScaffoldName; input: any } | null;
+  chart: any | null;
+  flowchart: any | null;
+}
+
+const SCAFFOLD_NAMES = new Set<string>(['WorkedExample', 'ScaffoldedMCQ', 'GuidedShortAnswer', 'BareLongAnswer', 'WikiDraft']);
 
 export async function streamScaffold(opts: {
   conceptId: string;
   mastery: number;
   signal?: AbortSignal;
-}): Promise<ScaffoldCall> {
+}): Promise<ScaffoldResult> {
   const tier = pickTier(opts.mastery);
-  const userMessage = `The learner has mastery=${opts.mastery.toFixed(2)} on the "${opts.conceptId}" concept, so the Scaffold Selector chose tier ${tier.num} (${tier.name}). Generate the next scaffold for this learner. Make the setup_prose a concrete Harvard-staff scenario. You MUST call exactly the ${tier.name} tool — do not respond with prose alone, do not pick a different tier.`;
+  const userMessage = `The learner has mastery=${opts.mastery.toFixed(2)} on the "${opts.conceptId}" concept, so the Scaffold Selector chose tier ${tier.num} (${tier.name}). Generate the next scaffold for this learner. Make the setup_prose a concrete Harvard-staff scenario.
+
+You MUST:
+1. Call exactly the ${tier.name} tool — do not respond with prose alone, do not pick a different tier.
+2. ALSO call render_chart OR render_flowchart in the SAME response if a visualization would help interpretation. Most data-fluency concepts benefit from one. Use render_chart for distributions/comparisons (chart_type: histogram, bar, box, scatter, or time_series). Use render_flowchart for funnels, decision logic, or sequential routines (flowchart_type: linear, decision, or cycle). Always provide caption and provenance. The dataset_ref can be a synthetic id like "synthetic_${opts.conceptId}_v1".`;
 
   const res = await fetch(`${BACKEND_BASE}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      messages: [{ role: 'user', content: userMessage }],
-    }),
+    body: JSON.stringify({ messages: [{ role: 'user', content: userMessage }] }),
     signal: opts.signal,
   });
   if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
@@ -30,8 +44,9 @@ export async function streamScaffold(opts: {
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buf = '';
-  let toolName = '';
-  let toolInputJson = '';
+
+  // Track all in-flight tool calls by id.
+  const calls = new Map<string, { name: string; jsonBuf: string; input?: any }>();
 
   while (true) {
     const { done, value } = await reader.read();
@@ -43,22 +58,43 @@ export async function streamScaffold(opts: {
       if (!line.trim()) continue;
       let part: any;
       try { part = JSON.parse(line); } catch { continue; }
-      if (part.type === 'tool-input-start') toolName = part.toolName;
-      if (part.type === 'tool-input-delta') toolInputJson += part.inputTextDelta ?? '';
-      if (part.type === 'tool-input-available') {
-        toolName = part.toolName ?? toolName;
-        if (part.input) toolInputJson = JSON.stringify(part.input);
+      if (part.type === 'tool-input-start') {
+        calls.set(part.toolCallId, { name: part.toolName, jsonBuf: '' });
+      } else if (part.type === 'tool-input-delta') {
+        const c = calls.get(part.toolCallId);
+        if (c) c.jsonBuf += part.inputTextDelta ?? '';
+      } else if (part.type === 'tool-input-available') {
+        const existing = calls.get(part.toolCallId);
+        const c: { name: string; jsonBuf: string; input?: any } = existing
+          ?? { name: part.toolName, jsonBuf: '' };
+        c.name = part.toolName ?? c.name;
+        if (part.input) c.input = part.input;
+        else { try { c.input = JSON.parse(c.jsonBuf); } catch {} }
+        calls.set(part.toolCallId, c);
       }
     }
   }
 
-  if (!toolName) throw new Error('no tool call in stream');
-  let input: any = {};
-  try { input = JSON.parse(toolInputJson); } catch { /* partial */ }
-  return { scaffold: toolName as ScaffoldCall['scaffold'], input };
+  // Reconcile any calls still pending input
+  for (const c of calls.values()) {
+    if (!c.input) { try { c.input = JSON.parse(c.jsonBuf); } catch {} }
+  }
+
+  let scaffold: ScaffoldResult['scaffold'] = null;
+  let chart: any = null;
+  let flowchart: any = null;
+  for (const c of calls.values()) {
+    if (!c.input) continue;
+    if (SCAFFOLD_NAMES.has(c.name)) scaffold = { name: c.name as ScaffoldName, input: c.input };
+    else if (c.name === 'render_chart') chart = c.input;
+    else if (c.name === 'render_flowchart') flowchart = c.input;
+  }
+
+  if (!scaffold) throw new Error('no scaffold tool call in stream');
+  return { scaffold, chart, flowchart };
 }
 
-export function pickTier(mastery: number): { num: number; name: ScaffoldCall['scaffold'] } {
+export function pickTier(mastery: number): { num: number; name: ScaffoldName } {
   if (mastery >= 0.85) return { num: 5, name: 'WikiDraft' };
   if (mastery >= 0.65) return { num: 4, name: 'BareLongAnswer' };
   if (mastery >= 0.45) return { num: 3, name: 'GuidedShortAnswer' };
@@ -66,7 +102,7 @@ export function pickTier(mastery: number): { num: number; name: ScaffoldCall['sc
   return { num: 1, name: 'WorkedExample' };
 }
 
-export const TIER_COLORS: Record<ScaffoldCall['scaffold'], string> = {
+export const TIER_COLORS: Record<ScaffoldName, string> = {
   WorkedExample: 'bg-tier-1',
   ScaffoldedMCQ: 'bg-tier-2',
   GuidedShortAnswer: 'bg-tier-3',
