@@ -12,7 +12,7 @@ const isActive = (path: string) => route.path === path || (path !== '/' && route
       </router-link>
       <div class="flex gap-6 text-small">
         <router-link to="/" class="text-link"
-                     :class="isActive('/') && !isActive('/module') && !isActive('/dictionary') && !isActive('/demo') && !isActive('/about') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
+                     :class="isActive('/') && !isActive('/module') && !isActive('/dictionary') && !isActive('/demo') && !isActive('/about') && !isActive('/architecture') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
           Home
         </router-link>
         <router-link to="/module/central-tendency" class="text-link"
@@ -26,6 +26,10 @@ const isActive = (path: string) => route.path === path || (path !== '/' && route
         <router-link to="/demo/autoplay" class="text-link"
                      :class="isActive('/demo') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
           Autoplay
+        </router-link>
+        <router-link to="/architecture" class="text-link"
+                     :class="isActive('/architecture') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
+          Architecture
         </router-link>
         <router-link to="/about" class="text-link"
                      :class="isActive('/about') ? 'text-ink' : 'text-ink-muted hover:text-ink'">

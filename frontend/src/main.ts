@@ -7,12 +7,14 @@ import DictionaryView from './views/DictionaryView.vue';
 import AutoplayView from './views/AutoplayView.vue';
 import HomeView from './views/HomeView.vue';
 import AboutView from './views/AboutView.vue';
+import ArchitectureView from './views/ArchitectureView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: HomeView },
     { path: '/about', component: AboutView },
+    { path: '/architecture', component: ArchitectureView },
     { path: '/module/:concept_id', component: ModuleView, props: true },
     { path: '/dictionary', component: DictionaryView },
     { path: '/dictionary/:term', component: DictionaryView, props: true },
