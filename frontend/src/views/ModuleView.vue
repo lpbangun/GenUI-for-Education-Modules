@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import LMSShell from '../components/LMSShell.vue';
 import Scaffolds from '../components/Scaffolds.vue';
 import { streamScaffold, pickTier, type ScaffoldResult } from '../lib/api';
+import { pickVisualization, type VizDemand, type VizHistoryEntry } from '../lib/viz-selector';
+import vizDemandMap from '../data/concept-viz-demand.json';
 
 const props = defineProps<{ concept_id: string }>();
 
@@ -11,20 +13,37 @@ const result = ref<ScaffoldResult | null>(null);
 const loading = ref(false);
 const error = ref<string | null>(null);
 
+// History accumulates real turns. Each successful generation appends an entry
+// reflecting what the prior turn produced — that's what the next selector call sees.
+const history = ref<VizHistoryEntry[]>([]);
+
+const vizDemand = computed<VizDemand>(() => {
+  const map = vizDemandMap as Record<string, VizDemand>;
+  return map[props.concept_id] ?? 'definition';
+});
+
+const decision = computed(() => pickVisualization({
+  concept: { id: props.concept_id, viz_demand: vizDemand.value },
+  mastery: mastery.value,
+  history: history.value,
+}));
+
 async function fetchScaffold() {
   loading.value = true;
   error.value = null;
   result.value = null;
+  const d = decision.value;
   try {
-    result.value = await streamScaffold({ conceptId: props.concept_id, mastery: mastery.value });
+    const r = await streamScaffold({ conceptId: props.concept_id, mastery: mastery.value, vizDecision: d });
+    result.value = r;
+    const producedKind = r.chart ? 'chart' : r.flowchart ? 'flowchart' : 'none';
+    history.value.push({ viz_kind: producedKind, correct: true });
   } catch (e) {
     error.value = (e as Error).message;
   } finally {
     loading.value = false;
   }
 }
-
-fetchScaffold();
 </script>
 
 <template>
@@ -46,6 +65,10 @@ fetchScaffold();
                 class="text-ink hover:underline disabled:opacity-40">
           {{ loading ? 'generating…' : 'generate scaffold →' }}
         </button>
+      </div>
+      <div class="text-micro text-ink-subtle mt-2 font-mono">
+        viz_demand={{ vizDemand }} · selector → {{ decision.kind }}
+        <span class="text-ink-muted">· {{ decision.reason }}</span>
       </div>
     </div>
 

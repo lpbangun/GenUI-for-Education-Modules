@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /module/
+Disallow: /api/
+Disallow: /_/
