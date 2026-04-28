@@ -2,6 +2,8 @@
 // and surfaces the scaffold tool call PLUS any visualization tool calls
 // (render_chart, render_flowchart) as they arrive.
 
+import type { VizDecision } from './viz-selector';
+
 const BACKEND_BASE = import.meta.env.VITE_BACKEND_BASE
   ?? (window.location.hostname === 'localhost' ? 'http://localhost:3001' : '/_/backend');
 
@@ -21,9 +23,23 @@ export interface ScaffoldResult {
 
 const SCAFFOLD_NAMES = new Set<string>(['WorkedExample', 'ScaffoldedMCQ', 'GuidedShortAnswer', 'BareLongAnswer', 'WikiDraft']);
 
+function vizClause(decision: VizDecision, mastery: number): string {
+  if (decision.kind === 'none') {
+    return 'Do NOT call any visualization tool. The Visualization Selector deliberately omitted viz for this turn — the learner should reason from prose alone.';
+  }
+  if (decision.kind === 'chart') {
+    return 'ALSO call render_chart in the SAME response. Pick chart_type appropriate to the concept — histogram for shape, bar for group comparison, scatter for relationship, time_series for change over time, box for spread comparison. Include a non-empty values array (numbers for histogram/box; {x,y,label,highlight} objects otherwise), caption, and provenance like "Synthetic data · cohort 2024".';
+  }
+  if (mastery >= 0.85) {
+    return 'ALSO call render_flowchart with flowchart_type cycle showing the wiki contribution routine (claim → support → question → revise) — 4 nodes. This visualizes the PROCESS the contributor is being inducted into, not the concept content. Include caption + provenance.';
+  }
+  return 'ALSO call render_flowchart with flowchart_type linear or decision (3–5 nodes) showing the sequential reasoning routine for this concept. Include edges connecting node ids, caption, and provenance.';
+}
+
 export async function streamScaffold(opts: {
   conceptId: string;
   mastery: number;
+  vizDecision: VizDecision;
   signal?: AbortSignal;
 }): Promise<ScaffoldResult> {
   const tier = pickTier(opts.mastery);
@@ -31,7 +47,7 @@ export async function streamScaffold(opts: {
 
 You MUST:
 1. Call exactly the ${tier.name} tool — do not respond with prose alone, do not pick a different tier.
-2. ALSO call render_chart OR render_flowchart in the SAME response if a visualization would help interpretation. Most data-fluency concepts benefit from one. Use render_chart for distributions/comparisons (chart_type: histogram, bar, box, scatter, or time_series). Use render_flowchart for funnels, decision logic, or sequential routines (flowchart_type: linear, decision, or cycle). Always provide caption and provenance. The dataset_ref can be a synthetic id like "synthetic_${opts.conceptId}_v1".`;
+2. ${vizClause(opts.vizDecision, opts.mastery)}`;
 
   const res = await fetch(`${BACKEND_BASE}/api/chat`, {
     method: 'POST',
@@ -91,6 +107,12 @@ You MUST:
   }
 
   if (!scaffold) throw new Error('no scaffold tool call in stream');
+
+  // Enforce the selector decision client-side — drop any rogue viz the model emitted.
+  if (opts.vizDecision.kind === 'none') { chart = null; flowchart = null; }
+  if (opts.vizDecision.kind === 'chart') flowchart = null;
+  if (opts.vizDecision.kind === 'flowchart') chart = null;
+
   return { scaffold, chart, flowchart };
 }
 
