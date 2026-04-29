@@ -47,7 +47,7 @@ function play() {
       return;
     }
     stepIndex.value++;
-  }, 18000);
+  }, 12000);
 }
 
 function stop() {
@@ -69,11 +69,11 @@ onMounted(() => {/* show first step */});
     <div class="max-w-[1200px] mx-auto px-12 py-16">
       <div class="flex justify-between items-baseline">
         <div>
-          <div class="text-micro text-ink-subtle uppercase">Autoplay · 90-second committee demo · central-tendency</div>
+          <div class="text-micro text-ink-subtle uppercase">Autoplay · 60-second committee demo · central-tendency</div>
           <h1 class="text-h1 text-ink mt-4">The fade, observable</h1>
         </div>
         <div class="flex gap-4 items-center">
-          <button v-if="!playing" @click="play" class="text-ink hover:underline text-body">▶ play (~90s)</button>
+          <button v-if="!playing" @click="play" class="text-ink hover:underline text-body">▶ play (~60s)</button>
           <button v-else @click="stop" class="text-ink hover:underline text-body">■ stop</button>
         </div>
       </div>
