@@ -3,7 +3,7 @@
 <template>
   <div class="bg-paper min-h-full">
     <div class="max-w-[1200px] mx-auto px-12 py-16">
-      <div class="text-micro text-ink-subtle uppercase">Capstone POC · 2026</div>
+      <div class="text-micro text-ink-subtle uppercase">Capstone POC · 2026 · A project by Logani B</div>
       <h1 class="text-h1 text-ink mt-4">Data fluency module</h1>
       <p class="text-body text-ink-muted mt-6 max-w-[640px]">
         A self-paced module for Harvard staff that fades scaffolding as the learner demonstrates mastery.
@@ -23,7 +23,7 @@
         </li>
         <li>
           <router-link to="/demo/autoplay" class="text-ink hover:underline">
-            Watch a 90-second autoplay (committee demo) →
+            Watch a 60-second autoplay (committee demo) →
           </router-link>
         </li>
       </ul>

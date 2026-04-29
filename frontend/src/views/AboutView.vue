@@ -84,7 +84,7 @@
       </p>
 
       <p class="text-small text-ink-subtle mt-16">
-        v1.2 · capstone POC · all data synthetic · no real Harvard student or staff records used.
+        v1.2 · capstone POC · built by Logani B · all data synthetic · no real Harvard student or staff records used.
       </p>
     </div>
   </div>
