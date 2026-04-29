@@ -12,6 +12,12 @@ const checkpoints = bundle as Array<{
   scaffold: { name: string; input: any };
   chart: any | null;
   flowchart: any | null;
+  viz_decision?: { kind: string; reason: string };
+  terms_surfaced: string[];
+  dictionary_handoff:
+    | { kind: 'passive'; termsSurfaced: string[] }
+    | { kind: 'active'; candidateTerm: string; surfacedTerms: string[]; handoffQuestion: string }
+    | { kind: 'constructive'; targetTerm: string; draftTemplate: any };
 }>;
 
 const stepIndex = ref(0);
@@ -85,11 +91,27 @@ onMounted(() => {/* show first step */});
             mastery = {{ checkpoints[stepIndex].mastery.toFixed(2) }} → tier {{ pickTier(checkpoints[stepIndex].mastery).num }}
           </span>
         </div>
+        <div v-if="checkpoints[stepIndex]?.viz_decision" class="mt-2 text-micro text-ink-subtle font-mono">
+          viz selector → {{ checkpoints[stepIndex].viz_decision!.kind }} · {{ checkpoints[stepIndex].viz_decision!.reason }}
+        </div>
       </div>
 
       <div class="mt-12 max-w-[820px]">
         <Scaffolds v-if="stepIndex < checkpoints.length" :result="currentResult()" />
-        <div v-else class="bg-surface p-8">
+        <div v-if="stepIndex < checkpoints.length && checkpoints[stepIndex]?.dictionary_handoff" class="mt-6 max-w-[820px]">
+          <div class="text-micro text-ink-subtle uppercase">Dictionary handoff</div>
+          <div class="text-small text-ink-muted mt-2 font-mono">
+            kind: {{ checkpoints[stepIndex].dictionary_handoff.kind }} ·
+            terms: {{ checkpoints[stepIndex].terms_surfaced?.join(', ') || '(none)' }}
+            <template v-if="checkpoints[stepIndex].dictionary_handoff.kind === 'active'">
+              · candidate: {{ (checkpoints[stepIndex].dictionary_handoff as any).candidateTerm }}
+            </template>
+            <template v-else-if="checkpoints[stepIndex].dictionary_handoff.kind === 'constructive'">
+              · target: {{ (checkpoints[stepIndex].dictionary_handoff as any).targetTerm }}
+            </template>
+          </div>
+        </div>
+        <div v-else-if="stepIndex >= checkpoints.length" class="bg-surface p-8">
           <div class="text-h2 text-ink">Done.</div>
           <p class="text-body text-ink-muted mt-4">
             The committee just watched the same concept render through five distinct scaffolds, each picked deterministically by
