@@ -3,272 +3,269 @@
     "mastery": 0.1,
     "label": "Brand new learner",
     "tier_name": "WorkedExample",
-    "viz_hint": "render_chart with chart_type histogram showing a right-skewed salary distribution; ~25 inline numeric values; caption + provenance.",
+    "simulated_history": [],
+    "viz_decision": {
+      "kind": "chart",
+      "reason": "rule-4: concept demands distribution → chart"
+    },
     "scaffold": {
       "name": "WorkedExample",
       "input": {
-        "title": "Choosing Between Mean and Median: A Case of Skewed Salary Data",
-        "setup_prose": "As an analyst in the Harvard Office of Institutional Research, you are asked to report the 'typical' annual salary for a specific group of newly hired junior research staff. You have been provided with a dataset of 25 salaries. You notice that while most staff earn between $60,000 and $80,000, there are a few highly specialized roles with salaries exceeding $150,000. This is creating a 'right-skewed' distribution.",
+        "title": "Using Mean to Summarize Donation Data",
+        "setup_prose": "A development officer in the Faculty of Arts and Sciences is reviewing donation amounts from a recent fundraising campaign. They want to understand the 'typical' gift size to set realistic goals for next year's outreach.",
         "worked_steps": [
-          "Step 1: Calculate the Mean. Add all 25 salary values and divide by 25. Note that the mean is 'pulled' toward the high end by the few very large salaries.",
-          "Step 2: Identify the Median. Order the 25 salaries from least to greatest and select the middle (13th) value. This value is not affected by how high the extreme salaries are.",
-          "Step 3: Compare. In this right-skewed distribution, the mean > median. For the purpose of describing the 'typical' staff salary, the median is the more representative metric because it is not inflated by the high-earners."
+          "Step 1: Inspect the donation histogram — because there are many small gifts and a few very large ones, the data is not perfectly symmetrical.",
+          "Step 2: Calculate the mean of all donation amounts — because the mean balances the total value of all gifts, it provides a mathematical center for the distribution.",
+          "Step 3: Compare the mean to individual data points — because the mean represents a single point of central tendency, it acts as a reliable benchmark to distinguish typical donors from major gift prospects."
         ],
-        "interpretation": "The learner understands that the mean is sensitive to extreme values, while the median provides a more robust representation of the 'typical' value in a skewed distribution. Self-report: I understand why the median is preferred over the mean for salary distributions."
+        "interpretation": "In this scenario, the 'mean' (the average) provides a single number that summarizes the typical donation size. By identifying this central tendency, the development officer can quickly communicate typical donor behavior to stakeholders, helping them understand what an 'average' contribution looks like across the donor pool, rather than focusing on the extreme outliers who might skew the perception."
       }
     },
     "chart": {
       "chart_type": "histogram",
-      "dataset_ref": "synthetic_staff_salaries_2024",
-      "field_x": "Salary ($k)",
-      "field_y": "Count of Staff",
+      "dataset_ref": "FAS_campaign_data_2023",
+      "field_x": "donation_amount",
+      "field_y": "number_of_donors",
       "values": [
-        62,
-        64,
-        65,
-        66,
-        67,
-        68,
-        68,
-        69,
-        70,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        78,
-        80,
-        82,
-        85,
-        95,
-        110,
-        135,
-        155,
-        160
+        {
+          "x": 50,
+          "y": 120
+        },
+        {
+          "x": 150,
+          "y": 85
+        },
+        {
+          "x": 250,
+          "y": 40
+        },
+        {
+          "x": 350,
+          "y": 15
+        },
+        {
+          "x": 450,
+          "y": 8
+        },
+        {
+          "x": 550,
+          "y": 2
+        }
       ],
-      "caption": "Distribution of junior research staff salaries (n=25). Note the long tail toward the right.",
-      "provenance": "Synthetic data · Harvard OIR Cohort 2024"
+      "caption": "Distribution of individual donation amounts from the recent FAS campaign.",
+      "provenance": "Office of Development and Alumni Relations, 2023 Internal Report."
     },
-    "flowchart": null
+    "flowchart": null,
+    "terms_surfaced": [],
+    "dictionary_handoff": {
+      "kind": "passive",
+      "termsSurfaced": []
+    }
   },
   {
     "mastery": 0.3,
     "label": "Recognizes the pattern",
     "tier_name": "ScaffoldedMCQ",
-    "viz_hint": "render_chart with chart_type bar showing mean vs median side by side using {x, y, label, highlight} objects.",
+    "simulated_history": [
+      {
+        "viz_kind": "none",
+        "correct": true
+      }
+    ],
+    "viz_decision": {
+      "kind": "chart",
+      "reason": "rule-4: concept demands distribution → chart"
+    },
     "scaffold": {
       "name": "ScaffoldedMCQ",
       "input": {
-        "title": "Central Tendency in Fundraising Data",
-        "setup_prose": "You are analyzing donation data for a recent fundraising push. The dataset consists of 500 gifts. Due to a small number of very high-net-worth donors, the distribution is highly right-skewed. You need to select the most appropriate metric to describe the 'typical' gift to stakeholders.",
-        "artifact_summary_stats": "mastery: 0.30",
-        "prompt": "As a data analyst in the University Development Office, you are asked to report the 'typical' donation amount for an annual fundraising campaign. You observe that while most gifts are between $50 and $250, there are a few major donors who contributed $10,000+. Given this positive skew, which measure of central tendency should you report to the Dean, and why?",
+        "title": "Defining 'Typical' Advising Loads",
+        "setup_prose": "You are reviewing quarterly data on how many hours your staff spends in direct undergraduate advising. You need to report a single figure that represents the 'typical' advising load for your department's upcoming budget planning meeting.",
+        "artifact_summary_stats": "Total staff surveyed: 57. Median: 14 hours/week. Mean: 13.8 hours/week.",
+        "observation_prompt": "Before answering, take a moment: what do you notice about the distribution of hours?",
+        "observation_options": [
+          "The values are clustered around the center.",
+          "The distribution is skewed to one side.",
+          "The data is perfectly symmetrical."
+        ],
+        "prompt": "As an advising administrator looking at this distribution, which metric of central tendency would you use to describe the 'typical' weekly advising load to your colleagues, and why?",
         "options": [
           {
-            "id": "A",
-            "text": "Use the mean, because it accounts for the exact dollar amount of every single donation.",
+            "id": "mean",
+            "text": "The mean (13.8 hours) best represents the 'typical' week for this office.",
             "correct": false,
-            "feedback": "While the mean is a common average, in skewed data like this, it is heavily influenced by a few high-gift donors, potentially misrepresenting the 'typical' donor experience."
+            "feedback": "Selecting the mean is common because it represents the arithmetic average of all hours, but this interpretation overlooks how the distribution's shape might be influenced by a few staff members with very high or low advising loads."
           },
           {
-            "id": "B",
-            "text": "Use the median, because the distribution is skewed and the mean is being pulled by outliers.",
+            "id": "median",
+            "text": "The median (14 hours) is the best indicator of the 'typical' week because it identifies the middle point of our staff efforts.",
             "correct": true,
-            "feedback": "Correct! Because the data is skewed by a few extremely large gifts, the mean is artificially inflated. The median provides a much more accurate reflection of what a typical donor gives."
+            "feedback": "Because this distribution is relatively balanced and centered, the median (14 hours) serves as a robust indicator of the middle, effectively splitting the staff group into two equal halves regardless of the specific range."
           },
           {
-            "id": "C",
-            "text": "Use the mode, because it represents the most common donation amount.",
+            "id": "mode",
+            "text": "The mode is the most reliable metric because it identifies the highest peak in the chart.",
             "correct": false,
-            "feedback": "The mode is the most frequent value, which may not accurately represent the center of this dataset. We need a measure of center that is less sensitive to extreme outliers."
+            "feedback": "One might choose this if they look only at the tallest bar (11-15 hours), assuming the most frequent experience equates to the 'typical' experience, even if it ignores the full scope of the dataset."
+          },
+          {
+            "id": "range",
+            "text": "The range (0-30 hours) is the most accurate way to describe our standard advising capacity.",
+            "correct": false,
+            "feedback": "This assumes that the range itself is the primary indicator of typicality, though it only tells us about the extremes rather than where the majority of our staff's time is actually spent."
           }
         ],
-        "hint": "Remember: The mean is highly sensitive to extreme values (outliers), which 'pull' it toward the tail of a distribution. The median is more robust, representing the middle-most value regardless of how high or low the extreme values are."
+        "hint": "Focus on the peak of the bars. Does the most frequent value (mode) align with the middle point (median) of the distribution?"
       }
     },
     "chart": {
-      "chart_type": "bar",
-      "dataset_ref": "fundraising_data_2024",
-      "field_x": "Metric",
-      "field_y": "Value ($)",
+      "chart_type": "histogram",
+      "dataset_ref": "staff_advising_hours_q3",
       "values": [
         {
-          "x": "Mean",
-          "y": 850,
-          "label": "Mean (Inflated by Outliers)",
-          "highlight": false
+          "x": "0-5",
+          "y": 4
         },
         {
-          "x": "Median",
-          "y": 125,
-          "label": "Median (Typical Gift)",
-          "highlight": true
+          "x": "6-10",
+          "y": 12
+        },
+        {
+          "x": "11-15",
+          "y": 18
+        },
+        {
+          "x": "16-20",
+          "y": 15
+        },
+        {
+          "x": "21-25",
+          "y": 6
+        },
+        {
+          "x": "26-30",
+          "y": 2
         }
       ],
-      "caption": "Comparison of Mean vs. Median donation amounts in a right-skewed distribution.",
-      "provenance": "Synthetic data · Development Office Cohort 2024"
+      "caption": "Distribution of weekly hours spent on undergraduate advising sessions by staff members in the Dean's office.",
+      "provenance": "Office of Undergraduate Education, Internal Systems Audit 2023."
     },
-    "flowchart": null
+    "flowchart": null,
+    "terms_surfaced": [],
+    "dictionary_handoff": {
+      "kind": "passive",
+      "termsSurfaced": []
+    }
   },
   {
     "mastery": 0.55,
     "label": "Articulating their own interpretation",
     "tier_name": "GuidedShortAnswer",
-    "viz_hint": "render_flowchart with flowchart_type linear: a 3-4 node funnel/funnel-like reasoning path (e.g., notice the gap → infer skew → pick a measure). Use the See-Think-Wonder routine as the structure.",
+    "simulated_history": [
+      {
+        "viz_kind": "chart",
+        "correct": true
+      }
+    ],
+    "viz_decision": {
+      "kind": "none",
+      "reason": "rule-5: previous turn already used chart → vary or omit"
+    },
     "scaffold": {
       "name": "GuidedShortAnswer",
       "input": {
-        "title": "Choosing Central Tendency in Donor Analysis",
-        "setup_prose": "As a development officer, you are preparing a report on alumni giving habits. Your team needs to summarize the 'typical' gift size for the annual report. You have a dataset where most gifts are small, but a small handful are extremely large.",
-        "prompt": "You are analyzing the recent Harvard College Fund campaign results. You find that 95% of alumni donated between $50 and $200, but a few 'mega-donors' gave gifts exceeding $50,000. Given this highly skewed data, would you report the mean or the median donation amount to the Dean, and why?",
+        "title": "Interpreting Course Feedback",
+        "setup_prose": "You are an Academic Coordinator reviewing student feedback for a required undergraduate course. You have a table showing the distribution of numerical scores (1-5 scale) across all sections of the course, and you need to determine the 'typical' student experience to present at a faculty meeting.",
+        "prompt": "Looking at this summary report of course evaluation scores from your department, how would you interpret the 'typical' student experience? Please structure your response by identifying your conclusion, providing the supporting evidence, and framing one follow-up question.",
         "consider_scaffolds": [
-          "Check if the distribution of gifts has a long tail.",
-          "Consider if one massive donation could pull the average away from the 'typical' donor.",
-          "Decide whether the mean or median better reflects the experience of the average alum."
+          "What is the central tendency of the student evaluation scores?",
+          "Which specific data points lead you to identify that as the central tendency?",
+          "What additional information about the distribution would help you understand if the central tendency is a fair representation of the class experience?"
         ],
-        "rubric_primary_criterion": "Demonstrates understanding that the median is more resistant to outliers/skew than the mean."
+        "rubric_primary_criterion": "The response should demonstrate an ability to select an appropriate measure of central tendency and connect that choice to the specific characteristics of the data provided."
       }
     },
     "chart": null,
-    "flowchart": {
-      "provenance": "Synthetic data · cohort 2024",
-      "nodes": [
-        {
-          "id": "see",
-          "annotation": "Identify the distribution shape or outliers.",
-          "label": "See the Data Distribution"
-        },
-        {
-          "label": "Think About Skewness",
-          "annotation": "Evaluate the impact of extreme values.",
-          "id": "think"
-        },
-        {
-          "label": "Wonder: What is typical?",
-          "annotation": "Determine which measure represents the 'center' best.",
-          "id": "wonder"
-        },
-        {
-          "id": "decide",
-          "label": "Select Measure",
-          "annotation": "Select Mean or Median."
-        }
-      ],
-      "caption": "Reasoning path for choosing an appropriate central tendency measure. Synthetic data · cohort 2024",
-      "edges": [
-        {
-          "from": "see",
-          "to": "think"
-        },
-        {
-          "from": "think",
-          "to": "wonder"
-        },
-        {
-          "from": "wonder",
-          "to": "decide"
-        }
-      ],
-      "flowchart_type": "linear"
+    "flowchart": null,
+    "terms_surfaced": [],
+    "dictionary_handoff": {
+      "kind": "passive",
+      "termsSurfaced": []
     }
   },
   {
     "mastery": 0.75,
     "label": "Working without scaffolds",
     "tier_name": "BareLongAnswer",
-    "viz_hint": "render_chart with chart_type time_series showing hypothetical year-over-year averages with one anomalous year highlighted; ~6-8 inline {x, y, label, highlight} objects.",
+    "simulated_history": [
+      {
+        "viz_kind": "none",
+        "correct": true
+      }
+    ],
+    "viz_decision": {
+      "kind": "none",
+      "reason": "rule-3: constructive tier → learner constructs interpretation, no visual crutch"
+    },
     "scaffold": {
       "name": "BareLongAnswer",
       "input": {
-        "title": "Choosing Central Tendency in Fundraising Analytics",
-        "setup_prose": "You are an analyst in the Office of Development and Alumni Relations. You have been tasked with summarizing the performance of the Annual Fund. The following time series chart displays the average gift amount ($) received per donor from 2018 to 2024. Note the significant anomaly in 2021 caused by a single, multi-million dollar 'legacy' gift that is not representative of typical donor behavior.",
-        "prompt": "Based on the data shown in the chart below, you are preparing a briefing for the Dean of Admissions regarding the 'Alumni Giving Contribution' dataset over the last seven years. \n\n1. Identify the measure of central tendency (mean or median) that better represents the 'typical' yearly contribution amount, given the presence of the outlier in 2021. \n2. Explain why this measure is more robust in this specific context.\n3. How would using the other measure potentially mislead the Dean's interpretation of recent fundraising trends?",
-        "rubric_primary_criterion": "Ability to justify the choice of median over mean in the presence of extreme outliers (skewed data)."
+        "title": "Evaluating Typical Class Size",
+        "setup_prose": "You are reviewing enrollment data for a set of undergraduate seminars and large lecture courses within your department. While the mean class size is often used for high-level reporting, some faculty members are concerned that this figure doesn't accurately reflect the experience of the average student. You need to provide a recommendation on which measure best captures the 'typical' enrollment.",
+        "prompt": "Considering the distribution of course enrollment sizes across your department, how would you decide whether the mean or the median provides a more accurate representation of the 'typical' class size? Support your argument by explaining how specific features of your department's enrollment data might influence this choice.",
+        "rubric_primary_criterion": "The learner demonstrates logical coherence by connecting the concept of central tendency (mean vs. median) to the shape of data distributions (e.g., presence of outliers or skewness)."
       }
     },
-    "chart": {
-      "chart_type": "time_series",
-      "dataset_ref": "Annual Fund Gift Data",
-      "field_x": "x",
-      "field_y": "y",
-      "values": [
-        {
-          "x": 2018,
-          "y": 120,
-          "label": "2018"
-        },
-        {
-          "x": 2019,
-          "y": 135,
-          "label": "2019"
-        },
-        {
-          "x": 2020,
-          "y": 125,
-          "label": "2020"
-        },
-        {
-          "x": 2021,
-          "y": 850,
-          "label": "2021",
-          "highlight": true
-        },
-        {
-          "x": 2022,
-          "y": 140,
-          "label": "2022"
-        },
-        {
-          "x": 2023,
-          "y": 150,
-          "label": "2023"
-        },
-        {
-          "x": 2024,
-          "y": 155,
-          "label": "2024"
-        }
-      ],
-      "caption": "Average Annual Gift per Donor (2018-2024). Note the 2021 anomaly representing an extreme outlier.",
-      "provenance": "Synthetic data · Cohort 2024"
-    },
-    "flowchart": null
+    "chart": null,
+    "flowchart": null,
+    "terms_surfaced": [],
+    "dictionary_handoff": {
+      "kind": "passive",
+      "termsSurfaced": []
+    }
   },
   {
     "mastery": 0.92,
     "label": "Contributing to the wiki",
     "tier_name": "WikiDraft",
-    "viz_hint": "render_flowchart with flowchart_type cycle: 4-node loop showing claim → support → question → revise. This is the wiki-writing routine the contributor is being invited into.",
+    "simulated_history": [],
+    "viz_decision": {
+      "kind": "flowchart",
+      "reason": "rule-2: WikiDraft tier → contribution-routine flowchart (process, not content)"
+    },
     "scaffold": {
       "name": "WikiDraft",
       "input": {
-        "title": "Drafting Institutional Reporting Standards",
-        "framing_prose": "As an experienced analyst in the Office of Institutional Research, you have successfully mastered the nuances of when to report the mean versus the median in skewed distributions—a skill critical for maintaining integrity in our reports. Your colleagues rely on your expertise to ensure our data narratives are precise.\n\nWe are inviting you to draft a new entry for our internal 'Data Reporting Standards' wiki. Please draft a 'Best Practice' guide that explains the institutional logic for choosing between these two measures when communicating tuition or financial aid disbursement trends to the Harvard Corporation. Your goal is to provide clear, actionable guidance for junior analysts who may be prone to reporting only the mean, regardless of skewness.",
-        "target_dictionary_term": "Central Tendency: Mean vs. Median for Skewed Institutional Data"
+        "title": "Contributing to our Data Dictionary: Central Tendency",
+        "framing_prose": "You have demonstrated a high level of data fluency regarding measures of central tendency. We would like to invite you to contribute your expertise to our cross-school dictionary. Your draft will be reviewed by our editorial team to ensure cross-school clarity before inclusion.",
+        "target_dictionary_term": "central-tendency",
+        "draft_template_hint": "1. Definition in your own words. 2. A Harvard-specific use case. 3. Common pitfalls in interpretation."
       }
     },
     "chart": null,
     "flowchart": {
+      "provenance": "Harvard Data Fluency Editorial Board Protocols",
       "flowchart_type": "cycle",
       "nodes": [
         {
+          "label": "Define Concept",
           "id": "claim",
-          "label": "Make Claim"
+          "annotation": "Propose a new term or update."
         },
         {
-          "id": "support,label:",
-          "label": "Add Evidence"
+          "annotation": "Provide context or evidence.",
+          "label": "Provide Context",
+          "id": "support,label:"
         },
         {
           "id": "question,label:",
-          "label": "Peer Review"
+          "label": "Review & Refine",
+          "annotation": "Peer/Expert review."
         },
         {
+          "label": "Publish Entry",
           "id": "revise,label:",
-          "label": "Refine Entry"
+          "annotation": "Finalize entry."
         }
       ],
       "edges": [
@@ -289,8 +286,12 @@
           "to": "claim"
         }
       ],
-      "caption": "The Iterative Wiki Contribution Workflow. Synthetic data · cohort 2024",
-      "provenance": "Synthetic data · cohort 2024"
+      "caption": "The collaborative editorial workflow for our institutional data dictionary."
+    },
+    "terms_surfaced": [],
+    "dictionary_handoff": {
+      "kind": "passive",
+      "termsSurfaced": []
     }
   }
 ]

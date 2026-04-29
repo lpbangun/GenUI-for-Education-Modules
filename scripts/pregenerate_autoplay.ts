@@ -1,70 +1,90 @@
 #!/usr/bin/env bun
-// Pre-generate the autoplay bundle: 5 mastery checkpoints × 1 LLM call each.
-// Saves the result as a static JSON the frontend ships with — no per-play LLM cost.
-// Re-run only when content needs refreshing.
+// Pre-generate the autoplay bundle using composeTurn — same code path the
+// live module uses (DD-007). Re-run only when content needs refreshing.
 
-import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { generateText } from 'ai';
 import { model } from './generators/_llm';
-import { allTools, TOOL_NAMES } from '../backend/tools';
+import { allTools } from '../backend/tools';
+import { composeTurn } from '../lib/turn-composer';
+import type { VizDemand, VizHistoryEntry } from '../lib/viz-selector';
 
-const SCAFFOLD_NAMES = new Set(['WorkedExample', 'ScaffoldedMCQ', 'GuidedShortAnswer', 'BareLongAnswer', 'WikiDraft']);
+const CONCEPT_ID = 'central-tendency';
 
-const CHECKPOINTS = [
-  { mastery: 0.10, label: 'Brand new learner', tier_name: 'WorkedExample', viz_hint: 'render_chart with chart_type histogram showing a right-skewed salary distribution; ~25 inline numeric values; caption + provenance.' },
-  { mastery: 0.30, label: 'Recognizes the pattern', tier_name: 'ScaffoldedMCQ', viz_hint: 'render_chart with chart_type bar showing mean vs median side by side using {x, y, label, highlight} objects.' },
-  { mastery: 0.55, label: 'Articulating their own interpretation', tier_name: 'GuidedShortAnswer', viz_hint: 'render_flowchart with flowchart_type linear: a 3-4 node funnel/funnel-like reasoning path (e.g., notice the gap → infer skew → pick a measure). Use the See-Think-Wonder routine as the structure.' },
-  { mastery: 0.75, label: 'Working without scaffolds', tier_name: 'BareLongAnswer', viz_hint: 'render_chart with chart_type time_series showing hypothetical year-over-year averages with one anomalous year highlighted; ~6-8 inline {x, y, label, highlight} objects.' },
-  { mastery: 0.92, label: 'Contributing to the wiki', tier_name: 'WikiDraft', viz_hint: 'render_flowchart with flowchart_type cycle: 4-node loop showing claim → support → question → revise. This is the wiki-writing routine the contributor is being invited into.' },
+const CHECKPOINTS: Array<{ mastery: number; label: string; tier_name: string; simulated_history: VizHistoryEntry[] }> = [
+  { mastery: 0.10, label: 'Brand new learner', tier_name: 'WorkedExample', simulated_history: [] },
+  { mastery: 0.30, label: 'Recognizes the pattern', tier_name: 'ScaffoldedMCQ', simulated_history: [{ viz_kind: 'none', correct: true }] },
+  { mastery: 0.55, label: 'Articulating their own interpretation', tier_name: 'GuidedShortAnswer', simulated_history: [{ viz_kind: 'chart', correct: true }] },
+  { mastery: 0.75, label: 'Working without scaffolds', tier_name: 'BareLongAnswer', simulated_history: [{ viz_kind: 'none', correct: true }] },
+  { mastery: 0.92, label: 'Contributing to the wiki', tier_name: 'WikiDraft', simulated_history: [] },
 ];
 
-async function generateCheckpoint(cp: typeof CHECKPOINTS[number]) {
-  const prompt = `The learner has mastery=${cp.mastery.toFixed(2)} on the "central-tendency" concept (which teaches when to use mean vs median, especially for skewed distributions). The Scaffold Selector chose tier (${cp.tier_name}). Generate the next scaffold for this learner. Make the setup_prose a concrete Harvard-staff scenario (admissions, advising, giving, course evaluation, or institutional research).
-
-You MUST:
-1. Call exactly the ${cp.tier_name} tool — do not respond with prose alone, do not pick a different tier.
-2. ALSO call this visualization in the SAME response: ${cp.viz_hint}
-   - render_chart MUST include a non-empty "values" array (numbers for histogram/box; {x,y,label,highlight} objects for bar/scatter/time_series).
-   - render_flowchart MUST include 3-6 nodes and the edges connecting them (each edge has from+to ids matching node ids).
-   - Both MUST include caption and provenance ("Synthetic data · cohort 2024" style).`;
-
-  const result = await generateText({
-    model,
-    system: 'You are a Content Generator for a Harvard staff data fluency module. You write voice-controlled scaffolds and pair them with one inline visualization (chart or flowchart) when it helps interpretation.',
-    prompt,
-    tools: allTools,
-    toolChoice: 'required',
-    maxOutputTokens: 2400,
-  });
-
-  const calls = result.toolCalls ?? [];
-  let scaffold: any = null;
-  let chart: any = null;
-  let flowchart: any = null;
-  for (const c of calls) {
-    if (SCAFFOLD_NAMES.has(c.toolName)) scaffold = { name: c.toolName, input: c.input };
-    else if (c.toolName === 'render_chart') chart = c.input;
-    else if (c.toolName === 'render_flowchart') flowchart = c.input;
-  }
-  if (!scaffold) throw new Error(`no scaffold in checkpoint mastery=${cp.mastery}`);
-  return { ...cp, scaffold, chart, flowchart };
+function readVizDemand(conceptId: string): VizDemand {
+  const path = join(import.meta.dir, '..', 'content', 'concepts', `${conceptId}.md`);
+  const src = readFileSync(path, 'utf-8');
+  const m = src.match(/viz_demand:\s*(\w+)/);
+  if (!m) throw new Error(`viz_demand missing from ${conceptId}.md — run scripts/enrich_viz_demand.ts`);
+  return m[1] as VizDemand;
 }
 
 async function main() {
-  console.log(`Pre-generating ${CHECKPOINTS.length} checkpoints (~$0.005 each)...`);
+  const vizDemand = readVizDemand(CONCEPT_ID);
+  console.log(`Concept "${CONCEPT_ID}" viz_demand=${vizDemand}`);
+  console.log(`Pre-generating ${CHECKPOINTS.length} checkpoints...`);
+
+  const surfacedTerms: string[] = [];
   const out: any[] = [];
+
   for (const cp of CHECKPOINTS) {
     process.stdout.write(`  ${cp.tier_name} (mastery=${cp.mastery})... `);
-    const r = await generateCheckpoint(cp);
-    out.push(r);
-    console.log(`scaffold=${r.scaffold.name}, chart=${r.chart ? r.chart.chart_type : '—'}, flowchart=${r.flowchart ? r.flowchart.flowchart_type : '—'}`);
+
+    const turn = await composeTurn({
+      conceptId: CONCEPT_ID,
+      mastery: cp.mastery,
+      history: cp.simulated_history as any,
+      surfacedTerms,
+      vizDemand,
+      _generateText: generateText as any,
+      _model: model,
+      _tools: allTools,
+    });
+
+    // Accumulate terms across checkpoints (mirrors the live module).
+    for (const t of turn.termsSurfaced) {
+      if (!surfacedTerms.includes(t)) surfacedTerms.push(t);
+    }
+
+    out.push({
+      mastery: cp.mastery,
+      label: cp.label,
+      tier_name: cp.tier_name,
+      simulated_history: cp.simulated_history,
+      viz_decision: turn.vizDecision,
+      scaffold: turn.scaffold,
+      chart: turn.chart,
+      flowchart: turn.flowchart,
+      terms_surfaced: turn.termsSurfaced,
+      dictionary_handoff: turn.dictionaryHandoff,
+    });
+
+    const vizSummary = turn.chart ? `chart=${(turn.chart as any).chart_type}` : turn.flowchart ? `flowchart=${(turn.flowchart as any).flowchart_type}` : 'no-viz';
+    console.log(`scaffold=${turn.scaffold.name} · ${vizSummary} · handoff=${turn.dictionaryHandoff.kind} · terms=${turn.termsSurfaced.join(',')}`);
   }
+
   const target = join(import.meta.dir, '..', 'frontend', 'src', 'data');
   if (!existsSync(target)) mkdirSync(target, { recursive: true });
-  writeFileSync(join(target, 'autoplay-bundle.json'), JSON.stringify(out, null, 2));
+
+  // Preserve the old bundle for rollback.
+  const newPath = join(target, 'autoplay-bundle.json');
+  const legacyPath = join(target, 'autoplay-bundle.legacy.json');
+  if (existsSync(newPath) && !existsSync(legacyPath)) {
+    writeFileSync(legacyPath, readFileSync(newPath, 'utf-8'));
+    console.log(`✓ saved previous bundle → autoplay-bundle.legacy.json`);
+  }
+
+  writeFileSync(newPath, JSON.stringify(out, null, 2));
   console.log(`\n✓ wrote ${out.length} checkpoints → frontend/src/data/autoplay-bundle.json`);
-  console.log(`  tools used: ${TOOL_NAMES.join(', ')}`);
 }
 
 main();
