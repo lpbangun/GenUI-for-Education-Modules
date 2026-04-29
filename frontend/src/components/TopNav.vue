@@ -12,7 +12,7 @@ const isActive = (path: string) => route.path === path || (path !== '/' && route
       </router-link>
       <div class="flex gap-6 text-small">
         <router-link to="/" class="text-link"
-                     :class="isActive('/') && !isActive('/module') && !isActive('/dictionary') && !isActive('/demo') && !isActive('/about') && !isActive('/architecture') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
+                     :class="isActive('/') && !isActive('/module') && !isActive('/dictionary') && !isActive('/demo') && !isActive('/about') && !isActive('/architecture') && !isActive('/design-decisions') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
           Home
         </router-link>
         <router-link to="/module/central-tendency" class="text-link"
@@ -30,6 +30,10 @@ const isActive = (path: string) => route.path === path || (path !== '/' && route
         <router-link to="/architecture" class="text-link"
                      :class="isActive('/architecture') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
           Architecture
+        </router-link>
+        <router-link to="/design-decisions" class="text-link"
+                     :class="isActive('/design-decisions') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
+          Design decisions
         </router-link>
         <router-link to="/about" class="text-link"
                      :class="isActive('/about') ? 'text-ink' : 'text-ink-muted hover:text-ink'">

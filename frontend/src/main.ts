@@ -8,6 +8,7 @@ import AutoplayView from './views/AutoplayView.vue';
 import HomeView from './views/HomeView.vue';
 import AboutView from './views/AboutView.vue';
 import ArchitectureView from './views/ArchitectureView.vue';
+import DesignDecisionsView from './views/DesignDecisionsView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,6 +16,7 @@ const router = createRouter({
     { path: '/', component: HomeView },
     { path: '/about', component: AboutView },
     { path: '/architecture', component: ArchitectureView },
+    { path: '/design-decisions', component: DesignDecisionsView },
     { path: '/module/:concept_id', component: ModuleView, props: true },
     { path: '/dictionary', component: DictionaryView },
     { path: '/dictionary/:term', component: DictionaryView, props: true },

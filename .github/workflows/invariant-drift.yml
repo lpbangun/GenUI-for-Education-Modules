@@ -1,0 +1,36 @@
+name: Invariant drift guard
+
+on:
+  pull_request:
+    paths:
+      - 'CLAUDE.md'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes to "Architectural invariants" section
+        run: |
+          if git diff origin/${{ github.base_ref }}...HEAD -- CLAUDE.md \
+              | grep -E '^\+' \
+              | grep -B 999 -m 1 -E '^\+## Architectural invariants' >/dev/null 2>&1 \
+            || git diff origin/${{ github.base_ref }}...HEAD -- CLAUDE.md \
+              | awk '/^@@/{p=0} /Architectural invariants/{p=1} p' \
+              | grep -E '^[+-]' >/dev/null; then
+            echo "CLAUDE.md 'Architectural invariants' section was modified."
+            if git diff origin/${{ github.base_ref }}...HEAD -- docs/design-decisions.md \
+                | grep -E '^\+## DD-[0-9]+' >/dev/null; then
+              echo "OK: a new DD-XXX entry was added in the same PR."
+              exit 0
+            else
+              echo "ERROR: no new DD-XXX entry in docs/design-decisions.md."
+              echo "Modifying architectural invariants requires a corresponding DD entry."
+              exit 1
+            fi
+          else
+            echo "No changes to 'Architectural invariants' section."
+          fi
