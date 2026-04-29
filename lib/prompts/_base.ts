@@ -24,13 +24,12 @@ DISTRACTOR REASONING (Tier 2 only):
 - Each MCQ option's feedback must explain WHY someone would pick this option — the plausible reasoning behind it — NOT "wrong, try again" boilerplate. The learner should see, after answering, why each alternative looked reasonable. This is the constructivist contract: surface multiple reasoning paths.
 
 DICTIONARY HANDOFF (every turn):
-- After your tool call, append exactly this trailing block:
-  <terms_surfaced>term1, term2, term3</terms_surfaced>
-- Then append a <dictionary_handoff> block matching the per-tier kind specified in your tier-specific instructions.
-- All terms in <terms_surfaced> MUST be lowercase, comma-separated, and dictionary terms the concept primer would recognize. 1–3 terms.
+- Every scaffold tool's input schema accepts two optional fields: terms_surfaced (string array) and dictionary_handoff (object).
+- You MUST include both fields IN your tool call input — not as trailing text, since trailing text is collapsed when a tool call is forced.
+- All terms in terms_surfaced MUST be lowercase, 1–3 entries, dictionary terms the concept primer would recognize.
+- The dictionary_handoff.kind is specified per-tier (passive at T1–T2, active at T3–T4, constructive at T5).
 
 OUTPUT SHAPE:
-- Call exactly one scaffold tool (the tier name you are given).
-- If a visualization was requested by the Visualization Selector, call render_chart or render_flowchart in the same response.
-- After all tool calls, append <terms_surfaced> and <dictionary_handoff> as plain text trailing blocks.
+- Call exactly one scaffold tool (the tier name you are given). Include terms_surfaced and dictionary_handoff IN that tool call's input.
+- If a visualization was requested by the Visualization Selector, ALSO call render_chart or render_flowchart in the same response.
 `.trim();

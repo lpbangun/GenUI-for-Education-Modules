@@ -13,10 +13,12 @@ describe('composeTurn', () => {
             setup_prose: 'Mock setup.',
             worked_steps: ['Step 1', 'Step 2', 'Step 3'],
             interpretation: 'Mock interpretation.',
+            terms_surfaced: ['median', 'mean'],
+            dictionary_handoff: { kind: 'passive' },
           },
         },
       ],
-      text: '<terms_surfaced>median, mean</terms_surfaced>\n<dictionary_handoff kind="passive"></dictionary_handoff>',
+      text: '',
     }));
 
     const turn = await composeTurn({
@@ -35,7 +37,7 @@ describe('composeTurn', () => {
     expect(mockGenerate).toHaveBeenCalledTimes(1);
   });
 
-  it('falls back to safe defaults when tail blocks are missing', async () => {
+  it('falls back to safe defaults when handoff fields are missing', async () => {
     const mockGenerate = mock(async () => ({
       toolCalls: [
         {
@@ -51,7 +53,7 @@ describe('composeTurn', () => {
           },
         },
       ],
-      text: 'Just prose, no tail blocks.',
+      text: '',
     }));
 
     const turn = await composeTurn({
@@ -97,10 +99,12 @@ describe('composeTurn', () => {
               title: 't', setup_prose: 's', prompt: 'p',
               consider_scaffolds: ['claim?', 'support?', 'question?'],
               rubric_primary_criterion: 'r',
+              terms_surfaced: ['x'],
+              dictionary_handoff: { kind: 'active', candidate_term: 'x', handoff_question: 'Q?' },
             },
           },
         ],
-        text: '<terms_surfaced>x</terms_surfaced>\n<dictionary_handoff kind="active" candidate_term="x">Q?</dictionary_handoff>',
+        text: '',
       };
     });
 
@@ -114,5 +118,42 @@ describe('composeTurn', () => {
     });
 
     expect(capturedSystem).toContain('TIER 3 — GuidedShortAnswer');
+  });
+
+  it('parses active handoff from scaffold input', async () => {
+    const mockGenerate = mock(async () => ({
+      toolCalls: [
+        {
+          toolName: 'GuidedShortAnswer',
+          input: {
+            title: 't', setup_prose: 's', prompt: 'p',
+            consider_scaffolds: ['c', 's', 'q'],
+            rubric_primary_criterion: 'r',
+            terms_surfaced: ['median'],
+            dictionary_handoff: {
+              kind: 'active',
+              candidate_term: 'median',
+              handoff_question: 'Is this how your school uses this term?',
+            },
+          },
+        },
+      ],
+      text: '',
+    }));
+
+    const turn = await composeTurn({
+      conceptId: 'central-tendency',
+      mastery: 0.55,
+      history: [],
+      surfacedTerms: ['median'],
+      vizDemand: 'definition',
+      _generateText: mockGenerate as any,
+    });
+
+    expect(turn.dictionaryHandoff.kind).toBe('active');
+    if (turn.dictionaryHandoff.kind === 'active') {
+      expect(turn.dictionaryHandoff.candidateTerm).toBe('median');
+      expect(turn.dictionaryHandoff.handoffQuestion).toContain('Is this how');
+    }
   });
 });

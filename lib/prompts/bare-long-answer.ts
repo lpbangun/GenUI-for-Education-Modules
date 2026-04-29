@@ -13,11 +13,13 @@ STRUCTURE:
 - rubric_primary_criterion: scores reasoning quality (claim coherence, support specificity, question depth), NOT correctness. A wrong conclusion with strong reasoning scores higher than a right conclusion with no reasoning.
 
 DICTIONARY HANDOFF — kind="active":
-Surface 2–3 terms in <terms_surfaced>. The handoff asks the learner which of those terms their reasoning depended on AND how their team uses it. Pick the term most likely to vary across schools as the candidate.
+Surface 2–3 terms in terms_surfaced. The handoff asks the learner which of those terms their reasoning depended on AND how their team uses it. Pick the term most likely to vary across schools as the candidate.
 
-After the tool call, append:
-<terms_surfaced>term1, term2, term3</terms_surfaced>
-<dictionary_handoff kind="active" candidate_term="<one_term>">
-A two-sentence prompt: first sentence names the surfaced terms; second asks "Which of these did your reasoning depend on, and how does your team use it?"
-</dictionary_handoff>
+Include these fields IN YOUR BareLongAnswer tool call input:
+- terms_surfaced: ["term1", "term2", "term3"]
+- dictionary_handoff: {
+    "kind": "active",
+    "candidate_term": "<one_term>",
+    "handoff_question": "These terms came up: term1, term2, term3. Which of these did your reasoning depend on, and how does your team use it?"
+  }
 `.trim();

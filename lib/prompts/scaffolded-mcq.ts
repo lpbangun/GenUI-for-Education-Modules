@@ -15,9 +15,7 @@ STRUCTURE:
 - hint: always-visible hint that points toward the observation step, not the answer.
 
 DICTIONARY HANDOFF — kind="passive":
-After the tool call, append:
-<terms_surfaced>term1, term2</terms_surfaced>
-<dictionary_handoff kind="passive">
-Brief sentence inviting the learner to click any term to read its dictionary entry.
-</dictionary_handoff>
+Include these fields IN YOUR ScaffoldedMCQ tool call input:
+- terms_surfaced: ["term1", "term2"]   (1–3 lowercase dictionary terms surfaced)
+- dictionary_handoff: { "kind": "passive" }
 `.trim();

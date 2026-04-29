@@ -10,7 +10,6 @@
 // Tail blocks: parseTailBlocks() — loose parsing with safe fallbacks.
 
 import type { Turn, DictionaryHandoff } from './types';
-import { SAFE_DEFAULT_HANDOFF } from './types';
 import type { Interaction } from './schemas/content-schemas';
 import { pickScaffold, type ScaffoldName } from './scaffold-selector';
 import {
@@ -20,7 +19,41 @@ import {
   type VizKind,
 } from './viz-selector';
 import { SYSTEM_PROMPTS } from './prompts';
-import { parseTailBlocks } from './tail-blocks';
+
+function normalizeHandoff(raw: unknown, termsSurfaced: string[]): DictionaryHandoff {
+  if (!raw || typeof raw !== 'object') {
+    return { kind: 'passive', termsSurfaced };
+  }
+  const r = raw as Record<string, unknown>;
+  const kind = r.kind;
+  if (kind === 'active') {
+    const candidate = typeof r.candidate_term === 'string' ? r.candidate_term.toLowerCase() : null;
+    if (!candidate) return { kind: 'passive', termsSurfaced };
+    return {
+      kind: 'active',
+      candidateTerm: candidate,
+      surfacedTerms: termsSurfaced,
+      handoffQuestion: typeof r.handoff_question === 'string' && r.handoff_question.trim()
+        ? r.handoff_question
+        : 'Is this how your school uses this term?',
+    };
+  }
+  if (kind === 'constructive') {
+    const target = typeof r.target_term === 'string' ? r.target_term.toLowerCase() : null;
+    if (!target) return { kind: 'passive', termsSurfaced };
+    return {
+      kind: 'constructive',
+      targetTerm: target,
+      draftTemplate: {
+        schoolPlaceholder: 'Your school (e.g., HGSE)',
+        howWeUseItPlaceholder: 'How does your team use this term?',
+        examplePlaceholder: 'A short example from your work.',
+        differsPlaceholder: 'How does this differ from how other schools use it? (optional)',
+      },
+    };
+  }
+  return { kind: 'passive', termsSurfaced };
+}
 
 const SCAFFOLD_NAMES = new Set<ScaffoldName>([
   'WorkedExample',
@@ -90,7 +123,7 @@ Generate the next scaffold for this learner. Make the setup_prose a concrete Har
 You MUST:
 1. Call exactly the ${tier} tool — do not respond with prose alone, do not pick a different tier.
 2. ${vizClause(vizKind, mastery)}
-3. After the tool call(s), append the trailing <terms_surfaced> and <dictionary_handoff> blocks per your tier-specific instructions.`;
+3. Include terms_surfaced and dictionary_handoff IN your ${tier} tool call input per your tier-specific instructions.`;
 }
 
 export async function composeTurn(input: ComposeTurnInput): Promise<Turn> {
@@ -141,8 +174,15 @@ export async function composeTurn(input: ComposeTurnInput): Promise<Turn> {
   if (vizDecision.kind === 'chart') flowchart = null;
   if (vizDecision.kind === 'flowchart') chart = null;
 
-  const tail = parseTailBlocks(result.text ?? '');
-  const dictionaryHandoff: DictionaryHandoff = tail.dictionaryHandoff;
+  const scaffoldInput = scaffold.input as Record<string, unknown>;
+  const termsRaw = scaffoldInput?.terms_surfaced;
+  const handoffRaw = scaffoldInput?.dictionary_handoff;
+
+  const termsSurfaced: string[] = Array.isArray(termsRaw)
+    ? (termsRaw as unknown[]).filter((t): t is string => typeof t === 'string').map((t) => t.toLowerCase())
+    : [];
+
+  const dictionaryHandoff: DictionaryHandoff = normalizeHandoff(handoffRaw, termsSurfaced);
 
   return {
     tier,
@@ -152,7 +192,7 @@ export async function composeTurn(input: ComposeTurnInput): Promise<Turn> {
     scaffold,
     chart,
     flowchart,
-    termsSurfaced: tail.termsSurfaced,
+    termsSurfaced,
     dictionaryHandoff,
   };
 }

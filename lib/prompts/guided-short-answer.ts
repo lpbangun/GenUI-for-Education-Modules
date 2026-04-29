@@ -18,11 +18,13 @@ STRUCTURE:
 - rubric_primary_criterion: a single sentence describing what a strong response looks like; emphasizes reasoning quality, not correctness.
 
 DICTIONARY HANDOFF — kind="active":
-The active handoff begins at this tier. Pick ONE term from <terms_surfaced> as the candidate term — prefer terms the learner has seen multiple times across the session.
+The active handoff begins at this tier. Pick ONE term from terms_surfaced as the candidate term — prefer terms the learner has seen multiple times across the session.
 
-After the tool call, append:
-<terms_surfaced>term1, term2</terms_surfaced>
-<dictionary_handoff kind="active" candidate_term="<one_term>">
-A single-sentence question asking whether the learner's school uses the candidate term the way the course team note describes it. Frame neutrally — "Is this how your school uses this term?"
-</dictionary_handoff>
+Include these fields IN YOUR GuidedShortAnswer tool call input:
+- terms_surfaced: ["term1", "term2"]
+- dictionary_handoff: {
+    "kind": "active",
+    "candidate_term": "<one_term_from_terms_surfaced>",
+    "handoff_question": "Is this how your school uses this term?"
+  }
 `.trim();

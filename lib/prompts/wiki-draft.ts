@@ -14,9 +14,10 @@ STRUCTURE:
 DICTIONARY HANDOFF — kind="constructive":
 The constructive handoff displays a structured form (school dropdown, "how we use it" textarea, "example" textarea, "differs from other schools" textarea). The model only signals intent here — the form itself is rendered by the frontend.
 
-After the tool call, append:
-<terms_surfaced>term1, term2</terms_surfaced>
-<dictionary_handoff kind="constructive" target_term="<one_term>">
-A two-sentence framing: first acknowledges the contribution; second reminds the learner that drafts go to human review before appearing in the dictionary.
-</dictionary_handoff>
+Include these fields IN YOUR WikiDraft tool call input:
+- terms_surfaced: ["term1", "term2"]
+- dictionary_handoff: {
+    "kind": "constructive",
+    "target_term": "<one_term_from_terms_surfaced>"
+  }
 `.trim();

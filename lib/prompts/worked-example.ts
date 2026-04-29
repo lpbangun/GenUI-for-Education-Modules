@@ -13,9 +13,7 @@ STRUCTURE:
 - interpretation: 1 paragraph that names the dictionary term explicitly and connects it back to the staff role's decision.
 
 DICTIONARY HANDOFF — kind="passive":
-After the tool call, append:
-<terms_surfaced>term1, term2</terms_surfaced>
-<dictionary_handoff kind="passive">
-The terms above will become clickable in the UI so the learner can read their definitions.
-</dictionary_handoff>
+Include these fields IN YOUR ${"WorkedExample"} tool call input (do NOT emit trailing text — Gemini's forced tool call mode collapses trailing text):
+- terms_surfaced: ["term1", "term2"]   (1–3 lowercase dictionary terms surfaced by this scaffold)
+- dictionary_handoff: { "kind": "passive" }
 `.trim();

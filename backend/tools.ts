@@ -5,6 +5,17 @@
 import { z } from 'zod';
 import { tool } from 'ai';
 
+// --- Shared handoff schemas (optional fields on every scaffold tool) ---------
+
+const DictionaryHandoffInput = z.object({
+  kind: z.enum(['passive', 'active', 'constructive']),
+  candidate_term: z.string().optional(),    // T3, T4
+  target_term: z.string().optional(),        // T5
+  handoff_question: z.string().optional(),   // verbatim prose to render at T3+
+});
+
+const TermsSurfacedInput = z.array(z.string()).max(3);
+
 // --- Five scaffold tools (one per tier) -------------------------------------
 
 const ScenarioOption = z.object({
@@ -22,6 +33,8 @@ export const scaffoldTools = {
       setup_prose: z.string(),
       worked_steps: z.array(z.string()).min(2),
       interpretation: z.string(),
+      terms_surfaced: TermsSurfacedInput.optional(),
+      dictionary_handoff: DictionaryHandoffInput.optional(),
     }),
     execute: async (input) => ({ scaffold: 'WorkedExample', ...input }),
   }),
@@ -37,6 +50,8 @@ export const scaffoldTools = {
       prompt: z.string(),
       options: z.array(ScenarioOption).min(3).max(4),
       hint: z.string(),
+      terms_surfaced: TermsSurfacedInput.optional(),
+      dictionary_handoff: DictionaryHandoffInput.optional(),
     }),
     execute: async (input) => ({ scaffold: 'ScaffoldedMCQ', ...input }),
   }),
@@ -49,6 +64,8 @@ export const scaffoldTools = {
       prompt: z.string(),
       consider_scaffolds: z.array(z.string()).min(2).max(4),
       rubric_primary_criterion: z.string(),
+      terms_surfaced: TermsSurfacedInput.optional(),
+      dictionary_handoff: DictionaryHandoffInput.optional(),
     }),
     execute: async (input) => ({ scaffold: 'GuidedShortAnswer', ...input }),
   }),
@@ -60,6 +77,8 @@ export const scaffoldTools = {
       setup_prose: z.string(),
       prompt: z.string(),
       rubric_primary_criterion: z.string(),
+      terms_surfaced: TermsSurfacedInput.optional(),
+      dictionary_handoff: DictionaryHandoffInput.optional(),
     }),
     execute: async (input) => ({ scaffold: 'BareLongAnswer', ...input }),
   }),
@@ -71,6 +90,8 @@ export const scaffoldTools = {
       framing_prose: z.string(),
       target_dictionary_term: z.string(),
       draft_template_hint: z.string().optional(),
+      terms_surfaced: TermsSurfacedInput.optional(),
+      dictionary_handoff: DictionaryHandoffInput.optional(),
     }),
     execute: async (input) => ({ scaffold: 'WikiDraft', ...input }),
   }),
