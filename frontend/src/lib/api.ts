@@ -15,13 +15,82 @@ export interface ToolCall {
   input: any;
 }
 
+export type HandoffKind = 'passive' | 'active' | 'constructive';
+
+export interface PassiveHandoff {
+  kind: 'passive';
+  termsSurfaced: string[];
+}
+
+export interface ActiveHandoff {
+  kind: 'active';
+  candidateTerm: string;
+  surfacedTerms: string[];
+  handoffQuestion: string;
+}
+
+export interface ConstructiveHandoff {
+  kind: 'constructive';
+  targetTerm: string;
+  draftTemplate: {
+    schoolPlaceholder: string;
+    howWeUseItPlaceholder: string;
+    examplePlaceholder: string;
+    differsPlaceholder: string;
+  };
+}
+
+export type DictionaryHandoff = PassiveHandoff | ActiveHandoff | ConstructiveHandoff;
+
 export interface ScaffoldResult {
   scaffold: { name: ScaffoldName; input: any } | null;
   chart: any | null;
   flowchart: any | null;
+  termsSurfaced: string[];
+  dictionaryHandoff: DictionaryHandoff;
 }
 
 const SCAFFOLD_NAMES = new Set<string>(['WorkedExample', 'ScaffoldedMCQ', 'GuidedShortAnswer', 'BareLongAnswer', 'WikiDraft']);
+
+function normalizeHandoff(raw: any, termsSurfaced: string[]): DictionaryHandoff {
+  if (!raw || typeof raw !== 'object') {
+    return { kind: 'passive', termsSurfaced };
+  }
+  const kind = raw.kind;
+  if (kind === 'active') {
+    const candidate = typeof raw.candidate_term === 'string' ? raw.candidate_term.toLowerCase() : null;
+    if (!candidate) return { kind: 'passive', termsSurfaced };
+    return {
+      kind: 'active',
+      candidateTerm: candidate,
+      surfacedTerms: termsSurfaced,
+      handoffQuestion: typeof raw.handoff_question === 'string' && raw.handoff_question.trim()
+        ? raw.handoff_question
+        : 'Is this how your school uses this term?',
+    };
+  }
+  if (kind === 'constructive') {
+    const target = typeof raw.target_term === 'string' ? raw.target_term.toLowerCase() : null;
+    if (!target) return { kind: 'passive', termsSurfaced };
+    return {
+      kind: 'constructive',
+      targetTerm: target,
+      draftTemplate: {
+        schoolPlaceholder: 'Your school (e.g., HGSE)',
+        howWeUseItPlaceholder: 'How does your team use this term?',
+        examplePlaceholder: 'A short example from your work.',
+        differsPlaceholder: 'How does this differ from how other schools use it? (optional)',
+      },
+    };
+  }
+  return { kind: 'passive', termsSurfaced };
+}
+
+function extractTermsSurfaced(scaffoldInput: any): string[] {
+  const raw = scaffoldInput?.terms_surfaced;
+  if (!Array.isArray(raw)) return [];
+  return raw.filter((t: any): t is string => typeof t === 'string').map((t: string) => t.toLowerCase());
+}
 
 function vizClause(decision: VizDecision, mastery: number): string {
   if (decision.kind === 'none') {
@@ -113,7 +182,17 @@ You MUST:
   if (opts.vizDecision.kind === 'chart') flowchart = null;
   if (opts.vizDecision.kind === 'flowchart') chart = null;
 
-  return { scaffold, chart, flowchart };
+  const scaffoldInput = scaffold?.input ?? {};
+  const termsSurfaced = extractTermsSurfaced(scaffoldInput);
+  const dictionaryHandoff = normalizeHandoff(scaffoldInput.dictionary_handoff, termsSurfaced);
+
+  return {
+    scaffold,
+    chart,
+    flowchart,
+    termsSurfaced,
+    dictionaryHandoff,
+  };
 }
 
 export function pickTier(mastery: number): { num: number; name: ScaffoldName } {
