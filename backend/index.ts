@@ -114,6 +114,48 @@ app.post('/api/quality/eval', async (c) => {
   return c.json(result.object);
 });
 
+// --- POST /api/handoff/submit — dictionary handoff response ----------------
+const HandoffInput = z.object({
+  sessionId: z.string().min(1),
+  conceptId: z.string().min(1),
+  term: z.string().min(1),
+  schoolSelfReported: z.enum(['HGSE', 'HBS', 'FAS', 'HMS', 'SEAS', 'other']).nullable(),
+  agreement: z.enum(['yes', 'no', 'unsure', 'differently']),
+  freeText: z.string().max(200).nullable(),
+});
+
+app.post('/api/handoff/submit', async (c) => {
+  const body = await c.req.json().catch(() => ({}));
+  const parsed = HandoffInput.safeParse(body);
+  if (!parsed.success) return c.json({ error: parsed.error.message }, 400);
+
+  const { submitHandoff } = await import('../lib/db/handoff-repo');
+  const r = await submitHandoff(parsed.data);
+  if (!r.ok) return c.json({ error: r.reason ?? 'submit failed' }, 400);
+  return c.json({ ok: true, id: r.id ?? null });
+});
+
+// --- POST /api/wiki-draft/submit — T5 contribution ------------------------
+const WikiInput = z.object({
+  sessionId: z.string().min(1),
+  term: z.string().min(1),
+  school: z.string().min(1),
+  howWeUseIt: z.string().min(1).max(200),
+  exampleInPractice: z.string().max(200).nullable(),
+  differsFromOtherSchools: z.string().max(200).nullable(),
+});
+
+app.post('/api/wiki-draft/submit', async (c) => {
+  const body = await c.req.json().catch(() => ({}));
+  const parsed = WikiInput.safeParse(body);
+  if (!parsed.success) return c.json({ error: parsed.error.message }, 400);
+
+  const { submitWikiDraft } = await import('../lib/db/wiki-repo');
+  const r = await submitWikiDraft(parsed.data);
+  if (!r.ok) return c.json({ error: r.reason ?? 'submit failed' }, 400);
+  return c.json({ ok: true, id: r.id ?? null });
+});
+
 // JSON 404 (never HTML — matches F010 acceptance "Errors return JSON with status codes")
 app.notFound((c) => c.json({ error: 'not found', path: c.req.path }, 404));
 app.onError((err, c) => c.json({ error: err.message }, 500));
