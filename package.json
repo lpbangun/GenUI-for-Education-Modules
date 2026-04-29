@@ -10,17 +10,23 @@
     "validate:dictionary": "bun run scripts/validate_dictionary.ts",
     "validate:scenarios": "bun run scripts/validate_scenarios.ts",
     "validate:exemplars": "bun run scripts/validate_exemplar_consistency.ts",
+    "db:generate": "drizzle-kit generate --config=drizzle.config.ts",
+    "db:migrate": "bun run scripts/db_migrate.ts",
+    "validate:turn-compliance": "bun run scripts/validate_turn_compliance.ts",
     "test": "bun test"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.64",
     "ai": "^6.0.168",
+    "drizzle-orm": "^0.45.2",
     "gray-matter": "^4.0.3",
     "hono": "^4.6.0",
+    "postgres": "^3.4.9",
     "zod": "^3.23.0"
   },
   "devDependencies": {
     "@types/bun": "^1.1.0",
+    "drizzle-kit": "^0.31.10",
     "typescript": "^5.5.0"
   }
 }
