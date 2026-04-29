@@ -75,20 +75,21 @@ function onHandoffSubmitted(term: string) {
     <div class="grid grid-cols-[1fr_220px] gap-8">
       <div>
         <div class="mb-8">
-          <label class="text-micro text-ink-subtle uppercase">Mastery (live · drag to fetch fresh scaffold)</label>
+          <label class="text-micro text-ink-subtle uppercase">Mastery (live · drag to fetch fresh content)</label>
           <input type="range" min="0" max="1" step="0.01" v-model.number="mastery"
                  class="w-full mt-3 accent-accent" />
-          <div class="flex justify-between text-small text-ink-muted mt-2 font-mono">
-            <span>mastery = {{ mastery.toFixed(2) }} → tier {{ pickTier(mastery).num }} ({{ pickTier(mastery).name }})</span>
-            <button @click="fetchScaffold" :disabled="loading"
-                    class="text-ink hover:underline disabled:opacity-40">
-              {{ loading ? 'generating…' : 'generate scaffold →' }}
-            </button>
+          <div class="text-small text-ink-muted mt-2 font-mono">
+            mastery = {{ mastery.toFixed(2) }} → tier {{ pickTier(mastery).num }} ({{ pickTier(mastery).name }})
           </div>
           <div class="text-micro text-ink-subtle mt-2 font-mono">
             viz_demand={{ vizDemand }} · selector → {{ decision.kind }}
             <span class="text-ink-muted">· {{ decision.reason }}</span>
           </div>
+          <button @click="fetchScaffold" :disabled="loading"
+                  class="mt-5 w-full bg-ink text-paper px-6 py-3 text-body font-medium tracking-wide
+                         hover:bg-accent hover:text-ink transition disabled:opacity-40 disabled:cursor-not-allowed">
+            {{ loading ? 'generating…' : 'Generate content →' }}
+          </button>
         </div>
 
         <TierTransition v-if="result" :from="previousTier" :to="currentTier" />
