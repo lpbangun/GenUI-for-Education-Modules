@@ -39,6 +39,11 @@ const isActive = (path: string) => route.path === path || (path !== '/' && route
                      :class="isActive('/about') ? 'text-ink' : 'text-ink-muted hover:text-ink'">
           About
         </router-link>
+        <a href="https://github.com/lpbangun/GenUI-for-Education-Modules"
+           target="_blank" rel="noopener noreferrer"
+           class="text-link text-ink-muted hover:text-ink">
+          GitHub ↗
+        </a>
       </div>
     </div>
   </nav>

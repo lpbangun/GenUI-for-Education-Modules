@@ -68,8 +68,23 @@
         <li>Content: 25 concept primers, 51 dictionary entries, 40 scenarios, 5 dataset generators — all schema-validated.</li>
       </ul>
 
+      <h2 class="text-h2 text-ink mt-12">Source code</h2>
+      <p class="text-body text-ink mt-6">
+        Public repository:
+        <a href="https://github.com/lpbangun/GenUI-for-Education-Modules"
+           target="_blank" rel="noopener noreferrer"
+           class="text-link text-ink underline">
+          github.com/lpbangun/GenUI-for-Education-Modules ↗
+        </a>
+      </p>
+      <p class="text-body text-ink mt-3">
+        See <router-link to="/architecture" class="text-link text-ink underline">Architecture</router-link>
+        and <router-link to="/design-decisions" class="text-link text-ink underline">Design decisions</router-link>
+        for the full system spec and ADR log.
+      </p>
+
       <p class="text-small text-ink-subtle mt-16">
-        v1.1 · capstone POC · all data synthetic · no real Harvard student or staff records used.
+        v1.2 · capstone POC · all data synthetic · no real Harvard student or staff records used.
       </p>
     </div>
   </div>
