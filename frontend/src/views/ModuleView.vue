@@ -86,8 +86,8 @@ function onHandoffSubmitted(term: string) {
             <span class="text-ink-muted">· {{ decision.reason }}</span>
           </div>
           <button @click="fetchScaffold" :disabled="loading"
-                  class="mt-5 w-full bg-ink text-paper px-6 py-3 text-body font-medium tracking-wide
-                         hover:bg-accent hover:text-ink transition disabled:opacity-40 disabled:cursor-not-allowed">
+                  class="mt-6 w-full border border-ink py-3 text-micro text-ink uppercase tracking-[0.18em]
+                         hover:bg-ink hover:text-paper transition disabled:opacity-40 disabled:cursor-not-allowed">
             {{ loading ? 'generating…' : 'Generate content →' }}
           </button>
         </div>
