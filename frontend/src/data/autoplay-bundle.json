@@ -11,17 +11,18 @@
     "scaffold": {
       "name": "WorkedExample",
       "input": {
-        "title": "Understanding Central Tendency in Enrollment Data",
-        "setup_prose": "As a Registrar's Office analyst, you are preparing a report on course enrollment sizes. You notice a few very large lecture courses and many smaller seminars, creating a skewed distribution. You decide to look at the 'median' rather than the 'mean' to summarize the typical student experience.",
+        "title": "Assessing Central Tendency in Admissions Data",
+        "setup_prose": "As an admissions officer, you are reviewing the Quantitative Reasoning scores of 200 applicants to the Summer Scholars program. You need a summary value to represent the 'typical' performance of the pool, but you notice a few exceptionally high scores on the far right of the distribution.",
         "worked_steps": [
-          "Step 1: Visualize the data — create a histogram to see the spread of enrollment sizes across all courses.",
-          "Step 2: Identify the skew — observe that most courses have fewer than 50 students, but a few large lectures pull the mean upward.",
-          "Step 3: Select the appropriate measure — choose the median as the best indicator of 'central-tendency' because it reflects the middle course size, unaffected by outliers."
+          "Step 1: Inspect the distribution shape — notice that the histogram is not perfectly symmetrical, indicating the data is skewed.",
+          "Step 2: Locate the 'middle' — visualize where the majority of the data points cluster to estimate the center.",
+          "Step 3: Calculate the mean — sum all scores and divide by the count, noting how extreme high values pull this average away from the visual center."
         ],
-        "interpretation": "In this scenario, the Registrar uses the 'median' to represent the typical course enrollment. Unlike the mean, the median is not heavily influenced by a single large introductory lecture, allowing the Registrar to make decisions based on the enrollment level experienced by the majority of students. This is a common strategy for interpreting 'central-tendency' in skewed data.",
+        "interpretation": "The mean is a classic example of central tendency. In this admissions scenario, it provides a 'center' point for the applicant pool's scores. However, because our distribution is slightly skewed by a few exceptionally high scores, the mean is pulled upward, potentially misrepresenting the 'typical' applicant. Understanding this helps admissions officers balance summary metrics with the actual range of data.",
         "terms_surfaced": [
-          "central-tendency",
-          "median"
+          "mean",
+          "central tendency",
+          "skewed"
         ],
         "dictionary_handoff": {
           "kind": "passive"
@@ -30,47 +31,46 @@
     },
     "chart": {
       "chart_type": "histogram",
-      "dataset_ref": "registrar_enrollment_data_2023",
-      "field_x": "enrollment_count",
+      "dataset_ref": "admissions_qr_scores_2024",
+      "field_x": "score_range",
+      "field_y": "count_of_applicants",
       "values": [
         {
-          "x": "0-20",
-          "y": 45
+          "x": "400-499",
+          "y": 10
         },
         {
-          "x": "21-40",
-          "y": 30
+          "x": "500-599",
+          "y": 35
         },
         {
-          "x": "41-60",
-          "y": 15
+          "x": "600-699",
+          "y": 80
         },
         {
-          "x": "61-80",
-          "y": 8
+          "x": "700-799",
+          "y": 55
         },
         {
-          "x": "81-100",
-          "y": 2
-        },
-        {
-          "x": "100+",
-          "y": 5
+          "x": "800+",
+          "y": 20
         }
       ],
-      "caption": "Distribution of undergraduate course enrollments (Fall 2023). Most courses are small, with a long tail of very large lectures.",
-      "provenance": "Internal Registrar data, 2023."
+      "caption": "Distribution of Quantitative Reasoning scores (n=200) for Summer Scholars applicants.",
+      "provenance": "Simulated data based on institutional admissions benchmarks."
     },
     "flowchart": null,
     "terms_surfaced": [
-      "central-tendency",
-      "median"
+      "mean",
+      "central tendency",
+      "skewed"
     ],
     "dictionary_handoff": {
       "kind": "passive",
       "termsSurfaced": [
-        "central-tendency",
-        "median"
+        "mean",
+        "central tendency",
+        "skewed"
       ]
     }
   },
@@ -91,45 +91,41 @@
     "scaffold": {
       "name": "ScaffoldedMCQ",
       "input": {
-        "title": "Summarizing Applicant Experience",
-        "setup_prose": "You are reviewing the professional experience of 82 applicants for a professional master's program. To help the admissions committee understand the cohort's background, you need to summarize their 'typical' years of experience.",
-        "artifact_summary_stats": "Median: 4 years; Mean: 4.8 years; Range: 0-12 years.",
-        "observation_prompt": "Before answering, take a moment: what do you notice about the distribution of experience years in this chart?",
-        "observation_options": [
-          "The peak is near 4 years.",
-          "The tail extends toward 12 years."
-        ],
-        "prompt": "As an admissions officer, you are summarizing the professional experience of your incoming class for a report. Based on the data above, which value best describes the 'typical' experience of an applicant, and why?",
+        "title": "Interpreting Central Tendency in Skewed Data",
+        "setup_prose": "As an administrator in the Office of Undergraduate Education, you are reviewing course evaluation scores for 102 seminars. Most students provided very high ratings, but a small handful of courses received notably lower marks.",
+        "artifact_summary_stats": "Mean: 4.2; Median: 4.5; N = 102 seminars.",
+        "prompt": "Before answering, take a moment: what do you notice about this distribution? Based on the summary statistics and the histogram, which statement best describes how we should interpret the central tendency of these course evaluations?",
         "options": [
           {
-            "id": "mean",
-            "text": "The mean (4.8 years) is the best representation of the typical applicant's experience.",
+            "id": "opt1",
+            "text": "The mean is the most accurate representation of the typical experience.",
             "correct": false,
-            "feedback": "You might choose this because the mean is a common way to describe an 'average,' but the presence of a few applicants with 10-12 years of experience pulls the mean upward, making it less representative of the typical applicant."
+            "feedback": "You might choose this if you look only at the arithmetic average (4.2), but the mean is pulled down by the small number of very low scores."
           },
           {
-            "id": "median",
-            "text": "The median (4 years) is the best representation of the typical applicant's experience.",
+            "id": "opt2",
+            "text": "The median better represents the typical course rating in this distribution.",
             "correct": true,
-            "feedback": "Choosing the median is appropriate here because it represents the middle value, which is less affected by the few applicants with high experience who pull the mean to the right. It tells us that half the cohort has 4 or fewer years of experience."
+            "feedback": "Because the distribution is skewed left by a few low scores, the median (4.5) better represents the 'typical' high-scoring course than the mean (4.2)."
           },
           {
-            "id": "range",
-            "text": "The range (0 to 12 years) is the best way to understand the central tendency of the cohort.",
+            "id": "opt3",
+            "text": "Mean and median are identical here, so either measure is acceptable.",
             "correct": false,
-            "feedback": "This is a common reaction when looking at the full spread of data. However, the range only tells us the distance between the extremes and does not identify the most common or 'typical' central point within the cohort."
+            "feedback": "This is a common reaction if you assume all distributions are perfectly symmetrical. However, the 'tail' to the left indicates this is not a normal distribution."
           },
           {
-            "id": "mode_observation",
-            "text": "Saying 'most applicants have between 2 and 6 years' is more accurate than choosing a single central tendency value.",
+            "id": "opt4",
+            "text": "The mean is higher than the median because the distribution is skewed right.",
             "correct": false,
-            "feedback": "You might consider this because the chart shows a concentration of applicants between 2 and 6 years. However, 'most' is subjective, whereas the median provides a precise, calculated central point that splits the group in two."
+            "feedback": "You might select this if you equate the 'center' purely with the mathematical average, but this ignores how extreme low scores influence the mean."
           }
         ],
-        "hint": "Observe the peak of the histogram and consider where the 'middle' data point (median) sits compared to the 'average' (mean) when the distribution leans toward higher experience values.",
+        "hint": "Observe the 'tail' of the histogram. Does the bulk of the data sit to the left or the right of the peak?",
         "terms_surfaced": [
-          "central-tendency",
-          "median"
+          "mean",
+          "median",
+          "skewed"
         ],
         "dictionary_handoff": {
           "kind": "passive"
@@ -138,52 +134,46 @@
     },
     "chart": {
       "chart_type": "histogram",
-      "dataset_ref": "applicant_years_exp_2024",
-      "field_x": "years_of_experience",
-      "field_y": "number_of_applicants",
+      "dataset_ref": "FAS_course_evals_2023_subset",
+      "field_x": "evaluation_score_1_to_5",
+      "field_y": "count_of_courses",
       "values": [
         {
-          "x": 0,
-          "y": 5
+          "x": 1,
+          "y": 2
         },
         {
           "x": 2,
-          "y": 15
-        },
-        {
-          "x": 4,
-          "y": 25
-        },
-        {
-          "x": 6,
-          "y": 20
-        },
-        {
-          "x": 8,
-          "y": 10
-        },
-        {
-          "x": 10,
           "y": 5
         },
         {
-          "x": 12,
-          "y": 2
+          "x": 3,
+          "y": 12
+        },
+        {
+          "x": 4,
+          "y": 35
+        },
+        {
+          "x": 5,
+          "y": 48
         }
       ],
-      "caption": "Distribution of years of professional experience among the 2024 cohort of applicants for a specific professional master's program.",
-      "provenance": "Harvard Admissions Office, 2024 Internal Dataset (Fictional)"
+      "caption": "Distribution of course evaluation scores for introductory seminars in the Faculty of Arts and Sciences.",
+      "provenance": "Office of Undergraduate Education data audit 2023."
     },
     "flowchart": null,
     "terms_surfaced": [
-      "central-tendency",
-      "median"
+      "mean",
+      "median",
+      "skewed"
     ],
     "dictionary_handoff": {
       "kind": "passive",
       "termsSurfaced": [
-        "central-tendency",
-        "median"
+        "mean",
+        "median",
+        "skewed"
       ]
     }
   },
@@ -204,18 +194,19 @@
     "scaffold": {
       "name": "GuidedShortAnswer",
       "input": {
-        "title": "Evaluating Donor Distributions",
-        "setup_prose": "You are working in the Office of Alumni Affairs and reviewing a campaign summary. You notice a significant disparity between the average gift and the middle-value gift, which is complicating your planning for the next outreach cycle.",
-        "prompt": "Looking at this report, you see a mean gift amount of $5,000 and a median gift amount of $500 for a recent fundraising campaign. How would you interpret these two values in the context of donor strategy?",
+        "title": "Interpreting Central Tendency in Skewed Data",
+        "setup_prose": "As an institutional researcher, you are reviewing course evaluation data to help department chairs identify courses needing support. You notice a cluster of low scores pulling the mean down, despite most students giving the course a high rating.",
+        "prompt": "Looking at this data on student satisfaction scores for an undergraduate seminar, notice that the distribution is heavily skewed. How would you interpret the difference between the mean score of 3.2 and the median score of 4.5?",
         "consider_scaffolds": [
-          "What do you conclude about the typical gift amount based on the median compared to the mean?",
-          "Which specific aspects of the data lead you to this conclusion?",
-          "What follow-up question would you ask about the donor pool to better understand this distribution?"
+          "What is your conclusion regarding the typical student experience for this course?",
+          "Which specific metric (mean or median) supports your conclusion best, and why?",
+          "What additional information about the distribution would help you confirm your interpretation?"
         ],
-        "rubric_primary_criterion": "The response should successfully identify that the gap between mean and median suggests a skewed distribution with potential outliers, rather than focusing solely on the calculation.",
+        "rubric_primary_criterion": "A strong response demonstrates an understanding that the median is more resistant to outliers than the mean in a skewed distribution.",
         "terms_surfaced": [
-          "central-tendency",
-          "median"
+          "median",
+          "mean",
+          "skewed"
         ],
         "dictionary_handoff": {
           "kind": "active",
@@ -227,15 +218,17 @@
     "chart": null,
     "flowchart": null,
     "terms_surfaced": [
-      "central-tendency",
-      "median"
+      "median",
+      "mean",
+      "skewed"
     ],
     "dictionary_handoff": {
       "kind": "active",
       "candidateTerm": "median",
       "surfacedTerms": [
-        "central-tendency",
-        "median"
+        "median",
+        "mean",
+        "skewed"
       ],
       "handoffQuestion": "Is this how your school uses this term?"
     }
@@ -257,36 +250,38 @@
     "scaffold": {
       "name": "BareLongAnswer",
       "input": {
-        "title": "Choosing a Representative Measure",
-        "setup_prose": "You are reviewing a report on the time it takes students in your graduate program to complete their thesis. The data shows most students finish in 3–4 years, but a small group of doctoral candidates took 8+ years due to research delays. Your department head asks for a single number to report as the 'typical' experience.",
-        "prompt": "Given the data distribution, which measure of central tendency—the mean or the median—would you recommend to the department head to represent the 'typical' time to completion for this cohort, and why?",
-        "rubric_primary_criterion": "Evaluation of the logic connecting the choice of measure to the specific characteristics of the distribution (e.g., sensitivity to outliers).",
+        "title": "Interpreting Engagement Metrics",
+        "setup_prose": "You are meeting with the departmental curriculum committee to review engagement data for a foundational course. You observe that while most students complete the weekly problem set in approximately three hours, a small group of students reports spending over fifteen hours. Consequently, the mean completion time appears much higher than the median.",
+        "prompt": "When reviewing the summary metrics for total time spent by students on a specific core course assignment, you find that the mean is significantly higher than the median. How would you interpret this discrepancy to your department faculty, and what might it suggest about the students' experience?",
+        "rubric_primary_criterion": "The learner demonstrates an ability to logically relate the influence of outliers or distribution shape (skew) to the discrepancy between central tendency metrics.",
         "terms_surfaced": [
-          "central-tendency",
-          "median"
+          "mean",
+          "median",
+          "skewed"
         ],
         "dictionary_handoff": {
           "kind": "active",
-          "candidate_term": "central-tendency",
-          "target_term": "central-tendency",
-          "handoff_question": "These terms came up: central-tendency, median. Which of these did your reasoning depend on, and how does your team use it?"
+          "candidate_term": "skewed",
+          "handoff_question": "These terms came up: mean, median, skewed. Which of these did your reasoning depend on, and how does your team use it?"
         }
       }
     },
     "chart": null,
     "flowchart": null,
     "terms_surfaced": [
-      "central-tendency",
-      "median"
+      "mean",
+      "median",
+      "skewed"
     ],
     "dictionary_handoff": {
       "kind": "active",
-      "candidateTerm": "central-tendency",
+      "candidateTerm": "skewed",
       "surfacedTerms": [
-        "central-tendency",
-        "median"
+        "mean",
+        "median",
+        "skewed"
       ],
-      "handoffQuestion": "These terms came up: central-tendency, median. Which of these did your reasoning depend on, and how does your team use it?"
+      "handoffQuestion": "These terms came up: mean, median, skewed. Which of these did your reasoning depend on, and how does your team use it?"
     }
   },
   {
@@ -301,18 +296,20 @@
     "scaffold": {
       "name": "WikiDraft",
       "input": {
-        "title": "Contributing to the Harvard Data Dictionary",
-        "framing_prose": "You have consistently demonstrated a nuanced understanding of how summary metrics like central-tendency and median shape institutional strategy. We are now inviting you to help build our cross-school knowledge base by drafting a formal entry for our shared terminology guide. Your contribution will be reviewed by peers and data governance leads before being considered for publication.",
-        "target_dictionary_term": "central-tendency",
-        "draft_template_hint": "Focus on how your department distinguishes between mean and median for resource allocation decisions.",
-        "terms_surfaced": [
-          "central-tendency",
-          "median"
-        ],
         "dictionary_handoff": {
-          "kind": "constructive",
-          "target_term": "central-tendency"
-        }
+          "target_term": "central tendency",
+          "kind": "constructive"
+        },
+        "framing_prose": "During annual course evaluation reviews, team leads often debate whether a single number adequately represents student satisfaction. You might see a focus on the median to avoid the influence of extreme outliers. Where does this tension between different measures of central tendency show up for you, or is there a case where a specific measure just doesn't capture the full picture? The course team reads every reflection to help shape future modules.",
+        "target_dictionary_term": "central tendency",
+        "draft_template_hint": "Consider how your team describes 'typical' results during busy seasons.",
+        "title": "When this comes up in your work",
+        "terms_surfaced": [
+          "mean",
+          "central tendency",
+          "skewed",
+          "median"
+        ]
       }
     },
     "chart": null,
@@ -321,19 +318,19 @@
       "nodes": [
         {
           "id": "claim",
-          "label": "Draft Definition"
+          "label": "Propose definition"
         },
         {
           "id": "support",
-          "label": "Contextual Example"
+          "label": "Provide context/example"
         },
         {
           "id": "question",
-          "label": "Peer Review"
+          "label": "Identify ambiguity"
         },
         {
           "id": "revise",
-          "label": "Refined Entry"
+          "label": "Refine usage"
         }
       ],
       "edges": [
@@ -354,16 +351,18 @@
           "to": "claim"
         }
       ],
-      "caption": "The dictionary contribution loop for Harvard staff.",
-      "provenance": "Harvard Data Fluency Module Methodology"
+      "caption": "The iterative cycle for refining our shared understanding of data concepts.",
+      "provenance": "Internal module design standards for collaborative knowledge building."
     },
     "terms_surfaced": [
-      "central-tendency",
+      "mean",
+      "central tendency",
+      "skewed",
       "median"
     ],
     "dictionary_handoff": {
       "kind": "constructive",
-      "targetTerm": "central-tendency",
+      "targetTerm": "central tendency",
       "draftTemplate": {
         "schoolPlaceholder": "Your school (e.g., HGSE)",
         "howWeUseItPlaceholder": "How does your team use this term?",

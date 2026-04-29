@@ -108,20 +108,12 @@ const input = computed(() => sc.value?.input ?? {});
         </div>
       </template>
 
-      <!-- WikiDraft -->
+      <!-- WikiDraft — the actual reflection form is rendered by WikiDraftForm in the parent view. -->
       <template v-else-if="sc.name === 'WikiDraft'">
         <h2 class="text-h2 text-ink mt-4">{{ input.title }}</h2>
         <p class="text-body mt-6 whitespace-pre-line">{{ input.framing_prose }}</p>
         <RenderedChart v-if="result?.chart" :chart="result.chart" />
         <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
-        <textarea rows="11" placeholder="Write your entry…"
-                  class="w-full mt-4 p-3 border border-ink-subtle bg-surface text-body resize-none focus:outline-none focus:border-accent"></textarea>
-        <p class="text-small text-ink-muted mt-4">
-          Your response will be reviewed before any other staff sees it. You will be a named contributor.
-        </p>
-        <div class="text-right mt-4">
-          <button class="text-ink hover:underline">submit →</button>
-        </div>
       </template>
     </template>
   </section>

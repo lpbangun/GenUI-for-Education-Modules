@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const props = defineProps<{ targetTerm: string; sessionId: string }>();
+const props = defineProps<{ targetTerm: string; sessionId: string; framingProse?: string }>();
 const emit = defineEmits<{ submitted: [term: string] }>();
 
 const school = ref<'HGSE' | 'HBS' | 'FAS' | 'HMS' | 'SEAS' | 'other' | null>(null);
-const howWeUseIt = ref('');
+const reflection = ref('');
 const example = ref('');
-const differs = ref('');
 const submitting = ref(false);
 const submitted = ref(false);
 const error = ref<string | null>(null);
 
 async function submit() {
-  if (!school.value || !howWeUseIt.value.trim()) return;
+  if (!reflection.value.trim()) return;
   submitting.value = true;
   error.value = null;
   try {
@@ -25,10 +24,10 @@ async function submit() {
       body: JSON.stringify({
         sessionId: props.sessionId,
         term: props.targetTerm,
-        school: school.value,
-        howWeUseIt: howWeUseIt.value.trim(),
+        school: school.value ?? 'other',
+        howWeUseIt: reflection.value.trim(),
         exampleInPractice: example.value.trim() || null,
-        differsFromOtherSchools: differs.value.trim() || null,
+        differsFromOtherSchools: null,
       }),
     });
     if (!res.ok) {
@@ -47,53 +46,74 @@ async function submit() {
 </script>
 
 <template>
-  <div class="bg-surface p-6 mt-8 border border-ink-subtle">
-    <div class="text-micro text-ink-subtle uppercase">Contribute: "{{ props.targetTerm }}"</div>
-    <p class="text-small text-ink-muted mt-2">
-      Your draft goes to human review before appearing in the dictionary. Thank you for contributing.
-    </p>
+  <div class="mt-8">
+    <div v-if="!submitted" class="space-y-4">
+      <div>
+        <label class="text-micro text-ink-subtle uppercase tracking-[0.18em]">
+          When does <span class="text-ink">"{{ props.targetTerm }}"</span> come up in your work?
+        </label>
+        <p class="text-small text-ink-muted mt-2">
+          Or — is there a piece of this that still doesn't quite fit how your work actually plays out? Either is welcome.
+        </p>
+        <textarea
+          v-model="reflection"
+          rows="4"
+          maxlength="200"
+          class="w-full mt-3 p-3 border border-ink-subtle bg-paper text-body resize-none focus:outline-none focus:border-accent"
+          placeholder="A moment, a meeting, a recurring question. Whatever comes to mind."
+        ></textarea>
+        <div class="text-micro text-ink-subtle text-right mt-1">{{ reflection.length }}/200</div>
+      </div>
 
-    <div v-if="!submitted" class="mt-4 space-y-3">
-      <div>
-        <label class="text-micro text-ink-subtle uppercase">Your school</label>
-        <select v-model="school" class="block mt-1 p-2 border border-ink-subtle bg-paper text-small">
-          <option :value="null">— select —</option>
-          <option value="HGSE">HGSE</option>
-          <option value="HBS">HBS</option>
-          <option value="FAS">FAS</option>
-          <option value="HMS">HMS</option>
-          <option value="SEAS">SEAS</option>
-          <option value="other">other</option>
-        </select>
+      <div class="grid grid-cols-[1fr_180px] gap-6">
+        <div>
+          <label class="text-micro text-ink-subtle uppercase tracking-[0.18em]">An example, or a question you still have (optional)</label>
+          <textarea
+            v-model="example"
+            rows="2"
+            maxlength="200"
+            class="w-full mt-2 p-3 border border-ink-subtle bg-paper text-small resize-none focus:outline-none focus:border-accent"
+            placeholder="Optional."
+          ></textarea>
+        </div>
+        <div>
+          <label class="text-micro text-ink-subtle uppercase tracking-[0.18em]">Your team / department</label>
+          <select
+            v-model="school"
+            class="block w-full mt-2 p-3 border border-ink-subtle bg-paper text-small focus:outline-none focus:border-accent"
+          >
+            <option :value="null">— select —</option>
+            <option value="HGSE">HGSE</option>
+            <option value="HBS">HBS</option>
+            <option value="FAS">FAS</option>
+            <option value="HMS">HMS</option>
+            <option value="SEAS">SEAS</option>
+            <option value="other">other</option>
+          </select>
+        </div>
       </div>
-      <div>
-        <label class="text-micro text-ink-subtle uppercase">How your team uses "{{ props.targetTerm }}"</label>
-        <textarea v-model="howWeUseIt" rows="3" maxlength="200"
-                  class="w-full mt-1 p-2 border border-ink-subtle bg-paper text-small resize-none focus:outline-none focus:border-accent"
-                  placeholder="A short description in your own words."></textarea>
-        <div class="text-micro text-ink-subtle text-right">{{ howWeUseIt.length }}/200</div>
-      </div>
-      <div>
-        <label class="text-micro text-ink-subtle uppercase">A short example from your work (optional)</label>
-        <textarea v-model="example" rows="2" maxlength="200"
-                  class="w-full mt-1 p-2 border border-ink-subtle bg-paper text-small resize-none focus:outline-none focus:border-accent"></textarea>
-      </div>
-      <div>
-        <label class="text-micro text-ink-subtle uppercase">How this differs from how other schools use it (optional)</label>
-        <textarea v-model="differs" rows="2" maxlength="200"
-                  class="w-full mt-1 p-2 border border-ink-subtle bg-paper text-small resize-none focus:outline-none focus:border-accent"></textarea>
-      </div>
-      <div class="flex justify-between items-center pt-2">
-        <span v-if="error" class="text-small text-tier-1">{{ error }}</span>
-        <button @click="submit" :disabled="!school || !howWeUseIt.trim() || submitting"
-                class="text-ink hover:underline disabled:opacity-40">
-          {{ submitting ? 'submitting…' : 'submit draft →' }}
+
+      <div class="flex justify-between items-center pt-2 gap-4">
+        <span v-if="error" class="text-small" style="color: #c84a4a;">{{ error }}</span>
+        <span v-else class="text-micro text-ink-subtle italic">
+          The course team reads what learners share here.
+        </span>
+        <button
+          @click="submit"
+          :disabled="!reflection.trim() || submitting"
+          class="border border-ink py-2 px-6 text-micro text-ink uppercase tracking-[0.18em]
+                 hover:bg-ink hover:text-paper transition disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+        >
+          {{ submitting ? 'sending…' : 'Send →' }}
         </button>
       </div>
     </div>
 
-    <div v-else class="mt-4 text-small text-ink-muted">
-      Your draft has been queued for review.
+    <div v-else class="border-l-2 border-accent pl-4 py-3">
+      <div class="text-micro text-ink-subtle uppercase tracking-[0.18em]">Sent</div>
+      <p class="text-small text-ink mt-2">
+        Thanks. Your reflection has been forwarded to the course team.
+      </p>
     </div>
   </div>
 </template>
