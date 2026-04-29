@@ -121,7 +121,10 @@ You MUST:
   const res = await fetch(`${BACKEND_BASE}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ messages: [{ role: 'user', content: userMessage }] }),
+    body: JSON.stringify({
+      messages: [{ role: 'user', content: userMessage }],
+      tier: tier.name,
+    }),
     signal: opts.signal,
   });
   if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);

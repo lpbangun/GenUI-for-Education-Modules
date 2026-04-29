@@ -9,6 +9,7 @@ import { streamText, generateObject } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { z } from 'zod';
 import { allTools, TOOL_NAMES } from './tools';
+import { SYSTEM_PROMPTS } from '../lib/prompts';
 
 const MODEL_ID = 'gemini-3.1-flash-lite-preview';
 
@@ -44,7 +45,11 @@ app.post('/api/chat', async (c) => {
 
   const body = await c.req.json().catch(() => ({}));
   const messages = body.messages ?? [];
-  const systemPrompt = body.system ?? 'You are a Content Generator for a data fluency module. Pick exactly one scaffold tool per turn matching the learner mastery. Use render_chart or render_flowchart inline only when a visualization helps interpretation.';
+  const tier = body.tier as keyof typeof SYSTEM_PROMPTS | undefined;
+
+  const systemPrompt = (tier && SYSTEM_PROMPTS[tier])
+    ? SYSTEM_PROMPTS[tier]
+    : (body.system ?? 'You are a Content Generator for a data fluency module. Pick exactly one scaffold tool per turn matching the learner mastery.');
 
   const result = streamText({
     model: provider(MODEL_ID),
