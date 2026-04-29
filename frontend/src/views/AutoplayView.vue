@@ -27,7 +27,13 @@ let timer: number | undefined;
 const currentResult = (): ScaffoldResult | null => {
   const cp = checkpoints[stepIndex.value];
   if (!cp) return null;
-  return { scaffold: cp.scaffold as any, chart: cp.chart, flowchart: cp.flowchart };
+  return {
+    scaffold: cp.scaffold as any,
+    chart: cp.chart,
+    flowchart: cp.flowchart,
+    termsSurfaced: cp.terms_surfaced ?? [],
+    dictionaryHandoff: cp.dictionary_handoff ?? { kind: 'passive', termsSurfaced: [] },
+  };
 };
 
 function play() {
