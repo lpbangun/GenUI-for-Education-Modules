@@ -4,6 +4,7 @@ import type { ScaffoldResult } from '../lib/api';
 import { TIER_COLORS } from '../lib/api';
 import RenderedChart from './RenderedChart.vue';
 import RenderedFlowchart from './RenderedFlowchart.vue';
+import DistractorReveal from './scaffolds/DistractorReveal.vue';
 
 const props = defineProps<{ result: ScaffoldResult | null; loading?: boolean }>();
 
@@ -68,16 +69,10 @@ const input = computed(() => sc.value?.input ?? {});
         <RenderedChart v-if="result?.chart" :chart="result.chart" />
         <RenderedFlowchart v-if="result?.flowchart" :flowchart="result.flowchart" />
         <p class="text-body mt-6">{{ input.prompt }}</p>
-        <div class="space-y-3 mt-4">
-          <label v-for="opt in (input.options ?? [])" :key="opt.id"
-                 class="block border border-ink-subtle p-4 hover:border-ink cursor-pointer transition">
-            <span class="font-mono text-small text-ink-subtle mr-3">{{ opt.id }}</span>
-            <span class="text-body">{{ opt.text }}</span>
-          </label>
-        </div>
-        <div class="mt-6" style="width:48px; border-top: 0.5px solid #8B8B8B;"></div>
-        <div class="text-micro text-ink-subtle uppercase mt-6">Hint</div>
-        <p class="text-small text-ink-muted mt-2 whitespace-pre-line">{{ input.hint }}</p>
+        <DistractorReveal class="mt-4"
+                          :options="input.options ?? []"
+                          :hint="input.hint ?? ''"
+                          :observation-prompt="input.observation_prompt" />
       </template>
 
       <!-- GuidedShortAnswer -->
